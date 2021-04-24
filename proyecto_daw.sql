@@ -1,9 +1,9 @@
--- phpMyAdmin SQL Dum
+-- phpMyAdmin SQL Dump
 -- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-04-2021 a las 11:15:46
+-- Tiempo de generación: 24-04-2021 a las 12:53:08
 -- Versión del servidor: 10.4.17-MariaDB
 -- Versión de PHP: 8.0.1
 
@@ -24,12 +24,28 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `articulo`
+--
+
+CREATE TABLE `articulo` (
+  `id_articulo` int(5) NOT NULL,
+  `nombre` varchar(100) NOT NULL,
+  `descripcion` varchar(1000) NOT NULL,
+  `precio` int(4) NOT NULL,
+  `fecha_salida` date NOT NULL,
+  `imagen_principal` blob NOT NULL,
+  `es_juego` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `comprado_usuario`
 --
 
 CREATE TABLE `comprado_usuario` (
   `id_usuario` int(5) NOT NULL,
-  `id_juego` int(20) NOT NULL,
+  `id_articulo` int(5) NOT NULL,
   `cantidad` int(100) NOT NULL,
   `fecha_compra` date NOT NULL,
   `tipo_compra` varchar(100) NOT NULL,
@@ -45,14 +61,9 @@ CREATE TABLE `comprado_usuario` (
 
 CREATE TABLE `juego` (
   `id_juego` int(6) NOT NULL,
-  `descripcion` longtext NOT NULL,
-  `nombre` varchar(100) NOT NULL,
-  `precio` varchar(50) NOT NULL,
   `etiquetas` varchar(200) NOT NULL,
   `plataforma` varchar(100) NOT NULL,
-  `imagen_principal` blob NOT NULL,
   `idioma` varchar(50) NOT NULL,
-  `fecha_salida` date NOT NULL,
   `id_saga` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -105,12 +116,18 @@ CREATE TABLE `usuario` (
 --
 
 --
+-- Indices de la tabla `articulo`
+--
+ALTER TABLE `articulo`
+  ADD PRIMARY KEY (`id_articulo`);
+
+--
 -- Indices de la tabla `comprado_usuario`
 --
 ALTER TABLE `comprado_usuario`
   ADD PRIMARY KEY (`codigo_compra`),
   ADD KEY `FOREIGN_id_usu_id_juego` (`id_usuario`),
-  ADD KEY `id_juego-id_juego` (`id_juego`);
+  ADD KEY `id_articulo-id_articulo` (`id_articulo`);
 
 --
 -- Indices de la tabla `juego`
@@ -146,7 +163,7 @@ ALTER TABLE `usuario`
 --
 ALTER TABLE `comprado_usuario`
   ADD CONSTRAINT `FOREIGN_id_usu_id_juego` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`),
-  ADD CONSTRAINT `id_juego-id_juego` FOREIGN KEY (`id_juego`) REFERENCES `juego` (`id_juego`);
+  ADD CONSTRAINT `id_articulo-id_articulo` FOREIGN KEY (`id_articulo`) REFERENCES `juego` (`id_juego`);
 
 --
 -- Filtros para la tabla `juego`
