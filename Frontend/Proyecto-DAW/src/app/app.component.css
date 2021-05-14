@@ -1,124 +1,128 @@
+/*---------------------------------------------*/
+                /*Foto de perfil*/
+/*---------------------------------------------*/
 
-.container-btn-mode{
-    position: absolute;
-    top: 13px;
-    right: 300px;
-    cursor: pointer;
-    z-index: 2;
-    font-size:0;
+.profile-header-img > img.img-circle {
+  width: 35px;
+  height: 35px;
+  margin-right: 0px;
+  border-radius: 60%;
+}
+
+#fotoPerfil:hover {
+  border: solid 1px aquamarine;
+}
+
+i:hover {
+  color: aquamarine;
+  -webkit-animation: heartbeat 1.5s ease-in-out infinite both;
+  animation: heartbeat 1.5s ease-in-out infinite both;
+}
+
+@-webkit-keyframes heartbeat {
+  from {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-transform-origin: center center;
+    transform-origin: center center;
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
   }
-
-  .btn-mode{
-    display: inline-block;
-    width: 50px;
-    height: 30px;
-    border:2px solid black;
-    transition: background-color .5s;
+  10% {
+    -webkit-transform: scale(0.91);
+    transform: scale(0.91);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
   }
-
-  .btn-mode i {
-    display: block;
-    font-size: 19px;
-    text-align: center;
-    line-height: 28px;
+  17% {
+    -webkit-transform: scale(0.98);
+    transform: scale(0.98);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
   }
-
-  .btn-mode.sun{
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
-    border-right: 1px solid transparent;
+  33% {
+    -webkit-transform: scale(0.87);
+    transform: scale(0.87);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
   }
-
-  .btn-mode.moon{
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
+  45% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
   }
-
-
-
-  .dark-mode{
-    background-color: #0e0e0e;
-    transition:background-color .5s;
-
+}
+@keyframes heartbeat {
+  from {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-transform-origin: center center;
+    transform-origin: center center;
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
   }
-
-
-
-
-  /* The following vars come from my theme. You'll need to replace with your own color values. - "$light" - "$mid" - "$dark" */
- .toggle {
-    align-items: center;
-    border-radius: 100px;
-    display: flex;
-    font-weight: 700;
-    margin-bottom: 16px;
-}
-.toggle:last-of-type {
-    margin: 0;
-}
-.toggle__input {
-    clip: rect(0 0 0 0);
-    clip-path: inset(50%);
-    height: 1px;
-    overflow: hidden;
-    position: absolute;
-    white-space: nowrap;
-    width: 1px;
-}
-.toggle__input:not([disabled]):active + .toggle-track, .toggle__input:not([disabled]):focus + .toggle-track {
-    border: 1px solid transparent;
-    box-shadow: 0px 0px 0px 2px ;
-}
-.toggle__input:disabled + .toggle-track {
-    cursor: not-allowed;
-    opacity: 0.7;
-}
-.toggle-track {
-    background: transparent;
-    border: 1px solid grey;
-    border-radius: 100px;
-    cursor: pointer;
-    display: flex;
-    height: 30px;
-    margin-right: 12px;
-    position: relative;
-    width: 60px;
-}
-.toggle-indicator {
-    align-items: center;
-    background: rgb(255, 235, 146);
-    border-radius: 24px;
-    bottom: 2px;
-    display: flex;
-    height: 24px;
-    justify-content: center;
-    left: 2px;
-    outline: solid 2px transparent;
-    position: absolute;
-    transition: 1s;
-    width: 24px;
-}
-.checkMark {
-    
-    height: 20px;
-    width: 20px;
-    opacity: 0;
-    transition: opacity 1 ease-in-out;
-}
-.toggle__input:checked + .toggle-track .toggle-indicator {
-    background: whitesmoke;
-    
-    transform: translateX(30px);
-}
-.toggle__input:checked + .toggle-track .toggle-indicator .checkMark {
-    opacity: 1;
-    border: 1px solid white;
-    transition: opacity 1 ease-in-out;
-    
-}
-@media screen and (-ms-high-contrast: active) {
-    .toggle-track {
-        border-radius: 0;
-   }
+  10% {
+    -webkit-transform: scale(0.91);
+    transform: scale(0.91);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+  17% {
+    -webkit-transform: scale(0.98);
+    transform: scale(0.98);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+  33% {
+    -webkit-transform: scale(0.87);
+    transform: scale(0.87);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+  45% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
 }
 
+
+/*---------------------------------------------*/
+                /*Navbar*/
+/*---------------------------------------------*/
+.navbar-dark .navbar-toggler {
+  color: aquamarine;
+  border-color: aquamarine;
+}
+
+.nav-item:hover {
+  background-color: aquamarine;
+  box-shadow: 5px 5px red;
+}
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 60%;
+}
+
+#carrito:hover {
+        background-color: transparent;
+        box-shadow: none;
+}
+
+#fotoperfil{
+        margin-right: 20px;
+}
+
+#fotoperfil:hover {
+        background-color: transparent;
+        box-shadow: none;
+        border: solid transparent 0px;
+}

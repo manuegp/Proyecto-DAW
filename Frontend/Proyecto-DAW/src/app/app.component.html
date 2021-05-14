@@ -1,70 +1,135 @@
 <script src="app.js"></script>
-<nav id="menu" class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Navbar</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
-          
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Dropdown
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
-          </li>
-          
-          <li class="nav-item">
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-          </li>
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">*Logo aqui*</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <!--Contenidos de la barra-->
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+        </li>
 
-          <li  class="nav-item">
-            <div id="modoOscuro" class="demo">
-              <!-- begin toggle markup	 -->
-          
-              <label class="toggle" for="uniqueID">
-                <input  type="checkbox" class="toggle__input" id="uniqueID" />
-                <span class="toggle-track">
-                  <span class="toggle-indicator">
-                    <!-- 	This check mark is optional	 -->
-                    
-                  </span>
-                </span>
-                
-              </label>
-          
-              <!-- end toggle markup	 -->
-          
-              
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Juegos</a>
+        </li>
+      </ul>
+
+      <li class="nav-item" id="carrito">
+        <a class="navbar-brand" href="#">
+          <i class="fas fa-cart-plus"></i>
+        </a>
+      </li>
+
+      <li class="nav-item" id="fotoperfil">
+        <a class="navbar-brand" href="#">
+          <div
+            class="profile-header-container"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <div class="profile-header-img">
+              <img
+                id="fotoPerfil"
+                class="img-circle"
+                src="https://lh3.googleusercontent.com/ogw/ADGmqu-EMdPcOTH5Ixz6IAvaVytz6maQs5WNzOapsJbI=s83-c-mo"
+              />
             </div>
-      
-          </li>
-          
-           
-    </ul>
-        
-        <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
-      </div>
-    </div>
-  </nav>
+          </div>
+        </a>
+      </li>
 
-<div class="container">
-  <div class="cambiable col-3">
-fdsa
+      <form class="example-form d-flex">
+        <input
+          class="form-control me-2"
+          type="search"
+          placeholder="Busca tu juego aqui"
+          aria-label="Buscar"
+          matInput
+          [formControl]="myControl"
+          [matAutocomplete]="auto"
+        />
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let option of options" [value]="option">
+            {{ option }}
+          </mat-option>
+        </mat-autocomplete>
+      </form>
+    </div>
   </div>
-</div>
+</nav>
+
+<router-outlet></router-outlet>
+
+<br />
+<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+
+<!--https://mdbootstrap.com/docs/standard/navigation/footer/-->
+
+<footer class="text-center text-lg-start bg-dark text-muted">
+  <!-- Section: Social media -->
+  <section
+    class="
+      d-flex
+      justify-content-center justify-content-lg-between
+      p-4
+      border-bottom
+    "
+  ></section>
+  <!-- Section: Social media -->
+
+  <!-- Section: Links  -->
+  <section class="">
+    <div class="container text-center text-md-start mt-5">
+      <!-- Grid row -->
+      <div class="row mt-3">
+        <!-- Grid column -->
+        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+          <!-- Content -->
+          <h2>
+            <i class="fas fa-gamepad"></i>
+            MMJ GAMES
+          </h2>
+
+          <p>
+            Disfruta de los ultimos juegos y merchandising de tu sagas favoritas
+            a un precio asequible
+          </p>
+        </div>
+        
+        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+          <!-- Links -->
+          <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+          <p>
+            <i class="fas fa-envelope me-3"></i>
+            8686468@alu.murciaeduca.es
+          </p>
+          <p>
+            <i class="fas fa-envelope me-3"></i>
+            1833436@alu.murciaeduca.es
+          </p>
+        </div>
+        <!-- Grid column -->
+      </div>
+      <!-- Grid row -->
+    </div>
+  </section>
+  <!-- Section: Links  -->
+
+  <!-- Copyright -->
+  <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05)">
+    © 2021 Copyright
+  </div>
+  <!-- Copyright -->
+</footer>
+<!-- Footer -->
