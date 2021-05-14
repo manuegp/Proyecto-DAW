@@ -1,6 +1,5 @@
 window.onload= function() {
-  console.log($("mat-slide-toggle").value);
-
+  
 //document.getElementById('id-sun').onclick(cambiarClaro);
 //document.getElementById('uniqueID').addEventListener("click", cambiarOscuro);
 /*

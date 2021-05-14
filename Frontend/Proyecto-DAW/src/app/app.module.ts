@@ -14,25 +14,30 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'home', component: HomeComponent },
-  { path: 'profile', component: ProfileComponent },
-];
+import { AdminComponent } from './admin/admin.component';
+import { ProductComponent } from './product/product.component';
+import { ListProductsComponent } from './list-products/list-products.component';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+
+import {IvyCarouselModule} from 'angular-responsive-carousel';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, ProfileComponent],
+  declarations: [AppComponent, HomeComponent, ProfileComponent, AdminComponent, ProductComponent, ListProductsComponent, ShoppingCartComponent],
   imports: [
     MatAutocompleteModule,
     BrowserModule,
     AppRoutingModule,
-    RouterModule.forRoot(routes),
+    RouterModule,
     MatSlideToggleModule,
     MatFormFieldModule,
     ReactiveFormsModule,
     FormsModule,
     MatInputModule,
     BrowserAnimationsModule,
+    IvyCarouselModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent],
