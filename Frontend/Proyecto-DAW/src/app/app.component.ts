@@ -1,5 +1,5 @@
 import { Component, ElementRef, Output, ViewChild } from '@angular/core';
-
+import {FormControl} from '@angular/forms'
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -10,4 +10,9 @@ import { Component, ElementRef, Output, ViewChild } from '@angular/core';
 
 export class AppComponent {
   title = 'Proyecto-DAW';
+
+  myControl = new FormControl();
+  options: string[] = ['One', 'Two', 'Three'];
+  
 }
+
