@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
   }
 
   images = [
-    {path: 'C:\Users\manue\Desktop\Proyecto-DAW\Frontend\Proyecto-DAW\src\app\img_prueba'},
+    {path: ''},
     
 ]
   

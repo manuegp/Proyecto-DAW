@@ -93,6 +93,7 @@ i:hover {
                 /*Navbar*/
 /*---------------------------------------------*/
 .navbar-dark .navbar-toggler {
+  
   color: aquamarine;
   border-color: aquamarine;
 }
@@ -128,14 +129,14 @@ i:hover {
 }
 
 
-footer{
-  position: absolute;
- 
-  bottom: 0;
-  right: 0;
-  width: 100%;
-}
+
 
 #contenedor{
   padding-top: 100px;
 }
+
+nav{
+  padding:0;
+}
+
+

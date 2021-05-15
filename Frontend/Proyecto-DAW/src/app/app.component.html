@@ -1,7 +1,6 @@
-
-<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark " >
   <div class="container-fluid">
-    <a class="navbar-brand" href="/">*Logo aqui*</a>
+    <a class="navbar-brand" routerLink="/home">*Logo aqui*</a>
     <button
       class="navbar-toggler"
       type="button"
@@ -14,19 +13,29 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <!--Contenidos de la barra-->
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" routerLink="/">Inicio</a>
+        <li class="nav-item col-5 col-lg-6">
+          <a class="nav-link active" aria-current="page" routerLink="/home"
+            >Inicio</a
+          >
         </li>
 
+        <li class="nav-item col-5 col-lg-7">
+          <a class="nav-link active" aria-current="page" routerLink="/products"
+            >Juegos</a
+          >
+        </li>
+      </ul>
+
+    
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" routerLink="/games">Juegos</a>
+          <a class="nav-link active" (click)="onCreate()"> Iniciar sesion</a>
         </li>
       </ul>
 
       <li class="nav-item" id="carrito">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="shopping-cart">
           <i class="fas fa-cart-plus"></i>
         </a>
       </li>
@@ -55,12 +64,11 @@
           type="search"
           placeholder="Busca tu juego aqui"
           aria-label="Buscar"
-          matInput
           [formControl]="myControl"
           [matAutocomplete]="auto"
         />
         <mat-autocomplete #auto="matAutocomplete">
-          <mat-option *ngFor="let option of options" [value]="option">
+          <mat-option *ngFor="let option of options" [value]="option" class="">
             {{ option }}
           </mat-option>
         </mat-autocomplete>
@@ -70,20 +78,14 @@
 </nav>
 
 <div id="contenedor">
-  
   <router-outlet></router-outlet>
-
 </div>
-
-
-
-
 
 <br />
 
 <!--https://mdbootstrap.com/docs/standard/navigation/footer/-->
 
-<footer class="text-center text-lg-start bg-dark text-muted ">
+<footer class="text-center text-lg-start bg-dark text-muted">
   <!-- Section: Social media -->
   <section
     class="
@@ -113,7 +115,7 @@
             a un precio asequible
           </p>
         </div>
-        
+
         <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
           <!-- Links -->
           <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
