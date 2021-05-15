@@ -1,0 +1,25 @@
+
+
+tr:hover{
+    box-shadow: 5px 5px red;
+    background-color: khaki;
+}
+
+
+table{
+    background-color: #212529;
+    
+}
+th{
+    color: white;
+}
+
+td{
+    color: white;
+}
+
+td:hover{
+    cursor: pointer;
+    color: black;
+}
+
