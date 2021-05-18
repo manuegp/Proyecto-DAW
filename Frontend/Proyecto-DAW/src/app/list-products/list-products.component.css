@@ -1,9 +1,9 @@
 
 
-tr:hover{
+/*tr:hover{
     box-shadow: 5px 5px red;
     background-color: khaki;
-}
+}*/
 
 
 table{
@@ -23,3 +23,18 @@ td:hover{
     color: black;
 }
 
+thead>tr:first-child:hover{
+    background-color: #212529;
+    box-shadow: none;
+    
+}
+
+mat-paginator{
+    background-color: #212529;
+    color: white;
+}
+
+mat-paginator span{
+    background-color: #212529;
+    color: white;
+}

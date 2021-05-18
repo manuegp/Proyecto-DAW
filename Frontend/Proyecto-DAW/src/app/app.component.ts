@@ -24,10 +24,11 @@ export class AppComponent {
 
   }
 
+  
   onCreate(){
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
-    
+    dialogConfig.closeOnNavigation = true;
       this.dialog.open(LoginComponent, { panelClass: 'custom-dialog-container' });
   }
 }

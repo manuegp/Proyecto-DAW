@@ -22,14 +22,18 @@ import { ListProductsComponent } from './list-products/list-products.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import {MatChipsModule} from '@angular/material/chips';
-
+import {MatSidenavModule} from '@angular/material/sidenav';
 import {IvyCarouselModule} from 'angular-responsive-carousel';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+import {MatListModule} from '@angular/material/list';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { LoginComponent } from './login/login.component';
+import {MatDividerModule} from '@angular/material/divider';
+import { SiginComponent } from './sigin/sigin.component';
+
+
 @NgModule({
-  declarations: [AppComponent, HomeComponent, ProfileComponent, AdminComponent, ProductComponent, ListProductsComponent, ShoppingCartComponent, LoginComponent],
+  declarations: [AppComponent, HomeComponent, ProfileComponent, AdminComponent, ProductComponent, ListProductsComponent, ShoppingCartComponent, LoginComponent, SiginComponent],
   imports: [
     MatAutocompleteModule,
     BrowserModule,
@@ -48,7 +52,11 @@ import { LoginComponent } from './login/login.component';
     MatChipsModule,
     MatTableModule,
     MatPaginatorModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatDividerModule,
+    MatSidenavModule,
+    MatListModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent],

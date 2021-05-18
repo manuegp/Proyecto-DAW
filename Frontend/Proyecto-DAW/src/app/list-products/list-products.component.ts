@@ -1,8 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import {animate, state, style, transition, trigger} from '@angular/animations';
+import {AfterViewInit, Component, ViewChild} from '@angular/core';
+import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
-import{ articulos} from './articulos';
-import{ ARTICULOS} from './mock-articulos';
 
   
 @Component({
@@ -14,23 +12,40 @@ import{ ARTICULOS} from './mock-articulos';
 
 
 
-export class ListProductsComponent implements OnInit {
-  lista:string[]=[`Nombre`, `Descripcion`, `Precio`,  `Fecha salida` ]
+export class ListProductsComponent implements AfterViewInit {
+  displayedColumns: string[] = ['Nombre', 'Descripcion', 'Precio', 'Fecha'];
+  dataSource = new MatTableDataSource<articulo>(ELEMENT_DATA);
   
-  articulo = ARTICULOS;
-  
-  constructor() { }
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  ngOnInit(): void {
-    
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
   }
-
-  dataSource = new MatTableDataSource(ARTICULOS);
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-
-  
 }
+ 
+
+export interface articulo {
+  nombre: string;
+  descripcion: number;
+  precio: number;
+  fecha: any;
+}
+
+const ELEMENT_DATA: articulo[] = [
+  { nombre: 'Hydrogen', descripcion: 1.0079, precio:12 , fecha: "2017/02/24"},
+  { nombre: 'heliop', descripcion: 1.0079, precio:12 , fecha: "2017/02/24"},
+  { nombre: 'Hydrogen', descripcion: 1.0079, precio:12 , fecha: "2017/02/24"},
+  { nombre: 'Hydrogen', descripcion: 1.0079, precio:12 , fecha: "2017/02/24"},
+  { nombre: 'Hydrogen', descripcion: 1.0079, precio:12 , fecha: "2017/02/24"},
+  { nombre: 'Hydrogen', descripcion: 1.0079, precio:12 , fecha: "2017/02/24"},
+  { nombre: 'Hydrogen', descripcion: 1.0079, precio:12 , fecha: "2017/02/24"},
+  { nombre: 'Hydrogen', descripcion: 1.0079, precio:12 , fecha: "2017/02/24"},
+  { nombre: 'Hydrogen', descripcion: 1.0079, precio:12 , fecha: "2017/02/24"},
+  { nombre: 'Hydrogen', descripcion: 1.0079, precio:12 , fecha: "2017/02/24"},
+  { nombre: 'Hydrogen', descripcion: 1.0079, precio:12 , fecha: "2017/02/24"}
+];
