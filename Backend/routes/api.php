@@ -3,6 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\MovieController;
+use App\Http\Controllers\API\UsuarioController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -17,3 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::resource('movies', MovieController::class);
+
+Route::apiResource('usuarios', UsuarioController::class);
