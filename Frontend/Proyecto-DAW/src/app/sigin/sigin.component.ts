@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';import { BrowserModule } from '@angular/platform-browser';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-sigin',
@@ -13,10 +14,26 @@ export class SiginComponent  {
 
  signupForm : FormGroup 
 
-  
+   url = "http://127.0.0.1:8000/api/usuarios";
 
+  enviarDatos(nombre:string, apellidos:string, password:string, nick:string,  telefono:number, email:string,){
+    this.http.post(this.url,{
+        nombre: nombre,
+        apellidos: apellidos,
+        password: password,
+        nick: nick,
+        telefono: telefono,
+        email: email
+    }).toPromise().then((data:any) => {
+      console.log(data)
+      console.log(JSON.stringify(data.JSON))
+    })
+
+  }
   constructor(
-    private _builder : FormBuilder
+    private _builder : FormBuilder,
+    private http:HttpClient,
+    private router:Router
   ) { 
     this.signupForm = this._builder.group({
       username:['', Validators.required],
@@ -34,7 +51,15 @@ export class SiginComponent  {
 
  
   submit(values: FormGroup){
-    console.log(values);
+    this.enviarDatos(this.signupForm.controls['nombre'].value,
+    this.signupForm.controls['apellidos'].value, 
+    this.signupForm.controls['contraseña'].value, 
+    this.signupForm.controls['username'].value,
+    this.signupForm.controls['telefono'].value,
+    this.signupForm.controls['email'].value  
+    );
+    
+    this.router.navigate(['home']);
     
   }
 

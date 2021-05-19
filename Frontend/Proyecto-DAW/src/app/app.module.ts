@@ -30,7 +30,7 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { LoginComponent } from './login/login.component';
 import {MatDividerModule} from '@angular/material/divider';
 import { SiginComponent } from './sigin/sigin.component';
-
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, ProfileComponent, AdminComponent, ProductComponent, ListProductsComponent, ShoppingCartComponent, LoginComponent, SiginComponent],
@@ -56,6 +56,7 @@ import { SiginComponent } from './sigin/sigin.component';
     MatDividerModule,
     MatSidenavModule,
     MatListModule,
+    HttpClientModule
     
   ],
   providers: [],
