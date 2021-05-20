@@ -19,7 +19,6 @@ class CreateUsuariosTable extends Migration
             $table->string('apellidos', 100);
             $table->string('password', 100);
             $table->string('nick', 100);
-            $table->string('localidad', 100);
             $table->integer('telefono')->unsigned();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();

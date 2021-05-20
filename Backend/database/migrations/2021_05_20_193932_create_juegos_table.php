@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateArticulosTable extends Migration
+class CreateJuegosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateArticulosTable extends Migration
      */
     public function up()
     {
-        Schema::create('articulos', function (Blueprint $table) {
+        Schema::create('juegos', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre', 100);
-            $table->string('descripcion', 500);
-            $table->double('precio', 4, 2);
-            $table->date('fecha_salida');
-            $table->binary('imagen_principal')->nullable();
+            $table->string('etiquetas', 300);
+            $table->string('plataforma', 300);
+            $table->string('idioma', 300);
+            $table->unsignedBigInteger('id_articulo');
+            $table->foreign('id_articulo')->references('id')->on('articulos');
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class CreateArticulosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('articulos');
+        Schema::dropIfExists('juegos');
     }
 }

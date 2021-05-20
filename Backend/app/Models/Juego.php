@@ -5,19 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Usuario extends Model
+class Juego extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'nombre',
-        'apellidos',
-        'password',
-        'nick',
-        'telefono',
-        'email',
-        'foto',
-        'es_administrador',
+        'etiquetas',
+        'plataforma',
+        'idioma',
+        'articulo',
     ];
 
 }
