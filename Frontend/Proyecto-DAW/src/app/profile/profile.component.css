@@ -1,0 +1,88 @@
+#info{
+    padding: 15px;
+      padding-left: 30px;
+      padding-right: 30px;
+      background-color: #212529;
+}
+
+#fotoPerfil{
+    border: solid aquamarine 2px;
+}
+
+#fotoPerfil:hover{
+    border: solid aquamarine 2px;
+    box-shadow: 5px 5px red;
+}
+
+#cambiarImagen{
+    margin-top: 5px;
+    background-color: transparent;
+    color: white;
+    border: none;
+    margin-left: 10px;
+}
+#cambiarImagen:hover{
+    background-color: aquamarine ;
+    box-shadow: 5px 5px red;
+    
+}
+
+#cambiarImagen .offset-4{
+margin-left: 10px;
+}
+
+mat-label{
+    color: white;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input{
+    color: white;
+}
+
+.boton{
+    margin-top: 5px;
+    background-color: transparent;
+    color: white;
+    border: none;
+    margin-left: 10px;
+}
+.boton:hover{
+    background-color: aquamarine ;
+    box-shadow: 5px 5px red;
+    
+}
+
+#contenedorInfo{
+    background-color: #212529;
+          border: solid white 1px;
+          padding: 10px;
+}
+
+table{
+    background-color: #212529;
+    
+}
+
+mat-paginator{
+    background-color: #212529;
+    color: white;
+}
+
+mat-paginator span{
+    background-color: #212529;
+    color: white;
+}
+
+::ng-deep .mat-select-arrow {
+    color: white;
+}
+
+::ng-deep .mat-select-value {
+    color: white;
+}

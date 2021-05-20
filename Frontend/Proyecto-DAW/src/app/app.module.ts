@@ -31,9 +31,12 @@ import { LoginComponent } from './login/login.component';
 import {MatDividerModule} from '@angular/material/divider';
 import { SiginComponent } from './sigin/sigin.component';
 import { HttpClientModule } from '@angular/common/http';
+import { VentanaPestanasComponent } from './componentesAdmin/ventana-pestanas/ventana-pestanas.component';
+import {MatTabsModule} from '@angular/material/tabs';
+import { ModificarProductoComponent } from './componentesAdmin/modificar-producto/modificar-producto.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, ProfileComponent, AdminComponent, ProductComponent, ListProductsComponent, ShoppingCartComponent, LoginComponent, SiginComponent],
+  declarations: [AppComponent, HomeComponent, ProfileComponent, AdminComponent, ProductComponent, ListProductsComponent, ShoppingCartComponent, LoginComponent, SiginComponent, VentanaPestanasComponent, ModificarProductoComponent],
   imports: [
     MatAutocompleteModule,
     BrowserModule,
@@ -56,7 +59,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatDividerModule,
     MatSidenavModule,
     MatListModule,
-    HttpClientModule
+    HttpClientModule,
+    MatTabsModule
     
   ],
   providers: [],

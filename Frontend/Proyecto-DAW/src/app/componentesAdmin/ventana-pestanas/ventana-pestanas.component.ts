@@ -1,19 +1,39 @@
-import {AfterViewInit, Component, ViewChild} from '@angular/core';
-import {MatPaginator} from '@angular/material/paginator';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import {Observable, Observer} from 'rxjs';
 import {MatTableDataSource} from '@angular/material/table';
+import {MatPaginator} from '@angular/material/paginator';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { ModificarProductoComponent } from 'src/app/componentesAdmin/modificar-producto/modificar-producto.component';
 
-  
+export interface ExampleTab {
+  label: string;
+  content: string;
+}
+
+
 @Component({
-  selector: 'app-list-products',
-  templateUrl: './list-products.component.html',
-  styleUrls: ['./list-products.component.css']
+  selector: 'app-ventana-pestanas',
+  templateUrl: './ventana-pestanas.component.html',
+  styleUrls: ['./ventana-pestanas.component.css']
 })
 
 
+export class VentanaPestanasComponent{
+  
+  modificar(){
+      console.log("modificando")
+      const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.closeOnNavigation = true;
+      this.dialog.open(ModificarProductoComponent, { panelClass: 'custom-dialog-container' });
+  }
+  
 
+  constructor(private dialog: MatDialog) {
+    
+  }
 
-export class ListProductsComponent implements AfterViewInit {
-  displayedColumns: string[] = ['Nombre', 'Descripcion', 'Precio', 'Fecha', ];
+  displayedColumns: string[] = ['Nombre', 'Descripcion', 'Precio', 'Fecha', 'Modificar'];
   dataSource = new MatTableDataSource<articulo>(ELEMENT_DATA);
   
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -27,18 +47,16 @@ export class ListProductsComponent implements AfterViewInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 }
- 
+
 
 export interface articulo {
   nombre: string;
   descripcion: number;
   precio: number;
   fecha: any;
-  
 }
-
 const ELEMENT_DATA: articulo[] = [
-  { nombre: 'Hydrogen', descripcion: 1.0079, precio:12 , fecha: "2017/02/24" },
+  { nombre: 'Hydrogen', descripcion: 1.0079, precio:12 , fecha: "2017/02/24"},
   { nombre: 'heliop', descripcion: 1.0079, precio:12 , fecha: "2017/02/24"},
   { nombre: 'Hydrogen', descripcion: 1.0079, precio:12 , fecha: "2017/02/24"},
   { nombre: 'Hydrogen', descripcion: 1.0079, precio:12 , fecha: "2017/02/24"},
@@ -50,3 +68,4 @@ const ELEMENT_DATA: articulo[] = [
   { nombre: 'Hydrogen', descripcion: 1.0079, precio:12 , fecha: "2017/02/24"},
   { nombre: 'Hydrogen', descripcion: 1.0079, precio:12 , fecha: "2017/02/24"}
 ];
+
