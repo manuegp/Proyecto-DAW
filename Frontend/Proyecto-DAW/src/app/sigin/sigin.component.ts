@@ -16,6 +16,9 @@ export class SiginComponent  {
 
    url = "http://127.0.0.1:8000/api/usuarios";
 
+   
+
+
   enviarDatos(nombre:string, apellidos:string, password:string, nick:string,  telefono:number, email:string,){
     this.http.post(this.url,{
         nombre: nombre,
@@ -47,6 +50,7 @@ export class SiginComponent  {
   }
 
   ngOnInit(): void {
+    
   }
 
  

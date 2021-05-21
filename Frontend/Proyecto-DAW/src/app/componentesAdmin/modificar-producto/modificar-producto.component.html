@@ -1,1 +1,43 @@
-<p>modificar-producto works!</p>
+<div class="container">
+  <form [formGroup]="signupForm" autocomplete="off" (ngSubmit)="submit()">
+    <div class="row">
+      <mat-form-field>
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="nombre" value="dsad" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Descripcion</mat-label>
+        <input matInput formControlName="descripcion" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Precio</mat-label>
+        <input matInput formControlName="precio" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Fecha salida</mat-label>
+        <input matInput formControlName="fecha_salida" />
+      </mat-form-field>
+
+      <mat-label>Imagen</mat-label>
+      <input
+      style="color: white;"
+        #fileUpload
+        mat-raised-button
+        type="file"
+        accept="image/png, image/jpeg, image/jpg"
+      />
+      <br />
+      <br />
+      <div class="offset-5 col-5">
+        <button type="submit">Enviar</button>
+        <button (click)="cancelar()">Cancelar</button>
+      </div>
+
+      <br />
+      <br />
+    </div>
+  </form>
+</div>
