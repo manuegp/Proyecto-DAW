@@ -5,3 +5,24 @@
 mat-label{
     color: white;
 }
+
+input{
+    color: white;
+}
+
+textarea{
+    color: white;
+}
+.boton{
+    border: solid 1px white;
+    margin-top: 5px;
+    background-color: transparent;
+    color: white;
+    
+    margin-left: 10px;
+}
+.boton:hover{
+    background-color: aquamarine ;
+    box-shadow: 5px 5px red;
+    
+}
