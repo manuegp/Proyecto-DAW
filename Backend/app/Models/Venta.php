@@ -5,16 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Juego extends Model
+class Venta extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'id_articulo',
-        'etiquetas',
-        'plataforma',
-        'idioma',
-        'saga',
+        'id_usuario',
+        'cantidad',
+        'fecha_venta',
+        'metodo_pago',
     ];
-    
 }
