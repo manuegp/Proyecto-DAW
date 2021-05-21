@@ -4,6 +4,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ModificarProductoComponent } from 'src/app/componentesAdmin/modificar-producto/modificar-producto.component';
+import { HttpClient } from '@angular/common/http';
 
 export interface ExampleTab {
   label: string;
@@ -19,7 +20,19 @@ export interface ExampleTab {
 
 
 export class VentanaPestanasComponent{
+  url = "http://127.0.0.1:8000/api/usuarios";
   
+
+  getArticulos(){
+    this.http.post(this.url,{
+      
+  }).toPromise().then((data:any) => {
+    console.log(data)
+    console.log(JSON.stringify(data.JSON))
+  })
+
+  }
+
   modificar(){
       console.log("modificando")
       const dialogConfig = new MatDialogConfig();
@@ -29,7 +42,8 @@ export class VentanaPestanasComponent{
   }
   
 
-  constructor(private dialog: MatDialog) {
+  constructor(private dialog: MatDialog,
+              private http:HttpClient,) {
     
   }
 
@@ -45,6 +59,10 @@ export class VentanaPestanasComponent{
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  ngOnInit(): void {
+    this.getArticulos();
   }
 }
 
