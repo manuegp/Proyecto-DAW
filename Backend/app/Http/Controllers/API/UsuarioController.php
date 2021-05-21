@@ -27,7 +27,6 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        echo("hola");
 
         $usuario = json_decode($request->getContent(), true);
 

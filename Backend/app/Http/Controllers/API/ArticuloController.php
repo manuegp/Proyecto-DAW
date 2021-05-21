@@ -27,7 +27,6 @@ class ArticuloController extends Controller
      */
     public function store(Request $request)
     {
-        echo("hola");
 
         $articulo = json_decode($request->getContent(), true);
 
