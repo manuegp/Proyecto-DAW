@@ -1,6 +1,6 @@
 table{
     background-color: #212529;
-    
+    text-align: center;
 }
 
 mat-paginator{
@@ -25,6 +25,7 @@ th{
     color: white;
     font-size: 12px;
     border: solid 1px white;
+    text-align: center;
 }
 
 td{
@@ -46,3 +47,14 @@ td{
     box-shadow: 5px 5px red;
     
 }
+
+.boton2{
+background-color: #212529;
+border: none;
+color: white;
+}
+.boton2:hover{
+    
+    box-shadow: 5px 5px red;
+    
+    }

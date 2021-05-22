@@ -26,7 +26,8 @@ export class SiginComponent  {
         password: password,
         nick: nick,
         telefono: telefono,
-        email: email
+        email: email,
+        es_administrador : 0
     }).toPromise().then((data:any) => {
       console.log(data)
       console.log(JSON.stringify(data.JSON))

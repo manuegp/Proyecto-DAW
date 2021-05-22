@@ -34,9 +34,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { VentanaPestanasComponent } from './componentesAdmin/ventana-pestanas/ventana-pestanas.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import { ModificarProductoComponent } from './componentesAdmin/modificar-producto/modificar-producto.component';
+import { ModificarUsuarioComponent } from './componentesAdmin/modificar-usuario/modificar-usuario.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, ProfileComponent, AdminComponent, ProductComponent, ListProductsComponent, ShoppingCartComponent, LoginComponent, SiginComponent, VentanaPestanasComponent, ModificarProductoComponent],
+  declarations: [AppComponent, HomeComponent, ProfileComponent, AdminComponent, ProductComponent, ListProductsComponent, ShoppingCartComponent, LoginComponent, SiginComponent, VentanaPestanasComponent, ModificarProductoComponent, ModificarUsuarioComponent],
   imports: [
     MatAutocompleteModule,
     BrowserModule,

@@ -1,0 +1,18 @@
+<div class="container">
+    <br>
+    <form [formGroup]="modUser" autocomplete="off" >
+      <div class="row">
+    
+        <br />
+        <br />
+        <div class="offset-5 col-5">
+          <button [disabled]="modUser.invalid" type="submit" class="boton">Enviar</button>
+          <button (click)="cancelar()" class="boton">Cancelar</button>
+        </div>
+  
+        <br />
+        <br />
+      </div>
+    </form>
+  </div>
+  

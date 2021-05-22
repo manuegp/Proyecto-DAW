@@ -4,6 +4,8 @@
   <form [formGroup]="signupForm" autocomplete="off" (ngSubmit)="submit()">
     <div class="row">
       
+      
+
       <mat-form-field>
         <mat-label>Nombre</mat-label>
         <input matInput formControlName="nombre" />
@@ -26,6 +28,7 @@
 
       <mat-label>Imagen</mat-label>
       <input
+      formControlName="imagen"
       style="color: white;"
         #fileUpload
         mat-raised-button
@@ -35,7 +38,7 @@
       <br />
       <br />
       <div class="offset-5 col-5">
-        <button type="submit" class="boton">Enviar</button>
+        <button [disabled]="signupForm.invalid" type="submit" class="boton">Enviar</button>
         <button (click)="cancelar()" class="boton">Cancelar</button>
       </div>
 

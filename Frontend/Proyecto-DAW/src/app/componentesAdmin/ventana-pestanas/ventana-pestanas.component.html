@@ -1,9 +1,27 @@
 <div class="container">
   <mat-tab-group animationDuration="0ms">
     <mat-tab label="Productos">
+      <br />
+      <mat-form-field class="col-10">
+        <mat-label>Buscar...</mat-label>
+        <input
+          matInput
+          (keyup)="applyFilter($event)"
+          placeholder="Minecraft, Hollow Knight..."
+          #input
+        />
+      </mat-form-field>
+      <button class="col-2 boton2" (click)="anadirArticulos($event)">
+        Añadir producto
+      </button>
       <div class="mat-elevation-z8">
         <table mat-table [dataSource]="dataSource" class="col-12">
           <!-- Position Column -->
+          <ng-container matColumnDef="Id">
+            <th mat-header-cell *matHeaderCellDef>Id</th>
+            <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+          </ng-container>
+
           <ng-container matColumnDef="Nombre">
             <th mat-header-cell *matHeaderCellDef>Nombre</th>
             <td mat-cell *matCellDef="let element">{{ element.nombre }}</td>
@@ -26,13 +44,31 @@
           <!-- Symbol Column -->
           <ng-container matColumnDef="Fecha">
             <th mat-header-cell *matHeaderCellDef>Fecha salida</th>
-            <td mat-cell *matCellDef="let element">{{ element.fecha_salida }}</td>
+            <td mat-cell *matCellDef="let element">
+              {{ element.fecha_salida }}
+            </td>
           </ng-container>
 
           <ng-container matColumnDef="Modificar">
             <th mat-header-cell *matHeaderCellDef>Modificar</th>
             <td mat-cell *matCellDef="let element">
-              <button mat-raised-button class="boton" (click)="modificar(element)">Modificar</button>
+              <button
+                mat-raised-button
+                class="boton"
+                (click)="modificarArticulos(element)"
+              >
+                Modificar
+              </button>
+
+              <button
+                mat-raised-button
+                class="boton"
+                (click)="borrarArticulos(element)"
+              >
+                Borrar
+              </button>
+              <br />
+              <br />
             </td>
           </ng-container>
 
@@ -47,8 +83,92 @@
       </div>
     </mat-tab>
 
-    <mat-tab label="Usuarios"> </mat-tab>
+    <mat-tab label="Usuarios">
+      <br />
+      <mat-form-field class="col-10">
+        <mat-label>Buscar...</mat-label>
+        <input
+          matInput
+          (keyup)="applyFilterUsu($event)"
+          placeholder="Minecraft, Hollow Knight..."
+          #input
+        />
+      </mat-form-field>
+     
+      <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSourceUsuarios" class="col-12">
+          <ng-container matColumnDef="Id">
+            <th mat-header-cell *matHeaderCellDef>Id</th>
+            <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+          </ng-container>
+          <ng-container matColumnDef="Nombre">
+            <th mat-header-cell *matHeaderCellDef>Nombre</th>
+            <td mat-cell *matCellDef="let element">{{ element.nombre }}</td>
+          </ng-container>
+          <ng-container matColumnDef="Apellidos">
+            <th mat-header-cell *matHeaderCellDef>Apellidos</th>
+            <td mat-cell *matCellDef="let element">{{ element.apellidos }}</td>
+          </ng-container>
+          <ng-container matColumnDef="Password">
+            <th mat-header-cell *matHeaderCellDef>Contraseña</th>
+            <td mat-cell *matCellDef="let element">{{ element.password }}</td>
+          </ng-container>
+          <ng-container matColumnDef="Nick">
+            <th mat-header-cell *matHeaderCellDef>Nombre Usuario</th>
+            <td mat-cell *matCellDef="let element">{{ element.nick }}</td>
+          </ng-container>
+          <ng-container matColumnDef="Telefono">
+            <th mat-header-cell *matHeaderCellDef>Telefono</th>
+            <td mat-cell *matCellDef="let element">{{ element.telefono }}</td>
+          </ng-container>
+          <ng-container matColumnDef="Email">
+            <th mat-header-cell *matHeaderCellDef>Email</th>
+            <td mat-cell *matCellDef="let element">{{ element.email }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="Fecha_creacion">
+            <th mat-header-cell *matHeaderCellDef>Fecha Creacion</th>
+            <td mat-cell *matCellDef="let element">{{ element.email_verified_at }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="Es_admin">
+            <th mat-header-cell *matHeaderCellDef>Admin?</th>
+            <td mat-cell *matCellDef="let element">{{ element.es_administrador === 1 && "Si" ||  !0 && "No" }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="Modificar">
+            <th mat-header-cell *matHeaderCellDef>Modificar</th>
+            <td mat-cell *matCellDef="let element">
+              <button
+                mat-raised-button
+                class="boton"
+                (click)="modificarUsuario(element)"
+              >
+                Modificar
+              </button>
+
+              <button
+                mat-raised-button
+                class="boton"
+                (click)="borrarUsuario(element)"
+              >
+                Borrar
+              </button>
+              <br />
+              <br />
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumnsUsu"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumnsUsu"></tr>
+        </table>
+      </div>
+      <mat-paginator
+          #usu
+          [pageSizeOptions]="[5, 10, 20]"
+          showFirstLastButtons
+        ></mat-paginator>
+    </mat-tab>
   </mat-tab-group>
   <br />
-  
 </div>
