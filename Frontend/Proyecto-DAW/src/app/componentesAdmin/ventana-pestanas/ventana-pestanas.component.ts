@@ -4,7 +4,9 @@ import {MatTableDataSource} from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ModificarProductoComponent } from 'src/app/componentesAdmin/modificar-producto/modificar-producto.component';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpClientModule } from '@angular/common/http';
+
+
 
 export interface ExampleTab {
   label: string;
@@ -19,51 +21,72 @@ export interface ExampleTab {
 })
 
 
-export class VentanaPestanasComponent{
-  url = "http://127.0.0.1:8000/api/usuarios";
-  
+export class VentanaPestanasComponent implements OnInit{
 
-  getArticulos(){
-    this.http.post(this.url,{
-      
-  }).toPromise().then((data:any) => {
-    console.log(data)
-    console.log(JSON.stringify(data.JSON))
-  })
-
-  }
-
-  modificar(){
+  modificar(event :any){
       console.log("modificando")
       const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.closeOnNavigation = true;
-      this.dialog.open(ModificarProductoComponent, { panelClass: 'custom-dialog-container' });
+      this.dialog.open(ModificarProductoComponent, { panelClass: 'custom-dialog-container' , 
+      data:{
+            nombre: event.nombre,
+            descripcion: event.descripcion,
+            precio: event.precio,
+            fecha_salida: event.fecha_salida
+      }});
+      
   }
   
 
   constructor(private dialog: MatDialog,
-              private http:HttpClient,) {
-    
-  }
-
-  displayedColumns: string[] = ['Nombre', 'Descripcion', 'Precio', 'Fecha', 'Modificar'];
-  dataSource = new MatTableDataSource<articulo>(ELEMENT_DATA);
+              private http : HttpClient,
+              
+              ) {}            
+  
+ ELEMENT_DATA: any;
+ displayedColumns: string[] = ['Nombre', 'Descripcion', 'Precio', 'Fecha', 'Modificar'];
+ dataSource: any;
   
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
+    
+    
+    
   }
-
+  
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  ngOnInit(): void {
-    this.getArticulos();
+  asignar :any;
+
+  asignarDatos(){
+    
+    this.http.get("http://127.0.0.1:8000/api/articulos").subscribe(
+          result  => {
+            this.asignar = result;
+            this.dataSource = new MatTableDataSource(this.asignar.data);
+            this.dataSource.paginator = this.paginator;
+        })
+    
+
+    
+    
+    
+    
   }
+  
+  ngOnInit(): void {
+    this.asignarDatos()
+    
+    
+
+    }
+
+    
 }
 
 
@@ -73,17 +96,5 @@ export interface articulo {
   precio: number;
   fecha: any;
 }
-const ELEMENT_DATA: articulo[] = [
-  { nombre: 'Hydrogen', descripcion: 1.0079, precio:12 , fecha: "2017/02/24"},
-  { nombre: 'heliop', descripcion: 1.0079, precio:12 , fecha: "2017/02/24"},
-  { nombre: 'Hydrogen', descripcion: 1.0079, precio:12 , fecha: "2017/02/24"},
-  { nombre: 'Hydrogen', descripcion: 1.0079, precio:12 , fecha: "2017/02/24"},
-  { nombre: 'Hydrogen', descripcion: 1.0079, precio:12 , fecha: "2017/02/24"},
-  { nombre: 'Hydrogen', descripcion: 1.0079, precio:12 , fecha: "2017/02/24"},
-  { nombre: 'Hydrogen', descripcion: 1.0079, precio:12 , fecha: "2017/02/24"},
-  { nombre: 'Hydrogen', descripcion: 1.0079, precio:12 , fecha: "2017/02/24"},
-  { nombre: 'Hydrogen', descripcion: 1.0079, precio:12 , fecha: "2017/02/24"},
-  { nombre: 'Hydrogen', descripcion: 1.0079, precio:12 , fecha: "2017/02/24"},
-  { nombre: 'Hydrogen', descripcion: 1.0079, precio:12 , fecha: "2017/02/24"}
-];
+
 

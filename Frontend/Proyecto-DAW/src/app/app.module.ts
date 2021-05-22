@@ -61,7 +61,7 @@ import { ModificarProductoComponent } from './componentesAdmin/modificar-product
     MatListModule,
     HttpClientModule,
     MatTabsModule,
-    
+    AppRoutingModule
     
   ],
   providers: [],
