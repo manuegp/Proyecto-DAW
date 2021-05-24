@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Validation\ValidationException;
+use App\Models\User;
 
 use App\Http\Controllers\API\UsuarioController;
 use App\Http\Controllers\API\ArticuloController;
@@ -21,6 +23,27 @@ use App\Http\Controllers\API\ListaDeseadosController;
 |
 */
 
+Route::post('/tokens/create', function (Request $request) {
+    $request->validate([
+        'email' => 'required|email',
+        'password' => 'required'
+    ]);
+
+    $user = User::where('email', $request->email)->first();
+    $password = User::where('password', $request->password)->first();
+
+    if (! $user || ! $password) {
+        throw ValidationException::withMessages([
+            'email' => ['The provided credentials are incorrect.'],
+        ]);
+    }
+
+    return response()->json([
+        'token_type' => 'Bearer',
+        'access_token' => $user->createToken('token_name')->plainTextToken // token name you can choose for your self or leave blank if you like to
+    ]);
+});
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
@@ -31,3 +54,7 @@ Route::apiResource('juegos', JuegoController::class);
 Route::apiResource('ventas', VentaController::class);
 Route::apiResource('requisitos_juegos', RequisitosJuegoController::class);
 Route::apiResource('lista_deseados', ListaDeseadosController::class);
+
+Route::middleware('auth:sanctum')->get('/', function(){
+    return response()->json(["nombre"=>"hola"]);
+});

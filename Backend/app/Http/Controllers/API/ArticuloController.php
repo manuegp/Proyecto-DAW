@@ -16,7 +16,7 @@ class ArticuloController extends Controller
      */
     public function index()
     {
-        return ArticuloResource::collection(Articulo::paginate());
+        return ArticuloResource::collection(Articulo::all());
     }
 
     /**

@@ -16,7 +16,7 @@ class VentaController extends Controller
      */
     public function index()
     {
-        return VentaResource::collection(Venta::paginate());
+        return VentaResource::collection(Venta::all());
     }
 
     /**

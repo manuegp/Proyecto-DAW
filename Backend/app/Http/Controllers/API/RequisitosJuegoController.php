@@ -16,7 +16,7 @@ class RequisitosJuegoController extends Controller
      */
     public function index()
     {
-        return RequisitosJuegoResource::collection(RequisitosJuego::paginate());
+        return RequisitosJuegoResource::collection(RequisitosJuego::all());
     }
 
     /**

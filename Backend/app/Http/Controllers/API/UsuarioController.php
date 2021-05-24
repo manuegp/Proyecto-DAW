@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Models\Usuario;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Resources\UsuarioResource;
 
@@ -16,7 +16,7 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        return UsuarioResource::collection(Usuario::paginate());
+        return UsuarioResource::collection(User::all());
     }
 
     /**
@@ -30,7 +30,7 @@ class UsuarioController extends Controller
 
         $usuario = json_decode($request->getContent(), true);
 
-        $usuario = Usuario::create($usuario);
+        $usuario = User::create($usuario);
 
         return new UsuarioResource($usuario);
     }
@@ -38,10 +38,10 @@ class UsuarioController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Usuario  $usuario
+     * @param  \App\Models\User  $usuario
      * @return \Illuminate\Http\Response
      */
-    public function show(Usuario $usuario)
+    public function show(User $usuario)
     {
         return new UsuarioResource($usuario);
     }
@@ -50,10 +50,10 @@ class UsuarioController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Usuario  $usuario
+     * @param  \App\Models\User  $usuario
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Usuario $usuario)
+    public function update(Request $request, User $usuario)
     {
         $usuarioData = json_decode($request->getContent(), true);
         $usuario->update($usuarioData);
@@ -64,10 +64,10 @@ class UsuarioController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Usuario  $usuario
+     * @param  \App\Models\User  $usuario
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Usuario $usuario)
+    public function destroy(User $usuario)
     {
         $usuario->delete();
     }
