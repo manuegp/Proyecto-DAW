@@ -35,6 +35,8 @@ import { VentanaPestanasComponent } from './componentesAdmin/ventana-pestanas/ve
 import {MatTabsModule} from '@angular/material/tabs';
 import { ModificarProductoComponent } from './componentesAdmin/modificar-producto/modificar-producto.component';
 import { ModificarUsuarioComponent } from './componentesAdmin/modificar-usuario/modificar-usuario.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, ProfileComponent, AdminComponent, ProductComponent, ListProductsComponent, ShoppingCartComponent, LoginComponent, SiginComponent, VentanaPestanasComponent, ModificarProductoComponent, ModificarUsuarioComponent],
@@ -62,10 +64,11 @@ import { ModificarUsuarioComponent } from './componentesAdmin/modificar-usuario/
     MatListModule,
     HttpClientModule,
     MatTabsModule,
-    AppRoutingModule
-    
+    AppRoutingModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
-  providers: [],
+  providers: [MatDatepickerModule],
   bootstrap: [AppComponent],
   entryComponents:[]
 })

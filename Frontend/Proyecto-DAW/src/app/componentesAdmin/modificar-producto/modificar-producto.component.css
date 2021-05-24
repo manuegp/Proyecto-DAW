@@ -26,3 +26,13 @@ textarea{
     box-shadow: 5px 5px red;
     
 }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+::ng-deep .mat-input-wrapper{
+    width:40px !important;
+  }

@@ -5,6 +5,21 @@
     
         <br />
         <br />
+        <mat-form-field>
+          <mat-label>Nombre</mat-label>
+          <input matInput formControlName="nombre" />
+        </mat-form-field>
+  
+        <mat-form-field>
+          <mat-label>Descripcion</mat-label>
+          <textarea matInput formControlName="descripcion" ></textarea>
+        </mat-form-field>
+  
+        <mat-form-field>
+          <mat-label>Precio</mat-label>
+          <input matInput formControlName="precio" />
+        </mat-form-field>
+  
         <div class="offset-5 col-5">
           <button [disabled]="modUser.invalid" type="submit" class="boton">Enviar</button>
           <button (click)="cancelar()" class="boton">Cancelar</button>

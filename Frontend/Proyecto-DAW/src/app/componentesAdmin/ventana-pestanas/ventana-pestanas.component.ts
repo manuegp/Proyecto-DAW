@@ -180,8 +180,4 @@ export class VentanaPestanasComponent implements OnInit {
   });
   }
 
-  
-  
 }
-
-
