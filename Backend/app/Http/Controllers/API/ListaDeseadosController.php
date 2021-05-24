@@ -16,7 +16,7 @@ class ListaDeseadosController extends Controller
      */
     public function index()
     {
-        return ListaDeseadosResource::collection(ListaDeseados::paginate());
+        return ListaDeseadosResource::collection(ListaDeseados::all());
     }
 
     /**

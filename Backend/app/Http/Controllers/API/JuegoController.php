@@ -16,7 +16,7 @@ class JuegoController extends Controller
      */
     public function index()
     {
-        return JuegoResource::collection(Juego::paginate());
+        return JuegoResource::collection(Juego::all());
     }
 
     /**

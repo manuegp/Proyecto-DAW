@@ -18,7 +18,7 @@ class CreateListaDeseadosTable extends Migration
             $table->unsignedBigInteger('id_articulo');
             $table->unsignedBigInteger('id_usuario');
             $table->foreign('id_articulo')->references('id')->on('articulos');
-            $table->foreign('id_usuario')->references('id')->on('usuarios');
+            $table->foreign('id_usuario')->references('id')->on('users');
             $table->timestamps();
         });
     }
