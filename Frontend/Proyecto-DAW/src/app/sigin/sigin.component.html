@@ -1,30 +1,47 @@
 <div class="container">
   <div>
-      
-    <form class="text-center" [formGroup]="signupForm" (ngSubmit)="submit(signupForm.value)">
-        <legend style="color: white;">Registro de usuario</legend>
+    <form
+      class="text-center"
+      [formGroup]="signupForm"
+      (ngSubmit)="submit(signupForm.value)"
+    >
+      <legend style="color: white">Registro de usuario</legend>
       <p>
         <mat-form-field appearance="standard">
           <mat-label>Nombre de usuario</mat-label>
-          <input matInput  formControlName="username" autocomplete="doNotAutoComplete"/>
+          <input
+            matInput
+            formControlName="username"
+            autocomplete="doNotAutoComplete"
+          />
         </mat-form-field>
       </p>
       <p>
         <mat-form-field appearance="standard">
           <mat-label>Nombre</mat-label>
-          <input matInput placeholder="Ej. Maria" formControlName="nombre" autocomplete="doNotAutoComplete"/>
+          <input
+            matInput
+            placeholder="Ej. Maria"
+            formControlName="nombre"
+            autocomplete="doNotAutoComplete"
+          />
         </mat-form-field>
       </p>
       <p>
         <mat-form-field appearance="standard">
           <mat-label>Apellidos</mat-label>
-          <input matInput placeholder="Ej. Gonzalez" formControlName="apellidos" autocomplete="doNotAutoComplete"/>
+          <input
+            matInput
+            placeholder="Ej. Gonzalez"
+            formControlName="apellidos"
+            autocomplete="doNotAutoComplete"
+          />
         </mat-form-field>
       </p>
 
       <p>
         <mat-form-field appearance="standard">
-          <mat-label>Email</mat-label >
+          <mat-label>Email</mat-label>
           <input
             matInput
             placeholder="pat@example.com"
@@ -32,48 +49,74 @@
             required
             autocomplete="doNotAutoComplete"
           />
-          <mat-error *ngIf="signupForm.get('email')!.hasError('email') || signupForm.get('email')!.touched">Email no valido</mat-error>
-         
+          <mat-error
+            *ngIf="
+              signupForm.get('email')!.hasError('email') ||
+              signupForm.get('email')!.touched
+            "
+            >Email no valido</mat-error
+          >
         </mat-form-field>
       </p>
 
       <p>
         <mat-form-field class="example-full-width">
           <mat-label>Numero de telefono</mat-label>
-          <input type="number" autocomplete="doNotAutoComplete" matInput placeholder="+34" formControlName="telefono" pattern="(\+34|0034|34)?[ -]*(6|7)[ -]*([0-9][ -]*){8}"/>
+          <input
+            type="number"
+            autocomplete="doNotAutoComplete"
+            matInput
+            placeholder="+34"
+            formControlName="telefono"
+            pattern="(\+34|0034|34)?[ -]*(6|7)[ -]*([0-9][ -]*){8}"
+          />
         </mat-form-field>
       </p>
 
       <p>
         <mat-form-field class="example-full-width">
           <mat-label>Contraseña</mat-label>
-          <input matInput type="password" formControlName="contraseña" (keyup)="comprobarContra()"/>
-          
-            
+          <input
+            matInput
+            type="password"
+            formControlName="contraseña"
+            (keyup)="comprobarContra()"
+          />
         </mat-form-field>
-        
       </p>
-      
+
       <p>
         <mat-form-field class="example-full-width">
           <mat-label>Confirmar contraseña</mat-label>
-          <input matInput type="password" formControlName="confcontraseña" (keyup)="comprobarContra()"/>
+          <input
+            matInput
+            type="password"
+            formControlName="confcontraseña"
+            (keyup)="comprobarContra()"
+          />
         </mat-form-field>
-        
       </p>
-      <div *ngIf="contrasenas" class="alert alert-success col-2 offset-5" role="alert">
+      <div
+        *ngIf="contrasenas"
+        class="alert alert-success col-2 offset-5"
+        role="alert"
+      >
         Las contraseñas coinciden
       </div>
-      <div *ngIf="!contrasenas" class="alert alert-danger col-2 offset-5" role="alert">
+      <div
+        *ngIf="!contrasenas"
+        class="alert alert-danger col-2 offset-5"
+        role="alert"
+      >
         Las contraseñas no coinciden
       </div>
       <button [disabled]="signupForm.invalid" type="submit">Enviar</button>
-      
-      <br />
-      <br />
 
-      
+      <br />
+      <br />
     </form>
   </div>
+  <br />
+  <br />
+  <br />
 </div>
-

@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent },
   { path: 'products', component: ListProductsComponent },
   { path: 'shopping-cart', component: ShoppingCartComponent },
-  { path: 'product/ :id', component: ProductComponent },
+  { path: 'product/:id', component: ProductComponent },
   { path: 'admin', component: AdminComponent },
   { path: 'shopping-cart', component: ShoppingCartComponent },
   { path: 'register', component: SiginComponent }

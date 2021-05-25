@@ -1,1 +1,65 @@
-<p>product works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <mat-list>
+        <mat-list-item><h1>Hollow Knight</h1></mat-list-item>
+        <mat-divider></mat-divider>
+        <br />
+      </mat-list>
+    </div>
+    <div class="col-6">
+      <iframe
+        width="550"
+        height="400"
+        src="https://www.youtube.com/embed/UAO2urG23S4"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      ></iframe>
+    </div>
+
+    <div class="col-6" id="contenido">
+      <div class="row">
+        <img
+          src="https://cdn.cloudflare.steamstatic.com/steam/apps/367520/header.jpg?t=1601950406"
+        />
+        <p id="nombre" class="col-12">
+          Una aventura épica a través de un vasto reino de insectos y héroes que
+          se encuentra en ruinas. Explora cavernas tortuosas, combate contra
+          criaturas corrompidas y entabla amistad con extraños insectos, todo en
+          un estilo clásico en 2D dibujado.
+        </p>
+
+        <button class=" boton fifth offset-4 col-3"> Comprar <i class="fa fa-shopping-cart ml-1"></i>  &nbsp; 15,99 €</button>
+        
+        <mat-accordion >
+            <br>
+          <mat-expansion-panel hideToggle >
+            <mat-expansion-panel-header >
+              <mat-panel-description >
+                Mas informacion &nbsp; <i class="fas fa-arrow-down"></i>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <p>Fecha de salida: 2017-02-24</p>
+
+            <p>OS: Windows 7, Mac OS 10.7 Lion, Ubuntu 16.04 LTS, Orbis, Xbox One System</p>
+            <p>Procesador: Intel Core 2 Duo E5200, Intel Core i3, AMD Ryzen Zen 2</p>
+            <p>Memoria: 4 GB de RAM</p>
+            <p>Graficos: GeForce 9800GTX, GeForce GTX 470</p>
+            <p>Version Directx: Version 10</p>
+            <p>Tarjeta sonido: 9 GB</p>
+            <p>Plataformas: 9 GB</p>
+
+          </mat-expansion-panel>
+          
+          <mat-expansion-panel
+            (opened)="panelOpenState = true"
+            (closed)="panelOpenState = false"
+          >
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+    </div>
+  </div>
+</div>

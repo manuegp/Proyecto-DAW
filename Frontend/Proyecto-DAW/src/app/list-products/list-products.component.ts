@@ -1,6 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import {AfterViewInit, Component, ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
+import { Router } from '@angular/router';
 
   
 @Component({
@@ -12,41 +14,46 @@ import {MatTableDataSource} from '@angular/material/table';
 
 
 
-export class ListProductsComponent implements AfterViewInit {
-  displayedColumns: string[] = ['Nombre', 'Descripcion', 'Precio', 'Fecha', ];
-  dataSource = new MatTableDataSource<articulo>(ELEMENT_DATA);
+export class ListProductsComponent  {
+
+  constructor(private http: HttpClient, private router:Router){}
+  
+  asignar: any;
+  dataSource: any;
+
+
+  ngOnInit(): void {
+    this.asignarArticulos();
+    
+  }
+  displayedColumns: string[] = ['Imagen', 'Nombre', 'Descripcion', 'Precio', 'Fecha', ];
+  
   
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-  }
+  
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
+
+  asignarArticulos() {
+    this.http.get('http://127.0.0.1:8000/api/articulos').subscribe((result) => {
+      this.asignar = result;
+      console.log(this.asignar);
+      this.dataSource = new MatTableDataSource(this.asignar.data);
+      this.dataSource.paginator = this.paginator;
+    });
+  }
+
+  redirigir(event : any){
+  console.log(event)
+  this.router.navigate(['/product/1']);
 }
  
 
-export interface articulo {
-  nombre: string;
-  descripcion: number;
-  precio: number;
-  fecha: any;
-  
-}
 
-const ELEMENT_DATA: articulo[] = [
-  { nombre: 'Hydrogen', descripcion: 1.0079, precio:12 , fecha: "2017/02/24" },
-  { nombre: 'heliop', descripcion: 1.0079, precio:12 , fecha: "2017/02/24"},
-  { nombre: 'Hydrogen', descripcion: 1.0079, precio:12 , fecha: "2017/02/24"},
-  { nombre: 'Hydrogen', descripcion: 1.0079, precio:12 , fecha: "2017/02/24"},
-  { nombre: 'Hydrogen', descripcion: 1.0079, precio:12 , fecha: "2017/02/24"},
-  { nombre: 'Hydrogen', descripcion: 1.0079, precio:12 , fecha: "2017/02/24"},
-  { nombre: 'Hydrogen', descripcion: 1.0079, precio:12 , fecha: "2017/02/24"},
-  { nombre: 'Hydrogen', descripcion: 1.0079, precio:12 , fecha: "2017/02/24"},
-  { nombre: 'Hydrogen', descripcion: 1.0079, precio:12 , fecha: "2017/02/24"},
-  { nombre: 'Hydrogen', descripcion: 1.0079, precio:12 , fecha: "2017/02/24"},
-  { nombre: 'Hydrogen', descripcion: 1.0079, precio:12 , fecha: "2017/02/24"}
-];
+
+
+}

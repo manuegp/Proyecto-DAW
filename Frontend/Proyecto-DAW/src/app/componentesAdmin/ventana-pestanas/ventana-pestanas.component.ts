@@ -11,6 +11,7 @@ import {
 } from '@angular/common/http';
 import { Router } from '@angular/router';
 import {ModificarUsuarioComponent} from '../modificar-usuario/modificar-usuario.component'
+import { EmailValidator, FormGroup } from '@angular/forms';
 export interface ExampleTab {
   label: string;
   content: string;
@@ -22,6 +23,8 @@ export interface ExampleTab {
   styleUrls: ['./ventana-pestanas.component.css'],
 })
 export class VentanaPestanasComponent implements OnInit {
+
+  
   constructor(private dialog: MatDialog, private http: HttpClient,
     private dialogañadirArticulos: MatDialog,
     private router:Router,) {}
@@ -161,7 +164,14 @@ export class VentanaPestanasComponent implements OnInit {
     this.dialog.open(ModificarUsuarioComponent, {
       panelClass: 'custom-dialog-container',
       data: {
-        
+        id: event.id,
+        nombre: event.nombre,
+        apellidos: event.apellidos,
+        nombre_usuario: event.nick,
+        telefono: event.telefono,
+        email: event.email,
+        email_verified_at: event.email_verified_at,
+        es_admin : event.es_administrador
         
       },
     });

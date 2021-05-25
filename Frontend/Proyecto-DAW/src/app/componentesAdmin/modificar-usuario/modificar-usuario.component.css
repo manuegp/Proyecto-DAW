@@ -26,3 +26,7 @@ textarea{
     box-shadow: 5px 5px red;
     
 }
+
+mat-checkbox {
+    color: white;
+}

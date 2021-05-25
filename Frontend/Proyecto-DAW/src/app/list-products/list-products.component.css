@@ -5,8 +5,9 @@
     background-color: khaki;
 }*/
 
-
-
+.mat-row:hover {
+    background-color: red;
+  }
 th{
     color: white;
 }
@@ -17,7 +18,7 @@ td{
 
 td:hover{
     cursor: pointer;
-    color: black;
+    
 }
 
 thead>tr:first-child:hover{
@@ -48,3 +49,73 @@ mat-paginator span{
 ::ng-deep .mat-select-value {
     color: white;
 }
+
+.mat-column-Descripcion {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+   
+    width: 30% !important;
+    padding: 20px !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  
+    word-break: break-word;
+  
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+  }
+
+  .mat-column-Nombre {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    
+    width:15% !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  
+    word-break: break-word;
+  
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+  }
+
+  .mat-column-Fecha {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    
+    width:15% !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  
+    word-break: break-word;
+  
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+  }
+
+  .mat-column-Precio {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    
+    width:10% !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  
+    word-break: break-word;
+  
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+  }
+
+  img{
+      width: 230px;
+      height: 107.5px;
+  }

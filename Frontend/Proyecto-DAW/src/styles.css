@@ -8,6 +8,68 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 
+mat-accordion{
+    background-color: #212529 ;
+    
+}
+
+mat-expansion-panel {
+    background-color: #212529 !important ;
+    color: white;
+}
+
+.mat-expansion-panel-body {
+    background-color: #212529 !important ;
+    color: white;
+}
+mat-panel-description{
+    color: white !important;
+}
 
 
+/*https://www.instintoprogramador.com.mx/2020/03/20-botones-animados-increibles-de-css.html */
+.boton {
+    background-color: aquamarine;
+}     
+.boton:hover, .boton:focus {
+        color: aquamarine;
+        outline: 0;
+      }
+      
+      .fifth {
+        border-color: white;
+        border: solid white 1px;
+        color: #212529;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+        -webkit-transition: color 1s ease-in-out;
+        transition: color 1s ease-in-out;
+      }
+      .fifth:after {
+        content: '';
+        position: absolute;
+        display: block;
+        top: 0;
+        left: 50%;
+        -webkit-transform: translateX(-50%);
+                transform: translateX(-50%);
+        width: 0;
+        height: 100%;
+        background: #212529;
+        z-index: -1;
+        -webkit-transition: width 1s ease-in-out;
+        transition: width 1s ease-in-out;
+      }
+      .fifth:hover {
+        color: aquamarine;
+      }
+      .fifth:hover:after {
+        width: 110%;
+      }
 
+      input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

@@ -37,6 +37,9 @@ import { ModificarProductoComponent } from './componentesAdmin/modificar-product
 import { ModificarUsuarioComponent } from './componentesAdmin/modificar-usuario/modificar-usuario.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import {MatCheckboxDefaultOptions, MatCheckboxModule, MAT_CHECKBOX_DEFAULT_OPTIONS} from '@angular/material/checkbox';
+import {MatCardModule} from '@angular/material/card';
+import {MatRadioModule} from '@angular/material/radio';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, ProfileComponent, AdminComponent, ProductComponent, ListProductsComponent, ShoppingCartComponent, LoginComponent, SiginComponent, VentanaPestanasComponent, ModificarProductoComponent, ModificarUsuarioComponent],
@@ -66,9 +69,13 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatTabsModule,
     AppRoutingModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatCheckboxModule,
+    MatCardModule,
+    MatRadioModule
   ],
-  providers: [MatDatepickerModule],
+  providers: [MatDatepickerModule,
+],
   bootstrap: [AppComponent],
   entryComponents:[]
 })
