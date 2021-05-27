@@ -77,6 +77,9 @@ import {MatRadioModule} from '@angular/material/radio';
   providers: [MatDatepickerModule,
 ],
   bootstrap: [AppComponent],
-  entryComponents:[]
+  entryComponents:[],
+  exports:[
+    MatFormFieldModule, MatInputModule
+  ]
 })
 export class AppModule {}

@@ -1,23 +1,32 @@
 <!-- Default form login -->
-<form class="text-center   p-5">
+<form class="text-center p-5"  [formGroup]="login"  (ngSubmit)="submit()">
   <p class="h4 mb-4">Iniciar sesion</p>
 
   <!-- Email -->
-  <input
-    type="email"
-    id="defaultLoginFormEmail"
-    class="form-control mb-4"
-    placeholder="E-mail"
-  />
-
-  <!-- Password -->
-  <input
-    type="password"
-    id="defaultLoginFormPassword"
-    class="form-control mb-4"
-    placeholder="Contraseña"
-  />
-
+  
+  
+  <p>
+    <mat-form-field appearance="standard">
+      <mat-label>Nombre de usuario</mat-label>
+      <input
+        matInput
+        formControlName="email"
+        autocomplete="doNotAutoComplete"
+      />
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="standard">
+      <mat-label>Nombre</mat-label>
+      <input
+        matInput
+        placeholder="Ej. Maria"
+        formControlName="password"
+        autocomplete="doNotAutoComplete"
+      />
+    </mat-form-field>
+  </p>
+ 
   <div class="d-flex justify-content-around">
     <div>
       <!-- Forgot password -->
