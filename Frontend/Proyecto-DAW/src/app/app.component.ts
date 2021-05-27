@@ -17,8 +17,14 @@ export class AppComponent {
   options: string[] = ['One', 'Two', 'Three'];
 
   constructor(private router:Router,
-    private dialog: MatDialog){}
-  
+    private dialog: MatDialog,
+    ){}
+
+    ngOnInit(): void {
+      
+      
+    }
+
   redirigir(){
     this.router.navigate(['profile']);
 
@@ -31,4 +37,9 @@ export class AppComponent {
     dialogConfig.closeOnNavigation = true;
       this.dialog.open(LoginComponent, { panelClass: 'custom-dialog-container' });
   }
+
+
+
 }
+
+
