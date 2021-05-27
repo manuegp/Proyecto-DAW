@@ -21,6 +21,8 @@ export class LoginComponent  {
 
   ngOnInit(): void {
   }
+
+  
  submit(){
 console.log("da")
   
