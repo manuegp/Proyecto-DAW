@@ -30,7 +30,7 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { LoginComponent } from './login/login.component';
 import {MatDividerModule} from '@angular/material/divider';
 import { SiginComponent } from './sigin/sigin.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
 import { VentanaPestanasComponent } from './componentesAdmin/ventana-pestanas/ventana-pestanas.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import { ModificarProductoComponent } from './componentesAdmin/modificar-producto/modificar-producto.component';
@@ -72,7 +72,10 @@ import {MatRadioModule} from '@angular/material/radio';
     MatNativeDateModule,
     MatCheckboxModule,
     MatCardModule,
-    MatRadioModule
+    MatRadioModule,
+    HttpClientXsrfModule.withOptions({
+      cookieName: 'My-Xsrf-Cookie',
+      headerName: 'My-Xsrf-Header',})
   ],
   providers: [MatDatepickerModule,
 ],
