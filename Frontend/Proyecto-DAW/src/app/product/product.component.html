@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-12">
       <mat-list>
-        <mat-list-item><h1>Hollow Knight</h1></mat-list-item>
+        <mat-list-item><h1>{{data.data.nombre}}</h1></mat-list-item>
         <mat-divider></mat-divider>
         <br />
       </mat-list>
@@ -22,16 +22,13 @@
     <div class="col-6" id="contenido">
       <div class="row">
         <img
-          src="https://cdn.cloudflare.steamstatic.com/steam/apps/367520/header.jpg?t=1601950406"
+          src={{data.data.imagen_principal}}
         />
         <p id="nombre" class="col-12">
-          Una aventura épica a través de un vasto reino de insectos y héroes que
-          se encuentra en ruinas. Explora cavernas tortuosas, combate contra
-          criaturas corrompidas y entabla amistad con extraños insectos, todo en
-          un estilo clásico en 2D dibujado.
+          {{data.data.descripcion}}
         </p>
 
-        <button class=" boton fifth offset-4 col-3"> Comprar <i class="fa fa-shopping-cart ml-1"></i>  &nbsp; 15,99 €</button>
+        <button class=" boton fifth offset-4 col-3" (click)="compre()" > Comprar <i class="fa fa-shopping-cart ml-1"></i>  &nbsp; {{data.data.precio}} €</button>
         
         <mat-accordion >
             <br>
@@ -41,9 +38,9 @@
                 Mas informacion &nbsp; <i class="fas fa-arrow-down"></i>
               </mat-panel-description>
             </mat-expansion-panel-header>
-            <p>Fecha de salida: 2017-02-24</p>
+            <p>Fecha de salida: {{data.data.fecha_salida}}</p>
 
-            <p>OS: Windows 7, Mac OS 10.7 Lion, Ubuntu 16.04 LTS, Orbis, Xbox One System</p>
+            <p>OS: </p>
             <p>Procesador: Intel Core 2 Duo E5200, Intel Core i3, AMD Ryzen Zen 2</p>
             <p>Memoria: 4 GB de RAM</p>
             <p>Graficos: GeForce 9800GTX, GeForce GTX 470</p>

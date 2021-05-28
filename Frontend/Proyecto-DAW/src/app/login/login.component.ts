@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {MatDialogModule, MatDialogRef} from '@angular/material/dialog';
 import { ModificarProductoComponent } from '../componentesAdmin/modificar-producto/modificar-producto.component';
+import { AutenticacionService } from './autenticacion.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,8 @@ export class LoginComponent  {
   constructor(
     private _builder : FormBuilder,
     private http:HttpClient,
-    private dialogRef: MatDialogRef<ModificarProductoComponent>
+    private dialogRef: MatDialogRef<ModificarProductoComponent>,
+    private autenticacionServe:AutenticacionService
 
   ) { 
     this.login = this._builder.group({
@@ -27,6 +29,8 @@ export class LoginComponent  {
   ngOnInit(): void {
     
   }
+
+  
 
  submit(event : any){
   this.http.post(this.urlLogin,{
@@ -41,4 +45,22 @@ export class LoginComponent  {
   
 
  }
+
+ pruebas(event : any) {
+
+  if (this.login.invalid) {
+    console.log("adios");
+    return false;
+  }
+
+  this.autenticacionServe.login(this.login.controls.email.value, this.login.controls.password.value).subscribe(datos=>{
+    localStorage.setItem("usuario", JSON.stringify(datos));
+    console.log(datos);
+    return true;
+  });
+
+  console.log("hola");
+  return true;
+}
+
 }

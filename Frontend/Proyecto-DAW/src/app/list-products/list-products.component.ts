@@ -48,8 +48,8 @@ export class ListProductsComponent  {
   }
 
   redirigir(event : any){
-  console.log(event)
-  this.router.navigate(['/product/1']);
+  
+  this.router.navigate(['/product/'+event.id]);
 }
  
 
