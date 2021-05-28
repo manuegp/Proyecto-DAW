@@ -141,4 +141,15 @@ nav{
   border-bottom: solid 1px white;
 }
 
+mat-option{
+  background-color: #212529;
+  color: white;
+}
+
+mat-option:hover{
+  background-color: aquamarine !important ;
+  color: black;
+  
+}
+
 

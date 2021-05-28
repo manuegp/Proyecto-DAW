@@ -18,6 +18,7 @@
           <a class="nav-link active" aria-current="page" routerLink="/home"
             >Inicio</a
           >
+          
         </li>
 
         <li class="nav-item col-5 col-lg-7">
@@ -32,6 +33,10 @@
         <li class="nav-item">
           <a class="nav-link active" (click)="onCreate()"> Iniciar sesion</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link active" (click)="cerrarSesion()"> Cerrar sesion</a>
+        </li>
+        
       </ul>
 
       <li class="nav-item" id="carrito">
@@ -58,7 +63,7 @@
         </a>
       </li>
 
-      <form class="example-form d-flex">
+      <form class="example-form d-flex ">
         <input
           class="form-control me-2"
           type="search"
@@ -67,9 +72,11 @@
           [formControl]="myControl"
           [matAutocomplete]="auto"
         />
-        <mat-autocomplete #auto="matAutocomplete">
-          <mat-option *ngFor="let option of options" [value]="option" class="">
-            {{ option }}
+        <mat-autocomplete autoActiveFirstOption  #auto="matAutocomplete">
+          <mat-option *ngFor="let option of options" (click)="redirigirArticulo(option.id)" >
+            <img class="example-option-img" aria-hidden src={{option.imagen_principal}} height="50">
+            <span>&nbsp;{{option.nombre}}</span> 
+            <small> {{option.precio}} €</small>
           </mat-option>
         </mat-autocomplete>
       </form>
