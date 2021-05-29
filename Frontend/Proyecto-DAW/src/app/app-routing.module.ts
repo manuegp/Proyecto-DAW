@@ -8,6 +8,7 @@ import { ProductComponent } from './product/product.component';
 import { ShoppingCartComponent  } from './shopping-cart/shopping-cart.component';
 import { SiginComponent  } from './sigin/sigin.component';
 import { AutenticacionGuard } from './login/autenticacion.guard';
+import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 
 
 const routes: Routes = [
@@ -19,7 +20,8 @@ const routes: Routes = [
   { path: 'product/:id', component: ProductComponent },
   { path: 'admin', component: AdminComponent },
   { path: 'shopping-cart', component: ShoppingCartComponent },
-  { path: 'register', component: SiginComponent }
+  { path: 'register', component: SiginComponent },
+  { path: 'forgotpassword', component: ForgotpasswordComponent }
 
 ];
 

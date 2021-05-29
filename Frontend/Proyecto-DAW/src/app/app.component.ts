@@ -6,6 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
 import {startWith, map} from 'rxjs/operators';
+import { AutenticacionService } from './login/autenticacion.service';
 
 @Component({
   selector: 'app-root',
@@ -15,22 +16,25 @@ import {startWith, map} from 'rxjs/operators';
 
 export class AppComponent implements OnInit{
   title = 'Proyecto-DAW';
-
-  myControl = new FormControl();
-  options: any;
+  idUser : any ;
+  logState: boolean = false;
   
 
   constructor(private router:Router,
     private dialog: MatDialog,
     private http: HttpClient,
+    private autenticacionServe:AutenticacionService
+
     ){
       
     }
 
     ngOnInit(): void {
-      this.getArticulos()
-      this.comprobarUsuario()
       
+     this.idUser= this.autenticacionServe.getIdUser()
+      if(this.idUser != ""){
+        this.logState = true
+      }
     }
 
 
@@ -42,44 +46,21 @@ export class AppComponent implements OnInit{
     this.router.navigate(['profile']);
 
   }
-  asignarArticulos(dato : any){
-    this.options = dato.data;
-  }
+  
   
   onCreate(){
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.closeOnNavigation = true;
-      this.dialog.open(LoginComponent, { panelClass: 'custom-dialog-container' });
-  }
-  
-  getArticulos() {
-    this.http.get('http://127.0.0.1:8000/api/articulos').subscribe((result) => {
-      this.asignarArticulos(result)
-      
+    this.dialog.open(LoginComponent, { panelClass: 'custom-dialog-container' });
+    this.dialog.afterAllClosed.subscribe((result) => {
+      window.location.reload()
     });
   }
-
-  redirigirArticulo(id: any){
-    console.log("redirigiendo a "+ id)
-    window.location.href ="product/"+ id;
-  }
-
   
-
-  comprobarUsuario(){
-    if (localStorage.getItem("usuario")) {
-      console.log("Estas loggeado");
-      
-    }else{
-      console.log("No estas loggeado");
-    }
-  
-
-    
-  }
   cerrarSesion(){
     localStorage.removeItem("usuario")
+    window.location.href ="home";
   }
 
 }

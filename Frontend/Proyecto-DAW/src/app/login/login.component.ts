@@ -2,6 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {MatDialogModule, MatDialogRef} from '@angular/material/dialog';
+import { catchError } from 'rxjs/operators';
+import { error } from 'selenium-webdriver';
+
 import { ModificarProductoComponent } from '../componentesAdmin/modificar-producto/modificar-producto.component';
 import { AutenticacionService } from './autenticacion.service';
 
@@ -11,6 +14,7 @@ import { AutenticacionService } from './autenticacion.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent  {
+  errorCredeciales: boolean = false;
   login: FormGroup ;
   urlLogin ="http://localhost:8000/api/tokens/create";
   constructor(
@@ -32,35 +36,34 @@ export class LoginComponent  {
 
   
 
- submit(event : any){
-  this.http.post(this.urlLogin,{
-    email: this.login.controls['email'].value, 
-    password:this.login.controls['password'].value
-
-}).toPromise().then((data:any) => {
-  console.log(data)
-  console.log(JSON.stringify(data.JSON))
-  this.dialogRef.close()
-})
+ 
   
 
- }
+ 
 
- pruebas(event : any) {
+ submit(event : any) {
 
   if (this.login.invalid) {
     console.log("adios");
-    return false;
+    
   }
 
   this.autenticacionServe.login(this.login.controls.email.value, this.login.controls.password.value).subscribe(datos=>{
     localStorage.setItem("usuario", JSON.stringify(datos));
     console.log(datos);
-    return true;
-  });
+    this.dialogRef.close()
+    
+    
+  }, 
+  error =>{
+    this.errorCredeciales = true
+  }
+  ),
+    (  error: any) => console.log(error);
 
-  console.log("hola");
-  return true;
+  
 }
 
 }
+
+
