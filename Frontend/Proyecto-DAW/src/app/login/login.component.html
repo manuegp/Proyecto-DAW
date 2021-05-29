@@ -1,13 +1,12 @@
 <!-- Default form login -->
-<form class="text-center p-5"  [formGroup]="login"  (ngSubmit)="pruebas($event)">
+<form class="text-center p-5" [formGroup]="login" (ngSubmit)="submit($event)">
   <p class="h4 mb-4">Iniciar sesion</p>
 
   <!-- Email -->
-  
-  
+
   <p>
     <mat-form-field appearance="standard">
-      <mat-label>Nombre de usuario</mat-label>
+      <mat-label>Email</mat-label>
       <input
         matInput
         formControlName="email"
@@ -17,25 +16,32 @@
   </p>
   <p>
     <mat-form-field appearance="standard">
-      <mat-label>Nombre</mat-label>
+      <mat-label>Contraseña</mat-label>
       <input
         matInput
-        placeholder="Ej. Maria"
         formControlName="password"
+        type="password"
         autocomplete="doNotAutoComplete"
       />
     </mat-form-field>
   </p>
- 
+  <div
+    *ngIf="errorCredeciales"
+    class="alert alert-danger d-flex justify-content-around"
+    role="alert"
+  >
+    El correo electronico y <br />
+    la contraseña no coincide
+  </div>
   <div class="d-flex justify-content-around">
     <div>
       <!-- Forgot password -->
-      <a href="">¿Olvidaste la contraseña?</a>
+      <a href="/forgotpassword">¿Olvidaste la contraseña?</a>
     </div>
   </div>
 
   <!-- Sign in button -->
-  <button mdbBtn  class="my-4" type="submit">Iniciar sesion</button>
+  <button mdbBtn class="my-4" type="submit">Iniciar sesion</button>
 
   <!-- Register -->
   <p>

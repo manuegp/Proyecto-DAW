@@ -40,9 +40,10 @@ import { MatNativeDateModule } from '@angular/material/core';
 import {MatCheckboxDefaultOptions, MatCheckboxModule, MAT_CHECKBOX_DEFAULT_OPTIONS} from '@angular/material/checkbox';
 import {MatCardModule} from '@angular/material/card';
 import {MatRadioModule} from '@angular/material/radio';
+import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, ProfileComponent, AdminComponent, ProductComponent, ListProductsComponent, ShoppingCartComponent, LoginComponent, SiginComponent, VentanaPestanasComponent, ModificarProductoComponent, ModificarUsuarioComponent],
+  declarations: [AppComponent, HomeComponent, ProfileComponent, AdminComponent, ProductComponent, ListProductsComponent, ShoppingCartComponent, LoginComponent, SiginComponent, VentanaPestanasComponent, ModificarProductoComponent, ModificarUsuarioComponent, ForgotpasswordComponent],
   imports: [
     MatAutocompleteModule,
     BrowserModule,

@@ -30,23 +30,24 @@
 
     
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
+        <li class="nav-item"  *ngIf="!logState">
           <a class="nav-link active" (click)="onCreate()"> Iniciar sesion</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" (click)="cerrarSesion()"> Cerrar sesion</a>
+          <a class="nav-link active" (click)="cerrarSesion()"  *ngIf="logState"> Cerrar sesion</a>
         </li>
         
       </ul>
 
-      <li class="nav-item" id="carrito">
+      <li *ngIf="logState" class="nav-item" id="carrito">
+        
         <a class="navbar-brand" href="shopping-cart">
           <i class="fas fa-cart-plus"></i>
         </a>
       </li>
 
-      <li class="nav-item" id="fotoperfil" (click)="redirigir()">
-        <a class="navbar-brand" href="/profile">
+      <li class="nav-item" id="fotoperfil" (click)="redirigir()"  *ngIf="logState">
+        <a class="navbar-brand" href="/profile" >
           <div
             class="profile-header-container"
             data-bs-toggle="dropdown"
@@ -63,23 +64,7 @@
         </a>
       </li>
 
-      <form class="example-form d-flex ">
-        <input
-          class="form-control me-2"
-          type="search"
-          placeholder="Busca tu juego aqui"
-          aria-label="Buscar"
-          [formControl]="myControl"
-          [matAutocomplete]="auto"
-        />
-        <mat-autocomplete autoActiveFirstOption  #auto="matAutocomplete">
-          <mat-option *ngFor="let option of options" (click)="redirigirArticulo(option.id)" >
-            <img class="example-option-img" aria-hidden src={{option.imagen_principal}} height="50">
-            <span>&nbsp;{{option.nombre}}</span> 
-            <small> {{option.precio}} €</small>
-          </mat-option>
-        </mat-autocomplete>
-      </form>
+      
     </div>
   </div>
 </nav>
