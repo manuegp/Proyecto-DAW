@@ -27,11 +27,11 @@ class ListaDeseadosController extends Controller
      */
     public function store(Request $request)
     {
-        $listaDeseados = json_decode($request->getContent(), true);
+        $listadeseados = json_decode($request->getContent(), true);
 
-        $listaDeseados = ListaDeseados::create($listaDeseados);
+        $listadeseados = ListaDeseados::create($listadeseados);
 
-        return new ListaDeseadosResource($listaDeseados);
+        return new ListaDeseadosResource($listadeseados);
     }
 
     /**
@@ -40,9 +40,9 @@ class ListaDeseadosController extends Controller
      * @param  \App\Models\ListaDeseados  $listaDeseados
      * @return \Illuminate\Http\Response
      */
-    public function show(ListaDeseados $listaDeseados)
+    public function show(ListaDeseados $a)
     {
-        return new ListaDeseadosResource($listaDeseados);
+        return new ListaDeseadosResource($a);
     }
 
     /**
@@ -54,8 +54,8 @@ class ListaDeseadosController extends Controller
      */
     public function update(Request $request, ListaDeseados $listaDeseados)
     {
-        $listaDeseadosData = json_decode($request->getContent(), true);
-        $listaDeseados->update($listaDeseadosData);
+        $listadeseadosData = json_decode($request->getContent(), true);
+        $listaDeseados->update($listadeseadosData);
 
         return new ListaDeseadosResource($listaDeseados);
     }

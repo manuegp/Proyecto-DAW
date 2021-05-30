@@ -17,7 +17,7 @@ class RequisitosJuegoSeeder extends Seeder
         DB::table('requisitos_juegos')->insert([
 
             [
-                'id_juego' => '1',
+                'id_articulo' => '1',
                 'os' => 'Windows 7, Mac OS 10.7 Lion, Ubuntu 16.04 LTS, Orbis, Xbox One System Software',
                 'procesador' => 'Intel Core 2 Duo E5200, Intel Core i3, AMD Ryzen Zen 2',
                 'memoria' => '4 GB de RAM',
@@ -30,7 +30,7 @@ class RequisitosJuegoSeeder extends Seeder
             ],
 
             [
-                'id_juego' => '2',
+                'id_articulo' => '2',
                 'os' => 'Windows 7',
                 'procesador' => 'Intel Core 2 Duo E6320',
                 'memoria' => '2 GB de RAM',
@@ -43,7 +43,7 @@ class RequisitosJuegoSeeder extends Seeder
             ],
             
             [
-                'id_juego' => '3',
+                'id_articulo' => '3',
                 'os' => 'Windows 7, Windows 8.1, Windows 10',
                 'procesador' => 'Intel Core i3-2100, AMD FX-6300',
                 'memoria' => '4 GB de RAM',
@@ -56,7 +56,7 @@ class RequisitosJuegoSeeder extends Seeder
             ],
 
             [
-                'id_juego' => '4',
+                'id_articulo' => '6',
                 'os' => 'FreeBSD',
                 'procesador' => 'SoC Nvidia Tegra',
                 'memoria' => '4 GB de RAM',

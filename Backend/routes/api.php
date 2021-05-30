@@ -11,6 +11,8 @@ use App\Http\Controllers\API\JuegoController;
 use App\Http\Controllers\API\VentaController;
 use App\Http\Controllers\API\RequisitosJuegoController;
 use App\Http\Controllers\API\ListaDeseadosController;
+use App\Http\Controllers\API\CarritoController;
+use App\Http\Controllers\API\MailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,7 +42,9 @@ Route::post('/tokens/create', function (Request $request) {
 
     return response()->json([
         'token_type' => 'Bearer',
-        'access_token' => $user->createToken('token_name')->plainTextToken // token name you can choose for your self or leave blank if you like to
+        'access_token' => $user->createToken('token_name')->plainTextToken, // token name you can choose for your self or leave blank if you like to
+        'id' => $user->id,
+        'administrador' => $user->es_administrador
     ]);
 });
 
@@ -48,13 +52,18 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+//Route::get('lista_deseados/pruebas/{id_usuario}', [ListaDeseadosController::class, 'pruebas']);
+
 Route::apiResource('usuarios', UsuarioController::class);
 Route::apiResource('articulos', ArticuloController::class);
 Route::apiResource('juegos', JuegoController::class);
 Route::apiResource('ventas', VentaController::class);
 Route::apiResource('requisitos_juegos', RequisitosJuegoController::class);
 Route::apiResource('lista_deseados', ListaDeseadosController::class);
+Route::apiResource('carritos', CarritoController::class);
 
 Route::middleware('auth:sanctum')->get('/', function(){
     return response()->json(["nombre"=>"hola"]);
 });
+
+Route::get('email', [MailController::class, 'sendEmail']);

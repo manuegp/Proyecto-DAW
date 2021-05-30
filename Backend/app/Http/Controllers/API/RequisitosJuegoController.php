@@ -42,7 +42,7 @@ class RequisitosJuegoController extends Controller
      */
     public function show(RequisitosJuego $requisitosJuego)
     {
-        return new RequisitosJuegoResource($requisitosjuego);
+        return new RequisitosJuegoResource($requisitosJuego);
     }
 
     /**

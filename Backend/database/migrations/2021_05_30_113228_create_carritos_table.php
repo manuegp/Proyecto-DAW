@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRequisitosJuegosTable extends Migration
+class CreateCarritosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,12 @@ class CreateRequisitosJuegosTable extends Migration
      */
     public function up()
     {
-        Schema::create('requisitos_juegos', function (Blueprint $table) {
+        Schema::create('carritos', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('id_usuario');
             $table->unsignedBigInteger('id_articulo');
-            $table->string('os');
-            $table->string('procesador');
-            $table->string('memoria');
-            $table->string('graficos');
-            $table->string('directx');
-            $table->string('storage');
-            $table->string('tarjeta_sonido')->nullable();
             $table->foreign('id_articulo')->references('id')->on('articulos');
+            $table->foreign('id_usuario')->references('id')->on('users');
             $table->timestamps();
         });
     }
@@ -35,6 +30,6 @@ class CreateRequisitosJuegosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('requisitos_juegos');
+        Schema::dropIfExists('carritos');
     }
 }

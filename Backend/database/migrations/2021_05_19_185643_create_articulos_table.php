@@ -19,7 +19,8 @@ class CreateArticulosTable extends Migration
             $table->string('descripcion', 500);
             $table->double('precio', 4, 2);
             $table->date('fecha_salida');
-            $table->binary('imagen_principal')->nullable();
+            $table->string('imagen_principal')->nullable();
+            $table->string('video')->nullable();
             $table->timestamps();
         });
     }
