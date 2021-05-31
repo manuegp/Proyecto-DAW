@@ -30,23 +30,26 @@
 
     
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item"  *ngIf="!logState">
+        <li class="nav-item"  *ngIf="logState != false">
           <a class="nav-link active" (click)="onCreate()"> Iniciar sesion</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link active" (click)="cerrarSesion()"  *ngIf="logState"> Cerrar sesion</a>
+        <li class="nav-item" *ngIf="logState == false">
+          <a class="nav-link active" (click)="cerrarSesion()"  > Cerrar sesion</a>
+        </li>
+        <li class="nav-item"  *ngIf="logState == false && this.idUser.administrador != 0">
+          <a class="nav-link active" (click)="gestion()" > Gestionar</a>
         </li>
         
       </ul>
 
-      <li *ngIf="logState" class="nav-item" id="carrito">
+      <li *ngIf="logState == false" class="nav-item" id="carrito">
         
         <a class="navbar-brand" href="shopping-cart">
           <i class="fas fa-cart-plus"></i>
         </a>
       </li>
 
-      <li class="nav-item" id="fotoperfil" (click)="redirigir()"  *ngIf="logState">
+      <li class="nav-item" id="fotoperfil" (click)="redirigir()"  *ngIf="logState == false">
         <a class="navbar-brand" href="/profile" >
           <div
             class="profile-header-container"

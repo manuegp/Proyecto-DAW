@@ -18,7 +18,7 @@ export class AppComponent implements OnInit{
   title = 'Proyecto-DAW';
   idUser : any ;
   logState: boolean = false;
-  
+  esAdmin: boolean = false;
 
   constructor(private router:Router,
     private dialog: MatDialog,
@@ -32,9 +32,12 @@ export class AppComponent implements OnInit{
     ngOnInit(): void {
       
      this.idUser= this.autenticacionServe.getIdUser()
-      if(this.idUser != ""){
+     console.log(this.logState)
+      if(this.idUser.id == undefined){
         this.logState = true
       }
+      
+    this.comprobarAdmin()
     }
 
 
@@ -63,6 +66,15 @@ export class AppComponent implements OnInit{
     window.location.href ="home";
   }
 
+  gestion(){  
+    window.location.href ="admin";
+  }
+
+  comprobarAdmin(){
+    if(this.idUser.administrador != 0){
+      this.esAdmin = true;
+    }
+  }
 }
 
 

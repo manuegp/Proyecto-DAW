@@ -11,7 +11,7 @@ import { AutenticacionService } from '../login/autenticacion.service';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  idUser: any;
+  user: any;
  
   userData: any;
   signupForm: FormGroup;
@@ -70,15 +70,15 @@ export class ProfileComponent implements OnInit {
  
 
     private async asignarDatos(){
-      this.idUser = this.autenticacionServe.getIdUser()
-      const data = await this.http.get('http://127.0.0.1:8000/api/usuarios/'+this.idUser).toPromise();
+      this.user = this.autenticacionServe.getIdUser()
+      const data = await this.http.get('http://127.0.0.1:8000/api/usuarios/'+this.user.id).toPromise();
       this.userData = data; 
     }
 
     submit(evento :any){
      
         console.log
-       this.http.put("http://127.0.0.1:8000/api/usuarios/"+ this.idUser,{
+       this.http.put("http://127.0.0.1:8000/api/usuarios/"+ this.user.id,{
          nombre: this.signupForm.controls['nombre'].value,
          apellido:this.signupForm.controls['apellidos'].value  ,
          nick: this.signupForm.controls['username'].value ,
