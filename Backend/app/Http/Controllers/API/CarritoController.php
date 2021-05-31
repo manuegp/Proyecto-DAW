@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Carrito;
 use Illuminate\Http\Request;
 use App\Http\Resources\CarritoResource;
+use Illuminate\Support\Facades\DB;
 
 class CarritoController extends Controller
 {
@@ -43,6 +44,12 @@ class CarritoController extends Controller
     public function show(Carrito $carrito)
     {
         return new CarritoResource($carrito);
+    }
+
+    public function carrito_usuario(string $id_usuario)
+    {
+        $carrito_usuario = DB::select('SELECT * FROM carritos WHERE id_usuario = '. $id_usuario);
+        return $carrito_usuario;
     }
 
     /**

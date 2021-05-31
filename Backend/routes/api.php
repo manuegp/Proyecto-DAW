@@ -52,14 +52,16 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-//Route::get('lista_deseados/pruebas/{id_usuario}', [ListaDeseadosController::class, 'pruebas']);
+Route::get('deseados/usuario/{id_usuario}', [DeseadoController::class, 'deseados_usuario']);
+Route::get('ventas/usuario/{id_usuario}', [VentaController::class, 'historial']);
+Route::get('carrito/usuario/{id_usuario}', [CarritoController::class, 'carrito_usuario']);
 
 Route::apiResource('usuarios', UsuarioController::class);
 Route::apiResource('articulos', ArticuloController::class);
 Route::apiResource('juegos', JuegoController::class);
 Route::apiResource('ventas', VentaController::class);
-Route::apiResource('requisitos_juegos', RequisitosJuegoController::class);
-Route::apiResource('carritos', CarritoController::class);
+Route::apiResource('requisitos_juego', RequisitosJuegoController::class);
+Route::apiResource('carrito', CarritoController::class);
 Route::apiResource('deseados', DeseadoController::class);
 
 

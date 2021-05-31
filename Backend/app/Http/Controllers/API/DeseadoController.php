@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Deseado;
 use Illuminate\Http\Request;
 use App\Http\Resources\DeseadoResource;
+use Illuminate\Support\Facades\DB;
 
 class DeseadoController extends Controller
 {
@@ -43,6 +44,12 @@ class DeseadoController extends Controller
     public function show(Deseado $deseado)
     {
         return new DeseadoResource($deseado);
+    }
+
+    public function deseados_usuario(string $id_usuario)
+    {
+        $deseados_usuario = DB::select('SELECT * FROM deseados WHERE id_usuario = '. $id_usuario);
+        return $deseados_usuario;
     }
 
     /**

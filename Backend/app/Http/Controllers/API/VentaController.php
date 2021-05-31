@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Venta;
 use Illuminate\Http\Request;
 use App\Http\Resources\VentaResource;
+use Illuminate\Support\Facades\DB;
 
 class VentaController extends Controller
 {
@@ -44,6 +45,13 @@ class VentaController extends Controller
     {
         return new VentaResource($venta);
     }
+
+    public function historial(string $id_usuario)
+    {
+        $historial = DB::select('SELECT * FROM ventas WHERE id_usuario = '. $id_usuario);
+        return $historial;
+    }
+
 
     /**
      * Update the specified resource in storage.
