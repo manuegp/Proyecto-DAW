@@ -10,8 +10,8 @@ use App\Http\Controllers\API\ArticuloController;
 use App\Http\Controllers\API\JuegoController;
 use App\Http\Controllers\API\VentaController;
 use App\Http\Controllers\API\RequisitosJuegoController;
-use App\Http\Controllers\API\ListaDeseadosController;
 use App\Http\Controllers\API\CarritoController;
+use App\Http\Controllers\API\DeseadoController;
 use App\Http\Controllers\API\MailController;
 
 /*
@@ -59,8 +59,9 @@ Route::apiResource('articulos', ArticuloController::class);
 Route::apiResource('juegos', JuegoController::class);
 Route::apiResource('ventas', VentaController::class);
 Route::apiResource('requisitos_juegos', RequisitosJuegoController::class);
-Route::apiResource('lista_deseados', ListaDeseadosController::class);
 Route::apiResource('carritos', CarritoController::class);
+Route::apiResource('deseados', DeseadoController::class);
+
 
 Route::middleware('auth:sanctum')->get('/', function(){
     return response()->json(["nombre"=>"hola"]);

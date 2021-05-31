@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call(JuegoSeeder::class);
         $this->call(VentaSeeder::class);
         $this->call(RequisitosJuegoSeeder::class);
-        $this->call(ListaDeseadosSeeder::class);
         $this->call(CarritoSeeder::class);
+        $this->call(DeseadoSeeder::class);
     }
 }
