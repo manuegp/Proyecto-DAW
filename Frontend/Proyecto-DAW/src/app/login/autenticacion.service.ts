@@ -36,9 +36,10 @@ export class AutenticacionService {
   getIdUser(){
     if (localStorage.getItem("usuario")) {
       let user = JSON.parse(localStorage.getItem("usuario") || '{}')
-      let idUser = user.id;
+      console.log(user)
+      let User = user;
       
-     return idUser;
+     return User;
     }else{
       return "";
     }
