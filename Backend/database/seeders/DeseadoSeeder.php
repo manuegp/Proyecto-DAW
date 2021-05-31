@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class ListaDeseadosSeeder extends Seeder
+class DeseadoSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,7 +14,7 @@ class ListaDeseadosSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('lista_deseados')->insert([
+        DB::table('deseados')->insert([
 
             [
                 'id_articulo' => '1',
