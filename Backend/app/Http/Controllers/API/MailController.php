@@ -13,10 +13,10 @@ class MailController extends Controller
 
         $details = [
             'title' => 'Mail from Surfside Media',
-            'body' => 'This is for testing mail using gmail'
+            'body' => 'Apruebanos porfa'
         ];
 
-        Mail::to("manuel.mgp.2001@gmail.com")->send(new TestMail($details));
+        Mail::to("fct.carlos3@gmail.com")->send(new TestMail($details));
         return "Email Sent";
 
     }

@@ -48,7 +48,10 @@ class CarritoController extends Controller
 
     public function carrito_usuario(string $id_usuario)
     {
-        $carrito_usuario = DB::select('SELECT * FROM carritos WHERE id_usuario = '. $id_usuario);
+        $carrito_usuario = DB::select('SELECT carritos.*, articulos.nombre, articulos.precio, articulos.imagen_principal
+                                       FROM carritos, articulos
+                                       WHERE carritos.id_usuario = '. $id_usuario. ' AND carritos.id_articulo = articulos.id'
+        );
         return $carrito_usuario;
     }
 
