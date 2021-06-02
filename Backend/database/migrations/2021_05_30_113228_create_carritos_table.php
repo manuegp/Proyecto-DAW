@@ -17,8 +17,9 @@ class CreateCarritosTable extends Migration
             $table->id();
             $table->unsignedBigInteger('id_usuario');
             $table->unsignedBigInteger('id_articulo');
-            $table->foreign('id_articulo')->references('id')->on('articulos');
-            $table->foreign('id_usuario')->references('id')->on('users');
+            $table->unsignedBigInteger('cantidad');
+            $table->foreign('id_articulo')->references('id')->on('articulos')->onDelete('cascade');
+            $table->foreign('id_usuario')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -33,6 +33,8 @@ export class SiginComponent  {
       console.log(JSON.stringify(data.JSON))
     })
 
+    this.http.get("http://127.0.0.1:8000/api/email_registro/" + this.signupForm.controls.email.value).subscribe();
+
   }
   constructor(
     private _builder : FormBuilder,
@@ -84,4 +86,7 @@ export class SiginComponent  {
 
     }
    }
+
+
+
 }

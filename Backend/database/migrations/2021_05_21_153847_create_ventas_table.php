@@ -20,8 +20,8 @@ class CreateVentasTable extends Migration
             $table->integer('cantidad');
             $table->date('fecha_venta');
             $table->enum('metodo_pago', ['PayPal', 'PaysafeCard', 'Visa', 'Mastercard', 'Skrill']);
-            $table->foreign('id_articulo')->references('id')->on('articulos');
-            $table->foreign('id_usuario')->references('id')->on('users');
+            $table->foreign('id_articulo')->references('id')->on('articulos')->onDelete('cascade');
+            $table->foreign('id_usuario')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

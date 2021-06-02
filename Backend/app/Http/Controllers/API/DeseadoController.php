@@ -48,7 +48,10 @@ class DeseadoController extends Controller
 
     public function deseados_usuario(string $id_usuario)
     {
-        $deseados_usuario = DB::select('SELECT * FROM deseados WHERE id_usuario = '. $id_usuario);
+        $deseados_usuario = DB::select('SELECT deseados.*, articulos.nombre, articulos.precio, articulos.imagen_principal
+                                        FROM deseados, articulos
+                                        WHERE deseados.id_usuario = '. $id_usuario. ' AND deseados.id_articulo = articulos.id'
+        );
         return $deseados_usuario;
     }
 

@@ -52,9 +52,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('articulos/juegos', [ArticuloController::class, 'all_juegos']);
+Route::get('articulos/juego/{id_articulo}', [ArticuloController::class, 'juego_seleccionado']);
+Route::get('articulos/merchs', [ArticuloController::class, 'all_merch']);
+Route::get('articulos/merch/{id_articulo}', [ArticuloController::class, 'merch_seleccionado']);
 Route::get('deseados/usuario/{id_usuario}', [DeseadoController::class, 'deseados_usuario']);
 Route::get('ventas/usuario/{id_usuario}', [VentaController::class, 'historial']);
 Route::get('carrito/usuario/{id_usuario}', [CarritoController::class, 'carrito_usuario']);
+Route::get('usuarios/correo/{email}', [UsuarioController::class, 'email_user']);
 
 Route::apiResource('usuarios', UsuarioController::class);
 Route::apiResource('articulos', ArticuloController::class);
@@ -70,3 +75,5 @@ Route::middleware('auth:sanctum')->get('/', function(){
 });
 
 Route::get('email', [MailController::class, 'sendEmail']);
+Route::get('email_password/{email}', [MailController::class, 'sendEmailForgetPassword']);
+Route::get('email_registro/{email}', [MailController::class, 'sendEmailUsuarioRegistrado']);

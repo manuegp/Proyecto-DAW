@@ -23,7 +23,7 @@ class CreateRequisitosJuegosTable extends Migration
             $table->string('directx');
             $table->string('storage');
             $table->string('tarjeta_sonido')->nullable();
-            $table->foreign('id_articulo')->references('id')->on('articulos');
+            $table->foreign('id_articulo')->references('id')->on('articulos')->onDelete('cascade');
             $table->timestamps();
         });
     }

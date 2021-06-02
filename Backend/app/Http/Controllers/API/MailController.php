@@ -20,4 +20,29 @@ class MailController extends Controller
         return "Email Sent";
 
     }
+
+    public function sendEmailForgetPassword(string $email) {
+
+        $details = [
+            'title' => 'Contraseña olvidada',
+            'body' => 'Click aqui para poder cambiar su contraseña'
+        ];
+
+        Mail::to($email)->send(new TestMail($details));
+        
+
+    }
+
+    public function sendEmailUsuarioRegistrado(string $email) {
+
+        $details = [
+            'title' => 'Registrado',
+            'body' => 'Bienvenido a MMJ'
+        ];
+
+        Mail::to($email)->send(new TestMail($details));
+        
+
+    }
+
 }

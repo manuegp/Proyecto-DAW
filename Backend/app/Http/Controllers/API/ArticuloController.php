@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Articulo;
 use Illuminate\Http\Request;
 use App\Http\Resources\ArticuloResource;
+use Illuminate\Support\Facades\DB;
 
 class ArticuloController extends Controller
 {
@@ -17,6 +18,60 @@ class ArticuloController extends Controller
     public function index()
     {
         return ArticuloResource::collection(Articulo::all());
+    }
+
+
+    /*Para sacar los datos que tiene un articulo junto con los datos de juego, si es un juego*/
+    public function all_juegos() {
+
+        $juegos = DB::select('SELECT articulos.*, juegos.etiquetas, juegos.plataforma, juegos.idioma, juegos.saga, requisitos_juegos.os, requisitos_juegos.procesador, requisitos_juegos.memoria, requisitos_juegos.graficos, requisitos_juegos.directx, requisitos_juegos.storage, requisitos_juegos.tarjeta_sonido 
+                              FROM articulos, juegos, requisitos_juegos 
+                              WHERE articulos.id = juegos.id_articulo 
+                              AND articulos.id = requisitos_juegos.id_articulo'
+        );
+
+        return $juegos;
+    }
+
+
+    public function juego_seleccionado(string $id_articulo) {
+
+        $juego = DB::select('SELECT articulos.*, juegos.etiquetas, juegos.plataforma, juegos.idioma, juegos.saga, requisitos_juegos.os, requisitos_juegos.procesador, requisitos_juegos.memoria, requisitos_juegos.graficos, requisitos_juegos.directx, requisitos_juegos.storage, requisitos_juegos.tarjeta_sonido
+                             FROM articulos, juegos, requisitos_juegos
+                             WHERE articulos.id = juegos.id_articulo
+                             AND articulos.id = requisitos_juegos.id_articulo
+                             AND articulos.id = '. $id_articulo
+        );
+
+        return $juego;
+    }
+
+
+    public function all_merch() {
+
+        $merchs = DB::select('SELECT * FROM articulos 
+                              WHERE id NOT IN ( 
+                                                SELECT id_articulo 
+                                                FROM juegos
+                                              )'
+        );
+
+        return $merchs;
+
+    }
+
+    public function merch_seleccionado(string $id_articulo) {
+
+        $merch = DB::select('SELECT * FROM articulos 
+                             WHERE id NOT IN ( 
+                                               SELECT id_articulo 
+                                               FROM juegos
+                                             )
+                             AND id = '. $id_articulo
+        );
+                   
+        return $merch;
+
     }
 
     /**

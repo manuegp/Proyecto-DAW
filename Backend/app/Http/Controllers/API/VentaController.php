@@ -48,7 +48,10 @@ class VentaController extends Controller
 
     public function historial(string $id_usuario)
     {
-        $historial = DB::select('SELECT * FROM ventas WHERE id_usuario = '. $id_usuario);
+        $historial = DB::select('SELECT ventas.*, articulos.nombre, articulos.precio, articulos.imagen_principal
+                                 FROM ventas, articulos
+                                 WHERE ventas.id_usuario = '. $id_usuario. ' AND ventas.id_articulo = articulos.id'
+        );
         return $historial;
     }
 

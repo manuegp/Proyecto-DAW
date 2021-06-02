@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Resources\UsuarioResource;
+use Illuminate\Support\Facades\DB;
 
 class UsuarioController extends Controller
 {
@@ -17,6 +18,17 @@ class UsuarioController extends Controller
     public function index()
     {
         return UsuarioResource::collection(User::all());
+    }
+
+    public function email_user(string $email) {
+
+        $correo = DB::select('SELECT email 
+                              FROM users
+                              WHERE email LIKE "'. $email. '"'
+        );
+
+        return $correo;
+
     }
 
     /**
