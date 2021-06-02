@@ -28,7 +28,8 @@
           {{data.data.descripcion}}
         </p>
 
-        <button class=" boton fifth offset-4 col-3" (click)="compre()" > Comprar <i class="fa fa-shopping-cart ml-1"></i>  &nbsp; {{data.data.precio}} €</button>
+        <button class=" boton fifth offset-4 col-3" *ngIf="!enCesta" (click)="anadirCesta()" > Añadir <i class="fa fa-shopping-cart ml-1"></i>  &nbsp; {{data.data.precio}} €</button>
+        <button class=" boton fifth offset-4 col-3"  *ngIf="enCesta" (click)="anadirCesta()"> Añadido </button>
         
         <mat-accordion >
             <br>

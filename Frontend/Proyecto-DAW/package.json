@@ -37,6 +37,7 @@
     "jquery-ui": "^1.12.1",
     "jquery-ui-dist": "^1.12.1",
     "mdbootstrap": "^4.19.2",
+    "ngx-number-spinner": "^2.2.1",
     "popper.js": "^1.16.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",

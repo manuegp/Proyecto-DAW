@@ -41,6 +41,7 @@ import {MatCheckboxDefaultOptions, MatCheckboxModule, MAT_CHECKBOX_DEFAULT_OPTIO
 import {MatCardModule} from '@angular/material/card';
 import {MatRadioModule} from '@angular/material/radio';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
+import { NgxNumberSpinnerModule } from 'ngx-number-spinner';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, ProfileComponent, AdminComponent, ProductComponent, ListProductsComponent, ShoppingCartComponent, LoginComponent, SiginComponent, VentanaPestanasComponent, ModificarProductoComponent, ModificarUsuarioComponent, ForgotpasswordComponent],
@@ -76,7 +77,8 @@ import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.compone
     MatRadioModule,
     HttpClientXsrfModule.withOptions({
       cookieName: 'My-Xsrf-Cookie',
-      headerName: 'My-Xsrf-Header',})
+      headerName: 'My-Xsrf-Header',}),
+    NgxNumberSpinnerModule
   ],
   providers: [MatDatepickerModule,
 ],

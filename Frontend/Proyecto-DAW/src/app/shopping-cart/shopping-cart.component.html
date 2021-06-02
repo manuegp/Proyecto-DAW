@@ -1,1 +1,79 @@
-<p>shopping-cart works!</p>
+<div class="container">
+  <div class="row">
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="juegosCesta" class="col-12" >
+        <ng-container matColumnDef="Imagen">
+          <th mat-header-cell *matHeaderCellDef style="display: none">
+            Imagen
+          </th>
+          <td mat-cell *matCellDef="let element">
+            <img src="{{ element.imagen_principal }}" />
+          </td>
+        </ng-container>
+        <!-- Position Column -->
+        <ng-container matColumnDef="Nombre">
+          <th mat-header-cell *matHeaderCellDef style="display: none">
+            Nombre
+          </th>
+          <td mat-cell *matCellDef="let element">{{ element.nombre }}</td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="Descripcion">
+          <th mat-header-cell *matHeaderCellDef style="display: none">
+            Descripcion
+          </th>
+          <td mat-cell *matCellDef="let element">{{ element.descripcion }}</td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="Precio">
+          <th mat-header-cell *matHeaderCellDef style="display: none">
+            Precio
+          </th>
+          <td mat-cell *matCellDef="let element">{{ element.precio }} €</td>
+        </ng-container>
+        <!--https://www.npmjs.com/package/ngx-number-spinner-->
+        <ng-container matColumnDef="Cantidad">
+          <th mat-header-cell *matHeaderCellDef style="display: none">
+            Cantidad
+          </th>
+          <td mat-cell *matCellDef="let element">
+            
+              <div >
+                
+                  <ngx-number-spinner
+                    
+                    [min]="1"
+                    [value]=  element.cantidad
+                    [max]="99"
+                    (change)= "cambioCantidad($event, element)"
+                  >
+                  </ngx-number-spinner>
+                
+              </div>
+           
+          </td>
+        </ng-container>
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="Boton">
+          <th mat-header-cell *matHeaderCellDef style="display: none">
+            
+          </th>
+          <td mat-cell *matCellDef="let element" class="borrar"  (click)="eliminarDelCarrito(element)">
+            <i class="fas fa-trash-alt" ></i>
+          </td>
+        </ng-container>
+
+        <tr
+          mat-header-row
+          *matHeaderRowDef="displayedColumns"
+          style="display: none"
+        ></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+      
+    </div>
+  </div>
+  <br />
+</div>

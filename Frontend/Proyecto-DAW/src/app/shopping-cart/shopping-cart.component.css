@@ -1,0 +1,63 @@
+#contenido{
+    background-color: #212529;
+    color: white;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+}
+.mat-list-item{
+    color: white !important;
+    height: 130px !important;
+    width: 900px !important;
+}
+mat-list-item:hover{
+background-color: aquamarine;
+
+
+}
+img{
+    width: 230px;
+    height: 107.5px;
+    
+}
+
+
+
+table{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: #212529;
+    
+    
+}
+
+
+th{
+    color: white;
+}
+
+td{
+    color: white;
+}
+
+td:hover{
+    cursor: pointer;
+    
+}
+
+.borrar{ 
+    text-align: center;
+}
+
+i{
+    
+    color: red;
+    font-size: 20px;
+    padding: 5px;
+    border-radius: 20px;
+}
+
+i:hover{
+    background-color: red;
+    color: #212529;
+    font-size: 20px;
+}
