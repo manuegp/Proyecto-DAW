@@ -46,7 +46,7 @@ class CarritoController extends Controller
         return new CarritoResource($carrito);
     }
 
-    public function all_juegos(string $id_usuario)
+    public function carrito_usuario(string $id_usuario)
     {
         $carrito_usuario = DB::select('SELECT carritos.*, articulos.nombre, articulos.precio, articulos.imagen_principal
                                        FROM carritos, articulos

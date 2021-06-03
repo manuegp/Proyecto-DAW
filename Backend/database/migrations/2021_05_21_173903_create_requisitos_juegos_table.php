@@ -15,7 +15,7 @@ class CreateRequisitosJuegosTable extends Migration
     {
         Schema::create('requisitos_juegos', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_articulo');
+            $table->unsignedBigInteger('id_juego');
             $table->string('os');
             $table->string('procesador');
             $table->string('memoria');
@@ -23,7 +23,7 @@ class CreateRequisitosJuegosTable extends Migration
             $table->string('directx');
             $table->string('storage');
             $table->string('tarjeta_sonido')->nullable();
-            $table->foreign('id_articulo')->references('id')->on('articulos')->onDelete('cascade');
+            $table->foreign('id_juego')->references('id')->on('juegos')->onDelete('cascade');
             $table->timestamps();
         });
     }
