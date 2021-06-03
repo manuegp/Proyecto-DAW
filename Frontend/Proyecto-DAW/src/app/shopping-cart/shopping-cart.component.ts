@@ -1,10 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { element } from 'protractor';
 import { AutenticacionService } from '../login/autenticacion.service';
-
+import { LoginComponent } from '../login/login.component';
+import { PaymentComponent } from '../payment/payment.component';
+declare var paypal :any;
 export interface juego {
   name: string;
   updated: Date;
@@ -18,15 +21,26 @@ export interface juego {
 export class ShoppingCartComponent implements OnInit {
   idUser: any;
   juegosCesta: any;
- 
-  allTeamDetails: any;
+  totalCoste:any;
+
   constructor(
     private http: HttpClient,
     private autenticacionServe: AutenticacionService,
     private router: Router,
-    private _builder: FormBuilder
+    private dialog: MatDialog,
+
   ) {
     
+  }
+
+  pagar(){
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.closeOnNavigation = true;
+    this.dialog.open(PaymentComponent, { panelClass: 'custom-dialog-container' });
+    this.dialog.afterAllClosed.subscribe((result) => {
+      
+    });
   }
 
   ngOnInit(): void {
@@ -35,7 +49,17 @@ export class ShoppingCartComponent implements OnInit {
     
   }
 
-  
+  ngAfterViewInit(): void{
+    this.calcularTotal()
+  }
+  calcularTotal(){
+    let total = 0;
+    for (let i = 0; i < this.juegosCesta.length; i++) {
+      total = total + (this.juegosCesta[i].precio * this.juegosCesta[i].cantidad)
+    }
+    console.log(this.juegosCesta, total)
+    this.totalCoste = total.toFixed(2)
+  }
  
   
   obtenerArticulos() {
@@ -45,6 +69,7 @@ export class ShoppingCartComponent implements OnInit {
         console.log(this.idUser.id);
         this.juegosCesta = result;
         console.log(this.juegosCesta);
+        
       });
   }
   displayedColumns: string[] = [
@@ -56,16 +81,21 @@ export class ShoppingCartComponent implements OnInit {
   ];
 
   redirigir(event: any) {
-    this.router.navigate(['/product/' + event.id]);
+    this.router.navigate(['/product/' + event]);
   }
 
   
 
   cambioCantidad(event: any, elemento: any){
+    
     console.log(event , elemento)
+    let idCambiar =this.localizarElemento(elemento)
+    this.juegosCesta[idCambiar].cantidad = event;
+
     this.http.put("http://127.0.0.1:8000/api/carrito/"+ elemento.id,{
         cantidad: event
     }).toPromise()
+    this.calcularTotal()
   }
 
   eliminarDelCarrito(elemento:any){
@@ -92,7 +122,7 @@ export class ShoppingCartComponent implements OnInit {
         return i;
       }
    }
-   return null
+   return 0
   }
 
   
