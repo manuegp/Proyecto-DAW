@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Validation\ValidationException;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 use App\Http\Controllers\API\UsuarioController;
 use App\Http\Controllers\API\ArticuloController;
@@ -32,17 +33,15 @@ Route::post('/tokens/create', function (Request $request) {
     ]);
 
     $user = User::where('email', $request->email)->first();
-    $password = User::where('password', $request->password)->first();
+    /*$password = User::where('password', $request->password)->first();*/
 
-    if (! $user || ! $password) {
-        throw ValidationException::withMessages([
-            'email' => ['The provided credentials are incorrect.'],
-        ]);
+    if (! $user || ! Hash::check($request->password, $user->password)) {
+        return $request->password;
     }
 
     return response()->json([
         'token_type' => 'Bearer',
-        'access_token' => $user->createToken('token_name')->plainTextToken, // token name you can choose for your self or leave blank if you like to
+        'access_token' => $user->createToken('token_name')->plainTextToken,
         'id' => $user->id,
         'administrador' => $user->es_administrador
     ]);
