@@ -24,7 +24,7 @@ class ArticuloController extends Controller
     /*Para sacar los datos que tiene un articulo junto con los datos de juego, si es un juego*/
     public function all_juegos() {
 
-        $juegos = DB::select('SELECT articulos.*, juegos.etiquetas, juegos.plataforma, juegos.idioma, requisitos_juegos.os, requisitos_juegos.procesador, requisitos_juegos.memoria, requisitos_juegos.graficos, requisitos_juegos.directx, requisitos_juegos.storage, requisitos_juegos.tarjeta_sonido 
+        $juegos = DB::select('SELECT articulos.*, juegos.etiquetas, juegos.plataforma, juegos.idioma, juegos.video, requisitos_juegos.os, requisitos_juegos.procesador, requisitos_juegos.memoria, requisitos_juegos.graficos, requisitos_juegos.directx, requisitos_juegos.storage, requisitos_juegos.tarjeta_sonido 
                               FROM articulos, juegos, requisitos_juegos 
                               WHERE articulos.id = juegos.id_articulo 
                               AND juegos.id = requisitos_juegos.id_juego'
@@ -36,7 +36,7 @@ class ArticuloController extends Controller
 
     public function juego_seleccionado(string $id_articulo) {
 
-        $juego = DB::select('SELECT articulos.*, juegos.etiquetas, juegos.plataforma, juegos.idioma, juegos.saga, requisitos_juegos.os, requisitos_juegos.procesador, requisitos_juegos.memoria, requisitos_juegos.graficos, requisitos_juegos.directx, requisitos_juegos.storage, requisitos_juegos.tarjeta_sonido
+        $juego = DB::select('SELECT articulos.*, juegos.etiquetas, juegos.plataforma, juegos.idioma, juegos.video, requisitos_juegos.os, requisitos_juegos.procesador, requisitos_juegos.memoria, requisitos_juegos.graficos, requisitos_juegos.directx, requisitos_juegos.storage, requisitos_juegos.tarjeta_sonido
                              FROM articulos, juegos, requisitos_juegos
                              WHERE articulos.id = juegos.id_articulo
                              AND articulos.id = requisitos_juegos.id_articulo

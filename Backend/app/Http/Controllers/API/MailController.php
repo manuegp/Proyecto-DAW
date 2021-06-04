@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Mail\TestMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\DB;
 
 class MailController extends Controller
 {
@@ -41,6 +42,31 @@ class MailController extends Controller
         ];
 
         Mail::to($email)->send(new TestMail($details));
+
+    }
+
+    public function sendEmailPago(string $email) {
+
+        $historial = DB::select('select articulos.nombre, articulos.imagen_principal, carritos.cantidad
+                                 from articulos, carritos
+                                 where carritos.id_articulo = articulos.id
+                                 and carritos.id_usuario = (select id
+                                                            FROM users
+                                                            WHERE email LIKE "'. $email. '")'
+        );
+
+        $prueba = $historial;
+
+        //$nombre = $historial[0]->nombre;
+
+        $a = "aaaa";
+
+        $details = [
+            'title' => 'Pago',
+            'body' => 'Su pago ha sido realizado correctamente'
+        ];
+
+        Mail::to($email)->send(new TestMail($details, $prueba));
         
 
     }

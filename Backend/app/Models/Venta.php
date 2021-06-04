@@ -14,6 +14,5 @@ class Venta extends Model
         'id_usuario',
         'cantidad',
         'fecha_venta',
-        'metodo_pago',
     ];
 }

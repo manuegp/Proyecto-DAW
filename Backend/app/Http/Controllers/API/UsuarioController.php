@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Resources\UsuarioResource;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class UsuarioController extends Controller
 {
@@ -40,9 +41,25 @@ class UsuarioController extends Controller
     public function store(Request $request)
     {
 
-        $usuario = json_decode($request->getContent(), true);
-
-        $usuario = User::create($usuario);
+        $this->validate($request,[
+            'nombre' => 'required',
+            'apellidos' => 'required',
+            'password'=> 'required',
+            'nick'=> 'required',
+            'telefono' => 'required',
+            'email' => 'required',
+            'es_administrador'=> 'required',
+        ]);
+    
+        $usuario = User::create([
+            'nombre' => $request['nombre'],
+            'apellidos' => $request['apellidos'],
+            'password'=> bcrypt($request['password']),
+            'nick'=> $request['nick'],
+            'telefono' => $request['telefono'],
+            'email' => $request['email'],
+            'es_administrador'=> $request['es_administrador'],
+        ]);
 
         return new UsuarioResource($usuario);
     }
@@ -68,7 +85,9 @@ class UsuarioController extends Controller
     public function update(Request $request, User $usuario)
     {
         $usuarioData = json_decode($request->getContent(), true);
+
         $usuario->update($usuarioData);
+        $usuario->fill(['password' => Hash::make($request->password)])->update();
 
         return new UsuarioResource($usuario);
     }
