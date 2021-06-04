@@ -67,10 +67,93 @@
   <br />
   <br />
   <br />
-  <mat-list-item><h1>Juegos deseados</h1></mat-list-item>
+  <mat-list-item><h1>Historial de compras</h1></mat-list-item>
   <mat-divider></mat-divider>
+  <div class="mat-elevation-z8">
+    
+    <table mat-table [dataSource] ="historialSource" class="col-12 ">
+  
+
+      <ng-container matColumnDef="Imagen">
+        <th mat-header-cell *matHeaderCellDef>  Imagen</th>
+        <td mat-cell *matCellDef="let element" > <img src={{element.imagen_principal}}/> </td>
+      </ng-container>
+      <!-- Position Column -->
+      <ng-container matColumnDef="Nombre">
+        <th mat-header-cell *matHeaderCellDef>  Nombre </th>
+        <td mat-cell *matCellDef="let element" > {{element.nombre}} </td>
+      </ng-container>
+  
+      <!-- Name Column -->
+      <ng-container matColumnDef="Precio">
+        <th mat-header-cell *matHeaderCellDef> Precio </th>
+        <td mat-cell *matCellDef="let element" > {{element.precio}} €</td>
+      </ng-container>
+  
+      <!-- Weight Column -->
+      <ng-container matColumnDef="Cantidad">
+        <th mat-header-cell *matHeaderCellDef> Cantidad </th>
+        <td mat-cell *matCellDef="let element" > {{element.cantidad}} </td>
+      </ng-container>
+  
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="Fecha">
+        <th mat-header-cell *matHeaderCellDef> Fecha de compra </th>
+        <td mat-cell *matCellDef="let element" > {{element.created_at}} </td>
+      </ng-container>
+      
+      <tr mat-header-row *matHeaderRowDef="displayedColumnsHistorial"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumnsHistorial;"  ></tr>
+    </table>
+  
+    <mat-paginator #paginator1  [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>
   <br />
+
+  <mat-list-item><h1>Lista de deseados</h1></mat-list-item>
+  <mat-divider></mat-divider>
+  <div class="mat-elevation-z8">
+    
+    <table mat-table [dataSource] ="deseadoSource" class="col-12 ">
+  
+
+      <ng-container matColumnDef="Imagen">
+        <th mat-header-cell *matHeaderCellDef>  Imagen</th>
+        <td mat-cell *matCellDef="let element" > <img src={{element.imagen_principal}}/> </td>
+      </ng-container>
+      <!-- Position Column -->
+      <ng-container matColumnDef="Nombre">
+        <th mat-header-cell *matHeaderCellDef>  Nombre </th>
+        <td mat-cell *matCellDef="let element" > {{element.nombre}} </td>
+      </ng-container>
+  
+      <!-- Name Column -->
+      <ng-container matColumnDef="Precio">
+        <th mat-header-cell *matHeaderCellDef> Precio </th>
+        <td mat-cell *matCellDef="let element" > {{element.precio}} €</td>
+      </ng-container>
+  
+      <!-- Weight Column -->
+      <ng-container matColumnDef="Boton" >
+        <th mat-header-cell *matHeaderCellDef>  </th>
+        <td mat-cell *matCellDef="let element" >
+          <button (click)="redirigir(element)">Visitar producto</button>
+          
+            <i class="fas fa-trash-alt" (click)="eliminarDeseado(element)"></i>
+        
+        </td>
+      </ng-container>
+  
+      
+      
+      <tr mat-header-row *matHeaderRowDef="displayedColumnsDeseados"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumnsDeseados;"  ></tr>
+    </table>
+  
+  </div>
 </div>
+
+
 <br />
 <br />
 <br />

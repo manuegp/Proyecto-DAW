@@ -110,8 +110,15 @@ export class ShoppingCartComponent implements OnInit {
 
   borro(elemento:any){
     console.log(elemento);
-   let idBorrar=  this.localizarElemento(elemento)
-    this.juegosCesta = this.juegosCesta.splice(this.juegosCesta- 1, idBorrar)
+
+   //Codigo actualmente no funcional
+   /* let idBorrar=  this.localizarElemento(elemento)
+   console.log(idBorrar)
+   this.juegosCesta = this.juegosCesta.splice(idBorrar, 1)
+    console.log(this.juegosCesta)
+    this.calcularTotal()
+     */
+    window.location.reload()
     console.log(this.juegosCesta)
   }
 

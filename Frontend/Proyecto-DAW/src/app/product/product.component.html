@@ -29,8 +29,10 @@
         </p>
 
         <button class=" boton fifth offset-4 col-3" *ngIf="!enCesta" (click)="anadirCesta()" > Añadir <i class="fa fa-shopping-cart ml-1"></i>  &nbsp; {{data.data.precio}} €</button>
-        <button class=" boton fifth offset-4 col-3"  *ngIf="enCesta" (click)="anadirCesta()"> Añadido </button>
+        <button class=" boton fifth offset-4 col-3"  *ngIf="enCesta" (click)="anadirCesta()"> Añadido a cesta</button>
         
+        <button class=" boton fifth offset-4 col-3 deseado" *ngIf="!enDeseado" (click)="anadirDeseados()" > Añadir lista deseados</button>
+        <button class=" boton fifth offset-4 col-3 deseado"  *ngIf="enDeseado"  (click)="anadirDeseados()"> Añadido a deseados</button>
         <mat-accordion >
             <br>
           <mat-expansion-panel hideToggle >

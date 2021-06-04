@@ -20,7 +20,11 @@ export class ProductComponent  {
   videoURL : any;
   idUser: any;
   cesta: any;
+  deseados: any;
   enCesta : boolean = false; 
+  enDeseado : boolean = false; 
+
+  idEnDeseados: any;
   idEnCesta :any;
   constructor(private _ac: ActivatedRoute,
               private http: HttpClient,
@@ -63,18 +67,40 @@ export class ProductComponent  {
     });
     
   }
-
   comprobarCarrito(cesta:any){
-      for(var i = 0; i < cesta.length; i++){
-        if(cesta[i].id_articulo == this.id){
-          
-          console.log(this.cesta[i].id)
-          this.idEnCesta = this.cesta[i].id;
-          console.log("coinciden")
-          this.enCesta= true;
-        }
+    for(var i = 0; i < cesta.length; i++){
+      if(cesta[i].id_articulo == this.id){
+        
+        console.log(this.cesta[i].id)
+        this.idEnCesta = this.cesta[i].id;
+        console.log("coinciden")
+        this.enCesta= true;
       }
+    }
+}
+
+  obtenerDeseados(user: any){
+    console.log(user.id)
+    this.http.get('http://127.0.0.1:8000/api/deseados/usuario/'+user.id).subscribe(result => {
+      this.deseados = result;
+      console.log(this.deseados)
+      this.comprobarDeseados(this.deseados)
+    });
+    
   }
+  comprobarDeseados(deseados:any){
+    
+    for(var i = 0; i < deseados.length; i++){
+      if(deseados[i].id_articulo == this.id){
+        
+        console.log(this.cesta[i].id)
+        this.idEnDeseados = this.deseados[i].id;
+        console.log("coinciden")
+        this.enDeseado= true;
+      }
+    }
+}
+  
 
 
   ngOnInit(): void {
@@ -82,6 +108,8 @@ export class ProductComponent  {
     this.obtenerArticulos();
     this.idUser= this.autenticacionServe.getIdUser()
     this.obtenerCarrito(this.idUser);
+    
+    this.obtenerDeseados(this.idUser);
     //this.comprobarCarrito(this.cesta)
     console.log(this.cesta)
     console.log(this.data);
@@ -142,5 +170,43 @@ export class ProductComponent  {
      
   });
 }
-  
+
+  anadirDeseados(){
+    console.log(this.deseados)
+    if(this.idUser != ""){
+      if(this.enDeseado == true){
+      this.enDeseado = false;
+      this.borrarDeseadosBBDD()
+      }else if(this.enDeseado == false){
+        this.enDeseado = true;
+        console.log(this.enDeseado)
+        
+        this.añadirDeseadosBBDD()
+      }
+    }else{
+      this.enDeseado = false;
+      this.onCreate()
+    }
+  }
+
+  borrarDeseadosBBDD(){
+    console.log(this.idEnDeseados)
+    this.http.delete("http://127.0.0.1:8000/api/deseados/"+ this.idEnDeseados).subscribe({
+      next: data => {
+         console.log("funciona")
+      }
+    });
+  }
+  añadirDeseadosBBDD(){
+    console.log(this.id)
+    this.http.post("http://127.0.0.1:8000/api/deseados",{
+      id_usuario: this.idUser.id,
+      id_articulo: this.id,
+      
+  }).toPromise().then((data:any) => {
+    console.log(data)
+    console.log(JSON.stringify(data.JSON))
+    this.obtenerDeseados(this.idUser);
+  })
+  }
 }
