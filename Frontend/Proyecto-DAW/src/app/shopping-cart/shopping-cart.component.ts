@@ -7,7 +7,7 @@ import { element } from 'protractor';
 import { AutenticacionService } from '../login/autenticacion.service';
 import { LoginComponent } from '../login/login.component';
 import { PaymentComponent } from '../payment/payment.component';
-declare var paypal :any;
+
 export interface juego {
   name: string;
   updated: Date;
@@ -37,7 +37,14 @@ export class ShoppingCartComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.closeOnNavigation = true;
-    this.dialog.open(PaymentComponent, { panelClass: 'custom-dialog-container' });
+    this.dialog.open(PaymentComponent, {
+      panelClass: 'custom-dialog-container',
+      data: {
+        cantidad: this.totalCoste
+        
+        
+      },
+    })
     this.dialog.afterAllClosed.subscribe((result) => {
       
     });

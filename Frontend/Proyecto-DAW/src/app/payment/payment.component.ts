@@ -1,6 +1,7 @@
 import { style } from '@angular/animations';
 import { viewClassName } from '@angular/compiler';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Button } from 'selenium-webdriver';
 declare var paypal;
 @Component({
@@ -11,11 +12,12 @@ declare var paypal;
 export class PaymentComponent implements OnInit {
   @ViewChild('paypal', { static: true })
   private paypalRef!: ElementRef;
+  
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any) {}
 
-  constructor() {}
-
-  totalPagar : number = 12;
+  
   ngOnInit(): void {
+    console.log(this.data)
     window.paypal
       .Buttons({
         
@@ -26,7 +28,7 @@ export class PaymentComponent implements OnInit {
               {
                 description: "Producto MMJ GAMES",
                 amount:{
-                  value: this.totalPagar,
+                  value: this.data.cantidad,
                   currency_code: 'EUR'
                 }
               }
