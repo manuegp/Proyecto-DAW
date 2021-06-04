@@ -36,7 +36,7 @@ Route::post('/tokens/create', function (Request $request) {
     /*$password = User::where('password', $request->password)->first();*/
 
     if (! $user || ! Hash::check($request->password, $user->password)) {
-        return $request->password;
+        return "hola";
     }
 
     return response()->json([
@@ -76,3 +76,4 @@ Route::middleware('auth:sanctum')->get('/', function(){
 Route::get('email', [MailController::class, 'sendEmail']);
 Route::get('email_password/{email}', [MailController::class, 'sendEmailForgetPassword']);
 Route::get('email_registro/{email}', [MailController::class, 'sendEmailUsuarioRegistrado']);
+Route::get('email_pago/{email}', [MailController::class, 'sendEmailPago']);

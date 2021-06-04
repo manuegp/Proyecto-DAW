@@ -14,7 +14,7 @@ class Juego extends Model
         'etiquetas',
         'plataforma',
         'idioma',
-        'saga',
+        'video',
     ];
     
 }

@@ -19,6 +19,7 @@ class CreateJuegosTable extends Migration
             $table->string('etiquetas', 300);
             $table->string('plataforma', 300);
             $table->string('idioma', 300);
+            $table->string('video');
             $table->foreign('id_articulo')->references('id')->on('articulos')->onDelete('cascade');
             $table->timestamps();
         });

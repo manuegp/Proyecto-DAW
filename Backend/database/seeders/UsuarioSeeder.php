@@ -19,7 +19,7 @@ class UsuarioSeeder extends Seeder
             [
                 'nombre' => 'Manuel',
                 'apellidos' => 'Gonzalez Perez',
-                'password' => 'prueba1',
+                'password' => bcrypt('prueba1'),
                 'nick' => '2+2=Tortilla',
                 'telefono' => '984783467',
                 'email' => 'manuel123456@gmail.com',
@@ -33,7 +33,7 @@ class UsuarioSeeder extends Seeder
             [
                 'nombre' => 'Mario',
                 'apellidos' => 'Lopez Baños',
-                'password' => 'prueba2',
+                'password' => bcrypt('prueba2'),
                 'nick' => 'Kapryx',
                 'telefono' => '123483467',
                 'email' => 'mario301298@gmail.com',
@@ -47,7 +47,7 @@ class UsuarioSeeder extends Seeder
             [
                 'nombre' => 'Ruben',
                 'apellidos' => 'Lozano Perez',
-                'password' => 'prueba3',
+                'password' => bcrypt('prueba3'),
                 'nick' => 'sofarescente',
                 'telefono' => '346583467',
                 'email' => 'ruben78956@gmail.com',
@@ -61,7 +61,7 @@ class UsuarioSeeder extends Seeder
             [
                 'nombre' => 'Pedro',
                 'apellidos' => 'Lopez Madrid',
-                'password' => 'prueba4',
+                'password' => bcrypt('prueba4'),
                 'nick' => 'Ferice',
                 'telefono' => '129047892',
                 'email' => 'pedro90374@gmail.com',

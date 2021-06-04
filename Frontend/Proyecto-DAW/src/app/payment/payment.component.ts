@@ -1,4 +1,5 @@
 import { style } from '@angular/animations';
+import { HttpClient } from '@angular/common/http';
 import { viewClassName } from '@angular/compiler';
 import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -15,7 +16,15 @@ export class PaymentComponent implements OnInit {
   
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) {}
 
+<<<<<<< HEAD
   
+=======
+  constructor(private http:HttpClient) {}
+
+  prueba : any;
+
+  totalPagar : number = 12;
+>>>>>>> df130706621cd6802b28a62e740f2d0a180a6721
   ngOnInit(): void {
     console.log(this.data)
     window.paypal
@@ -40,7 +49,19 @@ export class PaymentComponent implements OnInit {
           const order = await actions.order.capture();
           console.log(order);
           alert("Pago hecho")
+
           //Aqui se usa la url para correo [Mario]
+          if (this.getIdUser() != "") {
+    
+            let usuario = this.http.get("http://127.0.0.1:8000/api/usuarios/" + this.getIdUser()).subscribe((result) => {
+
+              this.prueba = result
+              this.http.get("http://127.0.0.1:8000/api/email_pago/" + this.prueba.data.email).subscribe();
+
+            });
+
+          }
+
           //Eliminar carrito del usuario [Manu]
           //Añadir tabla ventas objetos vendidos [Manu]
          
@@ -50,5 +71,22 @@ export class PaymentComponent implements OnInit {
         }
       })
       .render(this.paypalRef.nativeElement);
+
+
+
+
   }
+
+  getIdUser(){
+    if (localStorage.getItem("usuario")) {
+      let user = JSON.parse(localStorage.getItem("usuario") || '{}')
+      console.log(user.id)
+      return user.id;
+    }
+
+    else {
+      return "";
+    }
+  }
+
 }

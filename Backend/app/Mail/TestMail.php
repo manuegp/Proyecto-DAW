@@ -12,15 +12,18 @@ class TestMail extends Mailable
     use Queueable, SerializesModels;
 
     public $details;
+    public $prueba;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($details)
+    public function __construct($details, $prueba)
     {
         $this->details = $details;
+        $this->prueba = $prueba;
+
     }
 
     /**
@@ -30,6 +33,6 @@ class TestMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Test Mail from Surfside Media')->view('emails.TestMail');
+        return $this->from('a@gmail.com')->subject('Test Mail from Surfside Media')->view('emails.TestMail');
     }
 }
