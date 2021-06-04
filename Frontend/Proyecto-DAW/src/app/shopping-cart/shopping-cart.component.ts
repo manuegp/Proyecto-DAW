@@ -40,8 +40,8 @@ export class ShoppingCartComponent implements OnInit {
     this.dialog.open(PaymentComponent, {
       panelClass: 'custom-dialog-container',
       data: {
-        cantidad: this.totalCoste
-        
+        cantidad: this.totalCoste,
+        juegos: this.juegosCesta
         
       },
     })
@@ -50,6 +50,8 @@ export class ShoppingCartComponent implements OnInit {
     });
   }
 
+
+  
   ngOnInit(): void {
     this.idUser = this.autenticacionServe.getIdUser();
     this.obtenerArticulos();

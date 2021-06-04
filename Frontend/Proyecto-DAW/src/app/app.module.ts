@@ -43,9 +43,10 @@ import {MatRadioModule} from '@angular/material/radio';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 import { NgxNumberSpinnerModule } from 'ngx-number-spinner';
 import { PaymentComponent } from './payment/payment.component';
+import { SuccessComponent } from './payment/success/success.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, ProfileComponent, AdminComponent, ProductComponent, ListProductsComponent, ShoppingCartComponent, LoginComponent, SiginComponent, VentanaPestanasComponent, ModificarProductoComponent, ModificarUsuarioComponent, ForgotpasswordComponent, PaymentComponent],
+  declarations: [AppComponent, HomeComponent, ProfileComponent, AdminComponent, ProductComponent, ListProductsComponent, ShoppingCartComponent, LoginComponent, SiginComponent, VentanaPestanasComponent, ModificarProductoComponent, ModificarUsuarioComponent, ForgotpasswordComponent, PaymentComponent, SuccessComponent],
   imports: [
     MatAutocompleteModule,
     BrowserModule,
