@@ -25,23 +25,19 @@
       </mat-form-field>
 
       <mat-form-field>
-        <mat-label>Fecha salida</mat-label>
+        <mat-label>Fecha salida YYYY-MM-DD</mat-label>
         <input matInput formControlName="fecha_salida" placeholder="YYYY-MM-DD"/>
       </mat-form-field>
 
-      <mat-label>Imagen</mat-label>
-      <input
-      formControlName="imagen"
-      style="color: white;"
-        #fileUpload
-        mat-raised-button
-        type="file"
-        accept="image/png, image/jpeg, image/jpg"
-      />
+      <mat-form-field>
+        <mat-label>Imagen</mat-label>
+        <input matInput formControlName="imagen" />
+      </mat-form-field>
+
       <br />
       <br />
       <div class="offset-5 col-5">
-        <button [disabled]="signupForm.invalid" type="submit" class="boton">Enviar</button>
+        <button [disabled]="signupForm.invalid" type="submit" class="boton">Modificar</button>
         <button (click)="cancelar()" class="boton">Cancelar</button>
       </div>
 

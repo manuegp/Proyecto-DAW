@@ -12,6 +12,7 @@ import {
 import { Router } from '@angular/router';
 import {ModificarUsuarioComponent} from '../modificar-usuario/modificar-usuario.component'
 import { EmailValidator, FormGroup } from '@angular/forms';
+import { ModificarJuegoComponent } from '../modificar-juego/modificar-juego.component';
 export interface ExampleTab {
   label: string;
   content: string;
@@ -33,6 +34,7 @@ export class VentanaPestanasComponent implements OnInit {
   //Variables
   asignar: any;
   asignarUsu: any;
+  asignarMerch: any;
   ELEMENT_DATA: any;
   displayedColumns: string[] = [
     'Id',
@@ -57,7 +59,7 @@ export class VentanaPestanasComponent implements OnInit {
   ];
   dataSource: any;
   dataSourceUsuarios: any;
-
+  dataSourceMerch: any;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild('usu') paginator2!: MatPaginator;
   ngAfterViewInit() {}
@@ -65,6 +67,7 @@ export class VentanaPestanasComponent implements OnInit {
   ngOnInit(): void {
     this.asignarArticulos();
     this.asignarUsuarios();
+    this.asignarMerchandising();
   }
 
  
@@ -79,15 +82,17 @@ export class VentanaPestanasComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
   asignarArticulos() {
-    this.http.get('http://127.0.0.1:8000/api/articulos').subscribe((result) => {
+    console.log('lo hace')
+    this.http.get('http://127.0.0.1:8000/api/articulos/juegos').subscribe((result) => {
       this.asignar = result;
       console.log(this.asignar);
-      this.dataSource = new MatTableDataSource(this.asignar.data);
+      this.dataSource = new MatTableDataSource(this.asignar);
       this.dataSource.paginator = this.paginator;
     });
   }
 
-  anadirArticulos(event: any) {
+  anadirArticulos(event: any, producto: string) {
+    if(producto =="merch"){
     console.log('añadiendo');
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
@@ -107,6 +112,37 @@ export class VentanaPestanasComponent implements OnInit {
     this.dialog.afterAllClosed.subscribe((result) => {
       this.asignarArticulos();
     });
+  }else{
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.closeOnNavigation = true;
+    this.dialogañadirArticulos.open(ModificarJuegoComponent, {
+      panelClass: 'custom-dialog-container',
+      data: {
+        tipo: "add",
+        id: null,
+        nombre:null,
+        descripcion: null,
+        precio: null,
+        fecha_salida: null,
+        directx: null, 
+        etiquetas:null,
+        graficos:null,
+        idioma:null,
+        memoria:null,
+        os:null,
+        plataforma:null,
+        storage:null,
+        procesador:null,
+        tarjeta_sonido:null,
+        video: null
+      }
+    });
+
+    this.dialog.afterAllClosed.subscribe((result) => {
+      this.asignarArticulos();
+    });
+  }
   }
 
   borrarArticulos(event: any){
@@ -119,26 +155,63 @@ export class VentanaPestanasComponent implements OnInit {
   
   }
 
-  modificarArticulos(event: any) {
+  modificarArticulos(event: any, producto: string) {
     console.log('modificando');
+    if(producto=="merch"){
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.closeOnNavigation = true;
     this.dialog.open(ModificarProductoComponent, {
       panelClass: 'custom-dialog-container',
       data: {
+        producto: producto,
         tipo: "update",
         id: event.id,
         nombre: event.nombre,
         descripcion: event.descripcion,
         precio: event.precio,
         fecha_salida: event.fecha_salida,
+        imagen:event.imagen_principal
       },
     });
 
     this.dialog.afterAllClosed.subscribe((result) => {
       this.asignarArticulos();
     });
+  } else{
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.closeOnNavigation = true;
+    this.dialog.open(ModificarJuegoComponent, {
+      
+      panelClass: 'custom-dialog-container',
+      data: {
+        producto: producto,
+        tipo: "update",
+        id: event.id,
+        nombre: event.nombre,
+        descripcion: event.descripcion,
+        precio: event.precio,
+        fecha_salida: event.fecha_salida,
+        imagen:event.imagen_principal,
+        directx: event.directx,
+        etiquetas: event.etiquetas,
+        graficos:event.graficos,
+        idioma:event.idioma,
+        memoria:event.memoria,
+        os:event.os,
+        plataforma:event.plataforma,
+        storage:event.storage,
+        procesador:event.procesador,
+        tarjeta_sonido:event.tarjeta_sonido,
+        video: event.video
+      },
+    });
+
+    this.dialog.afterAllClosed.subscribe((result) => {
+      this.asignarArticulos();
+    });
+  }
   }
 
 
@@ -148,6 +221,15 @@ export class VentanaPestanasComponent implements OnInit {
       console.log(this.asignarUsu);
       this.dataSourceUsuarios = new MatTableDataSource(this.asignarUsu.data);
       this.dataSourceUsuarios.paginator = this.paginator2;
+    });
+  }
+
+  asignarMerchandising() {
+    this.http.get('http://127.0.0.1:8000/api/articulos/merchs').subscribe((result) => {
+      this.asignarMerch = result;
+      console.log(this.asignarMerch);
+      this.dataSourceMerch = new MatTableDataSource(this.asignarMerch);
+      
     });
   }
 

@@ -27,6 +27,7 @@ export class AutenticacionService {
       )
       .pipe(
         map((datos) => {
+          console.log(datos)
           return datos;
         },
           )

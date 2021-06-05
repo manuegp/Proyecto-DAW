@@ -14,7 +14,7 @@ import { Inject } from '@angular/core';
 })
 export class ModificarProductoComponent  {
   signupForm : FormGroup 
-
+  
   constructor(
     private _builder : FormBuilder,
     private http:HttpClient,
@@ -29,7 +29,7 @@ export class ModificarProductoComponent  {
       descripcion: [data.descripcion, Validators.required], 
       precio: [data.precio, Validators.required], 
       fecha_salida: [data.fecha_salida, Validators.required], 
-      imagen: [''], 
+      imagen: [data.imagen, Validators.required], 
     })
   }
   

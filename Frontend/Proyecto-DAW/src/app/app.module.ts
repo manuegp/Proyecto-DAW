@@ -44,9 +44,11 @@ import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.compone
 import { NgxNumberSpinnerModule } from 'ngx-number-spinner';
 import { PaymentComponent } from './payment/payment.component';
 import { SuccessComponent } from './payment/success/success.component';
+import { ModificarJuegoComponent } from './componentesAdmin/modificar-juego/modificar-juego.component';
+import { RecuperarPasswordComponent } from './recuperar-password/recuperar-password.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, ProfileComponent, AdminComponent, ProductComponent, ListProductsComponent, ShoppingCartComponent, LoginComponent, SiginComponent, VentanaPestanasComponent, ModificarProductoComponent, ModificarUsuarioComponent, ForgotpasswordComponent, PaymentComponent, SuccessComponent],
+  declarations: [AppComponent, HomeComponent, ProfileComponent, AdminComponent, ProductComponent, ListProductsComponent, ShoppingCartComponent, LoginComponent, SiginComponent, VentanaPestanasComponent, ModificarProductoComponent, ModificarUsuarioComponent, ForgotpasswordComponent, PaymentComponent, SuccessComponent, ModificarJuegoComponent, RecuperarPasswordComponent],
   imports: [
     MatAutocompleteModule,
     BrowserModule,
