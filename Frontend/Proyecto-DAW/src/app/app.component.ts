@@ -75,6 +75,10 @@ export class AppComponent implements OnInit{
       this.esAdmin = true;
     }
   }
+
+  irCarrito(){
+    window.location.href ="shopping-cart";
+  }
 }
 
 

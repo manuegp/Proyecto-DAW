@@ -1,13 +1,13 @@
 <div class="container">
   <div class="row">
-    <div class="col-12">
+    <div class="col-12 ">
       <mat-list>
-        <mat-list-item><h1>{{data.data.nombre}}</h1></mat-list-item>
+        <mat-list-item><h1>{{data.nombre}}</h1></mat-list-item>
         <mat-divider></mat-divider>
         <br />
       </mat-list>
     </div>
-    <div class="col-6">
+    <div class="col-12 col-lg-6">
       <iframe
         width="550"
         height="400"
@@ -19,16 +19,16 @@
       ></iframe>
     </div>
 
-    <div class="col-6" id="contenido">
+    <div class="col-12 col-lg-6" id="contenido">
       <div class="row">
         <img
-          src={{data.data.imagen_principal}}
+          src={{data.imagen_principal}}
         />
         <p id="nombre" class="col-12">
-          {{data.data.descripcion}}
+          {{data.descripcion}}
         </p>
 
-        <button class=" boton fifth offset-4 col-3" *ngIf="!enCesta" (click)="anadirCesta()" > Añadir <i class="fa fa-shopping-cart ml-1"></i>  &nbsp; {{data.data.precio}} €</button>
+        <button class=" boton fifth offset-4 col-3" *ngIf="!enCesta" (click)="anadirCesta()" > Añadir <i class="fa fa-shopping-cart ml-1"></i>  &nbsp; {{data.precio}} €</button>
         <button class=" boton fifth offset-4 col-3"  *ngIf="enCesta" (click)="anadirCesta()"> Añadido a cesta</button>
         
         <button class=" boton fifth offset-4 col-3 deseado" *ngIf="!enDeseado" (click)="anadirDeseados()" > Añadir lista deseados</button>
@@ -41,15 +41,18 @@
                 Mas informacion &nbsp; <i class="fas fa-arrow-down"></i>
               </mat-panel-description>
             </mat-expansion-panel-header>
-            <p>Fecha de salida: {{data.data.fecha_salida}}</p>
+            <p>Fecha de salida: {{data.fecha_salida}}</p>
 
-            <p>OS: </p>
-            <p>Procesador: Intel Core 2 Duo E5200, Intel Core i3, AMD Ryzen Zen 2</p>
-            <p>Memoria: 4 GB de RAM</p>
-            <p>Graficos: GeForce 9800GTX, GeForce GTX 470</p>
-            <p>Version Directx: Version 10</p>
-            <p>Tarjeta sonido: 9 GB</p>
-            <p>Plataformas: 9 GB</p>
+            <p>OS: {{data.os}}</p>
+            <p>Procesador: {{data.procesador}}</p>
+            <p>Memoria: {{data.memoria}}</p>
+            <p>Graficos: {{data.graficos}}</p>
+            <p>Version Directx: {{data.directx}}</p>
+            <p>Tarjeta sonido: {{data.tarjeta_sonido}}</p>
+            <p>Plataformas: {{data.plataforma}}</p>
+            <p>Idiomas: {{data.idioma}}</p>
+            <p>Etiquetas: {{data.etiquetas}}</p>
+            <p>Espacio: {{data.storage}}</p>
 
           </mat-expansion-panel>
           

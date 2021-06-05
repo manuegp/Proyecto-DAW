@@ -38,14 +38,16 @@ export class ProductComponent  {
   id :any;
  
   obtenerArticulos() {
-    this.http.get('http://127.0.0.1:8000/api/articulos/'+this.id).subscribe(result => {
+    this.http.get('http://127.0.0.1:8000/api/articulos/juego/'+this.id).subscribe(result => {
+      console.log(result)
       this.asignarArticulos(result)
     });
   }
 
   asignarArticulos(dato : any){
-    this.data = dato; 
-    this.safeUrl = this._sanitizer.bypassSecurityTrustResourceUrl(this.data.data.video );
+    this.data = dato[0]; 
+    console.log(this.data.nombre)
+    this.safeUrl = this._sanitizer.bypassSecurityTrustResourceUrl(this.data.video );
     console.log(this.safeUrl)
   }
 

@@ -105,7 +105,10 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumnsHistorial"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumnsHistorial;"  ></tr>
     </table>
-  
+    <div *ngIf="hayContenidoHistorial" class="empty">
+      <h2>Aun no has comprado ningun producto</h2>
+
+    </div>
     <mat-paginator #paginator1  [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
   </div>
   <br />
@@ -149,7 +152,13 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumnsDeseados"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumnsDeseados;"  ></tr>
     </table>
-  
+    <div *ngIf="hayContenidoDeseados" class="empty">
+      <h2>Aun no has añadido ningun producto a tu lista de deseados</h2>
+
+    </div>
+    <mat-paginator #paginator2  [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+    
   </div>
 </div>
 

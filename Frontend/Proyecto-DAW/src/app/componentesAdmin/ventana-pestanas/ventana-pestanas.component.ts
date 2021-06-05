@@ -35,7 +35,7 @@ export class VentanaPestanasComponent implements OnInit {
   asignar: any;
   asignarUsu: any;
   asignarMerch: any;
-  ELEMENT_DATA: any;
+  
   displayedColumns: string[] = [
     'Id',
     'Nombre',
@@ -62,6 +62,7 @@ export class VentanaPestanasComponent implements OnInit {
   dataSourceMerch: any;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild('usu') paginator2!: MatPaginator;
+  @ViewChild('usu2') paginator3!: MatPaginator;
   ngAfterViewInit() {}
 
   ngOnInit(): void {
@@ -80,6 +81,11 @@ export class VentanaPestanasComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  applyFilterMerch(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSourceMerch.filter = filterValue.trim().toLowerCase();
   }
   asignarArticulos() {
     console.log('lo hace')
@@ -229,7 +235,7 @@ export class VentanaPestanasComponent implements OnInit {
       this.asignarMerch = result;
       console.log(this.asignarMerch);
       this.dataSourceMerch = new MatTableDataSource(this.asignarMerch);
-      
+      this.dataSourceMerch.paginator = this.paginator3;
     });
   }
 

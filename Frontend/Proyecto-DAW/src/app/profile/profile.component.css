@@ -128,3 +128,12 @@ i:hover{
   color: #212529;
   font-size: 20px;
 }
+h2{
+  text-align: center;
+}
+.empty{
+  color: white;
+  padding-top: 16px;
+  border: white solid 1px;
+  background-color: #212529;
+}

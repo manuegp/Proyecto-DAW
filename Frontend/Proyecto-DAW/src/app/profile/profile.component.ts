@@ -71,13 +71,16 @@ export class ProfileComponent implements OnInit {
     .subscribe((result) => {
       this.asignar = result;
       console.log(this.asignar);
-      this.deseadoSource = result
-     // this.deseadoSource.paginator = this.paginator;
+      if(this.asignar.length  ===0 ){
+        this.hayContenidoDeseados= true
+      }
+      this.deseadoSource = new MatTableDataSource(this.asignar);
+      this.deseadoSource.paginator = this.paginator2;
     });
   }
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  
+  @ViewChild('paginator2') paginator2!: MatPaginator;
   asignarHistorial() {
     console.log(this.user.id);
     this.http
@@ -85,11 +88,16 @@ export class ProfileComponent implements OnInit {
       .subscribe((result) => {
         this.asignar = result;
         console.log(this.asignar);
+        if(this.asignar.length  === 0 ){
+          this.hayContenidoHistorial= true
+        }
         this.historialSource = new MatTableDataSource(this.asignar);
         this.historialSource.paginator = this.paginator;
       });
   }
 
+  hayContenidoDeseados : any=  false;
+  hayContenidoHistorial : any=  false;
   private async asignarDatos() {
     this.user = this.autenticacionServe.getIdUser();
     const data = await this.http
