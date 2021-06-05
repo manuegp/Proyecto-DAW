@@ -26,7 +26,7 @@ class MailController extends Controller
 
         $details = [
             'title' => 'Contraseña olvidada',
-            'body' => 'Click aqui para poder cambiar su contraseña',
+            'body' => 'Click aqui para poder cambiar su contraseña: http://localhost:4200/recuperar-password',
             'carrito' => ''
         ];
 

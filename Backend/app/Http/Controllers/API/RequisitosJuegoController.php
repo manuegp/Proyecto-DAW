@@ -55,9 +55,9 @@ class RequisitosJuegoController extends Controller
     public function update(Request $request, RequisitosJuego $requisitosJuego)
     {
         $requisitosjuegoData = json_decode($request->getContent(), true);
-        $requisitosjuego->update($requisitosjuegoData);
+        $requisitosJuego->update($requisitosjuegoData);
 
-        return new RequisitosJuegoResource($requisitosjuego);
+        return new RequisitosJuegoResource($requisitosJuego);
     }
 
     /**

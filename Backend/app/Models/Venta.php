@@ -13,6 +13,5 @@ class Venta extends Model
         'id_articulo',
         'id_usuario',
         'cantidad',
-        'fecha_venta',
     ];
 }

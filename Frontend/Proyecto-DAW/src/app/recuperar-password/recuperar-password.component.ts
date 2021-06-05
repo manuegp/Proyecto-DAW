@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -8,9 +9,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class RecuperarPasswordComponent implements OnInit {
 retrieveForm : FormGroup;
-  constructor(    private _builder : FormBuilder,
-    ) {
-
+  constructor(    private _builder : FormBuilder, private http:HttpClient) {
       this.retrieveForm = this._builder.group({
         contra: ['', Validators.required],
         confirmarContra: ['', Validators.required]
@@ -18,9 +17,48 @@ retrieveForm : FormGroup;
      }
 
   ngOnInit(): void {
+    
+
   }
 
   submit(){
-    //Aqui se envia
+
+    // this.http.put("http://127.0.0.1:8000/api/usuarios"+)
+
+    let usuario = this.getIdUser();
+
+    if (usuario != "") {
+      this.http.put("http://127.0.0.1:8000/api/usuarios"+ usuario, {
+        password: this.retrieveForm.controls['confirmarContra'].value,
+      }); 
+    }
+
+    console.log("Hecho");
+
   }
+
+  pass_correcto = false;
+
+  comprobarNuevaContrasena() {
+
+    if (this.retrieveForm.controls['contra'].value == this.retrieveForm.controls['confirmarContra'].value) {
+
+      this.pass_correcto = true;
+
+    }    
+
+  }
+
+  getIdUser(){
+    if (localStorage.getItem("password")) {
+      let user = JSON.parse(localStorage.getItem("password") || '{}')
+      console.log(user[0].id)
+      return user[0].id;
+    }
+
+    else {
+      return "";
+    }
+  }
+
 }

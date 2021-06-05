@@ -15,6 +15,7 @@ class Articulo extends Model
         'precio',
         'fecha_salida',
         'imagen_principal',
+        'archivo_imagen',
         'video',
     ];
 

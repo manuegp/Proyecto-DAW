@@ -39,7 +39,7 @@ class ArticuloController extends Controller
         $juego = DB::select('SELECT articulos.*, juegos.etiquetas, juegos.plataforma, juegos.idioma, juegos.video, requisitos_juegos.os, requisitos_juegos.procesador, requisitos_juegos.memoria, requisitos_juegos.graficos, requisitos_juegos.directx, requisitos_juegos.storage, requisitos_juegos.tarjeta_sonido
                              FROM articulos, juegos, requisitos_juegos
                              WHERE articulos.id = juegos.id_articulo
-                             AND articulos.id = requisitos_juegos.id_articulo
+                             AND articulos.id = requisitos_juegos.id_juego
                              AND articulos.id = '. $id_articulo
         );
 

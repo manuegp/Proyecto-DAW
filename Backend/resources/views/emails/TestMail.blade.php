@@ -1,6 +1,25 @@
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="style">
+        
+        <style type="text/css">
+
+            table {
+            border: #b2b2b2 1px solid;
+            }
+
+            th {
+                border: black 1px solid;
+                text-align: center;
+            }
+
+            td{
+            border: black 1px solid;
+            text-align: center;
+            padding: 15px;
+            }
+
+        </style>
+
     </head>
     <body>
 
@@ -11,13 +30,14 @@
             
             <table>
                 <tr>
-                    <td>Imagen</td>
-                    <td>Nombre</td>
-                    <td>Código</td>
+                    <th>Imagen</th>
+                    <th>Nombre</th>
+                    <th>Código</th>
                 </tr>
 
                 <?php for ($i = 0; $i < count($details['carrito']); $i++) :?>
                     <tr>
+                        <!--<td> <img src="data:image/jpeg;base64, <?php /*base64_encode($details['carrito'][$i]->archivo_imagen)*/ ?>"/></td>-->
                         <td>{{$details['carrito'][$i]->imagen_principal}}</td>
                         <td>{{$details['carrito'][$i]->nombre}}</td>
                         <td>
@@ -33,7 +53,7 @@
                                         $codigo .= $char_random;
                                     }
 
-                                    echo $codigo
+                                    echo "Código ". ($e+1). ": ". $codigo
 
                                 ?> <br>
                             

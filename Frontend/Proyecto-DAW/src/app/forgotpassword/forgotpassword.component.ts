@@ -32,7 +32,9 @@ export class ForgotpasswordComponent implements OnInit {
       this.correo = result;
 
       if (this.correo.length != 0 && this.correo[0].email == this.signupForm.controls.email.value) {
+        localStorage.setItem("password", JSON.stringify(result));
         this.enviarCorreo();
+
       }
 
       else {
@@ -47,6 +49,7 @@ export class ForgotpasswordComponent implements OnInit {
     this.http.get("http://127.0.0.1:8000/api/email_password/" + this.signupForm.controls.email.value).subscribe((result) => {
       this.mensaje = "Mensaje enviado";
     });
+    
   }
 
 }

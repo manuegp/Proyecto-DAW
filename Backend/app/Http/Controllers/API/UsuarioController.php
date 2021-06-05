@@ -23,7 +23,7 @@ class UsuarioController extends Controller
 
     public function email_user(string $email) {
 
-        $correo = DB::select('SELECT email 
+        $correo = DB::select('SELECT * 
                               FROM users
                               WHERE email LIKE "'. $email. '"'
         );
@@ -87,7 +87,10 @@ class UsuarioController extends Controller
         $usuarioData = json_decode($request->getContent(), true);
 
         $usuario->update($usuarioData);
-        $usuario->fill(['password' => Hash::make($request->password)])->update();
+        
+        $usuario->fill(['password' => Hash::make($request->password)]);
+
+        $usuario->update();
 
         return new UsuarioResource($usuario);
     }
