@@ -26,7 +26,8 @@ class MailController extends Controller
 
         $details = [
             'title' => 'Contraseña olvidada',
-            'body' => 'Click aqui para poder cambiar su contraseña'
+            'body' => 'Click aqui para poder cambiar su contraseña',
+            'carrito' => ''
         ];
 
         Mail::to($email)->send(new TestMail($details));
@@ -38,7 +39,8 @@ class MailController extends Controller
 
         $details = [
             'title' => 'Registrado',
-            'body' => 'Bienvenido a MMJ'
+            'body' => 'Bienvenido a MMJ',
+            'carrito' => ''
         ];
 
         Mail::to($email)->send(new TestMail($details));
@@ -47,7 +49,7 @@ class MailController extends Controller
 
     public function sendEmailPago(string $email) {
 
-        $historial = DB::select('select articulos.nombre, articulos.imagen_principal, carritos.cantidad
+        $carrito = DB::select('select articulos.nombre, articulos.imagen_principal, carritos.cantidad
                                  from articulos, carritos
                                  where carritos.id_articulo = articulos.id
                                  and carritos.id_usuario = (select id
@@ -55,18 +57,13 @@ class MailController extends Controller
                                                             WHERE email LIKE "'. $email. '")'
         );
 
-        $prueba = $historial;
-
-        //$nombre = $historial[0]->nombre;
-
-        $a = "aaaa";
-
         $details = [
             'title' => 'Pago',
-            'body' => 'Su pago ha sido realizado correctamente'
+            'body' => 'Su pago ha sido realizado correctamente',
+            'carrito' => $carrito
         ];
 
-        Mail::to($email)->send(new TestMail($details, $prueba));
+        Mail::to($email)->send(new TestMail($details));
         
 
     }
