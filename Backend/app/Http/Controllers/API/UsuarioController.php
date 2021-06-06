@@ -32,6 +32,18 @@ class UsuarioController extends Controller
 
     }
 
+    public function articulo_deseado_oferta_users(string $id_articulo) {
+
+        $usuarios = DB::select('SELECT DISTINCT users.*
+                                FROM users, deseados
+                                WHERE deseados.id_articulo = '. $id_articulo. 
+                               ' AND users.id = deseados.id_usuario'
+        );
+
+        return $usuarios;
+
+    }
+
     /**
      * Store a newly created resource in storage.
      *

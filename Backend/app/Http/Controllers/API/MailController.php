@@ -27,7 +27,8 @@ class MailController extends Controller
         $details = [
             'title' => 'Contraseña olvidada',
             'body' => 'Click aqui para poder cambiar su contraseña: http://localhost:4200/recuperar-password',
-            'carrito' => ''
+            'carrito' => '',
+            'articulo_oferta' => ''
         ];
 
         Mail::to($email)->send(new TestMail($details));
@@ -40,7 +41,8 @@ class MailController extends Controller
         $details = [
             'title' => 'Registrado',
             'body' => 'Bienvenido a MMJ',
-            'carrito' => ''
+            'carrito' => '',
+            'articulo_oferta' => ''
         ];
 
         Mail::to($email)->send(new TestMail($details));
@@ -60,11 +62,30 @@ class MailController extends Controller
         $details = [
             'title' => 'Pago',
             'body' => 'Su pago ha sido realizado correctamente',
-            'carrito' => $carrito
+            'carrito' => $carrito,
+            'articulo_oferta' => ''
         ];
 
         Mail::to($email)->send(new TestMail($details));
         
+
+    }
+
+
+    public function sendEmailOfertas(string $email, string $id_articulo) {
+
+        $articulo = DB::select('SELECT * 
+                                FROM articulos 
+                                WHERE id = '. $id_articulo );
+
+        $details = [
+            'title' => 'Nuevas ofertas',
+            'body' => 'Este producto de tu lista de deseados está en oferta',
+            'carrito' => '',
+            'articulo_oferta' => $articulo
+        ];
+
+        Mail::to($email)->send(new TestMail($details));
 
     }
 

@@ -66,6 +66,30 @@
             </table>
 
         <?php endif ?>
+
+
+        <?php if ($details['articulo_oferta'] != ''): ?>
+            
+            <table>
+                <tr>
+                    <th>Imagen</th>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                </tr>
+
+                <?php for ($i = 0; $i < count($details['articulo_oferta']); $i++) :?>
+                    <tr>
+                        <!--<td> <img src="data:image/jpeg;base64, <?php /*base64_encode($details['carrito'][$i]->archivo_imagen)*/ ?>"/></td>-->
+                        <td>{{$details['articulo_oferta'][$i]->imagen_principal}}</td>
+                        <td>{{$details['articulo_oferta'][$i]->nombre}}</td>
+                        <td>{{$details['articulo_oferta'][$i]->precio}}</td>
+
+                    </tr>
+                <?php endfor; ?>
+
+            </table>
+
+        <?php endif ?>
              
 
     </body>

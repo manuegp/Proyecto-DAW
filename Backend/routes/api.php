@@ -13,6 +13,7 @@ use App\Http\Controllers\API\VentaController;
 use App\Http\Controllers\API\RequisitosJuegoController;
 use App\Http\Controllers\API\CarritoController;
 use App\Http\Controllers\API\DeseadoController;
+use App\Http\Controllers\API\OfertaController;
 use App\Http\Controllers\API\MailController;
 
 /*
@@ -55,10 +56,12 @@ Route::get('articulos/juegos', [ArticuloController::class, 'all_juegos']);
 Route::get('articulos/juego/{id_articulo}', [ArticuloController::class, 'juego_seleccionado']);
 Route::get('articulos/merchs', [ArticuloController::class, 'all_merch']);
 Route::get('articulos/merch/{id_articulo}', [ArticuloController::class, 'merch_seleccionado']);
+Route::put('articulos/descuento/{id_articulo}', [ArticuloController::class, 'descuento']);
 Route::get('deseados/usuario/{id_usuario}', [DeseadoController::class, 'deseados_usuario']);
 Route::get('ventas/usuario/{id_usuario}', [VentaController::class, 'historial']);
 Route::get('carrito/usuario/{id_usuario}', [CarritoController::class, 'carrito_usuario']);
 Route::get('usuarios/correo/{email}', [UsuarioController::class, 'email_user']);
+Route::get('usuarios/articulo_deseado_oferta/{id_articulo}', [UsuarioController::class, 'articulo_deseado_oferta_users']);
 
 Route::apiResource('usuarios', UsuarioController::class);
 Route::apiResource('articulos', ArticuloController::class);
@@ -67,6 +70,7 @@ Route::apiResource('ventas', VentaController::class);
 Route::apiResource('requisitos_juego', RequisitosJuegoController::class);
 Route::apiResource('carrito', CarritoController::class);
 Route::apiResource('deseados', DeseadoController::class);
+Route::apiResource('ofertas', OfertaController::class);
 
 
 Route::middleware('auth:sanctum')->get('/', function(){
@@ -77,3 +81,4 @@ Route::get('email', [MailController::class, 'sendEmail']);
 Route::get('email_password/{email}', [MailController::class, 'sendEmailForgetPassword']);
 Route::get('email_registro/{email}', [MailController::class, 'sendEmailUsuarioRegistrado']);
 Route::get('email_pago/{email}', [MailController::class, 'sendEmailPago']);
+Route::get('email_ofertas/{email}/{id_articulo}', [MailController::class, 'sendEmailOfertas']);
