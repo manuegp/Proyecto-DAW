@@ -34,7 +34,6 @@ Route::post('/tokens/create', function (Request $request) {
     ]);
 
     $user = User::where('email', $request->email)->first();
-    /*$password = User::where('password', $request->password)->first();*/
 
     if (! $user || ! Hash::check($request->password, $user->password)) {
         return "hola";

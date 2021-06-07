@@ -98,11 +98,11 @@ class UsuarioController extends Controller
     {
         $usuarioData = json_decode($request->getContent(), true);
 
-        $usuario->update($usuarioData);
-        
-        $usuario->fill(['password' => Hash::make($request->password)]);
+        $usuarioData['password'] = Hash::make($request->password);
 
-        $usuario->update();
+        $usuario->fill($usuarioData);
+        
+        $usuario->save();
 
         return new UsuarioResource($usuario);
     }

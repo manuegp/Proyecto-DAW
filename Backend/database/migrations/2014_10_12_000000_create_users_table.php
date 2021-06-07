@@ -21,7 +21,6 @@ class CreateUsersTable extends Migration
             $table->string('nick', 100)->unique();
             $table->integer('telefono')->unsigned();
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
             $table->binary('foto')->nullable();
             $table->tinyInteger('es_administrador');
             $table->rememberToken();

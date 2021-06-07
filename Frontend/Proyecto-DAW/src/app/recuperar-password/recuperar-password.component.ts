@@ -14,6 +14,7 @@ retrieveForm : FormGroup;
         contra: ['', Validators.required],
         confirmarContra: ['', Validators.required]
       })
+      
      }
 
   ngOnInit(): void {
@@ -28,12 +29,22 @@ retrieveForm : FormGroup;
     let usuario = this.getIdUser();
 
     if (usuario != "") {
-      this.http.put("http://127.0.0.1:8000/api/usuarios"+ usuario, {
-        password: this.retrieveForm.controls['confirmarContra'].value,
-      }); 
-    }
 
-    console.log("Hecho");
+      alert("La contraseña se ha cambiado correctamente");
+
+      this.http.put("http://127.0.0.1:8000/api/usuarios/"+ usuario, {
+        password: this.retrieveForm.controls['confirmarContra'].value,
+      }).toPromise().then((data:any) => {
+        console.log(data)
+        console.log(JSON.stringify(data.JSON))
+        
+      })
+
+      localStorage.removeItem("password");
+      window.location.href ="home";
+
+      console.log("Hecho");
+    }
 
   }
 
