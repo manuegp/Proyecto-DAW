@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\Oferta;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Resources\OfertaResource;
 
 class OfertaController extends Controller
@@ -16,7 +17,14 @@ class OfertaController extends Controller
      */
     public function index()
     {
-        return OfertaResource::collection(Oferta::all());
+        
+        $ofertas = DB::select('SELECT ofertas.*, articulos.nombre
+                               FROM ofertas, articulos
+                               WHERE ofertas.id_articulo = articulos.id'
+        );
+
+        return $ofertas;
+
     }
 
     /**
@@ -42,7 +50,13 @@ class OfertaController extends Controller
      */
     public function show(Oferta $oferta)
     {
-        return new OfertaResource($oferta);
+        $ofertas = DB::select('SELECT ofertas.*, articulos.nombre
+                               FROM ofertas, articulos
+                               WHERE ofertas.id_articulo = articulos.id
+                               AND articulos.id = '. $oferta->id_articulo
+        );
+
+        return $ofertas;
     }
 
     /**

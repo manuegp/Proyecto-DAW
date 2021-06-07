@@ -97,15 +97,25 @@ class UsuarioController extends Controller
     public function update(Request $request, User $usuario)
     {
         $usuarioData = json_decode($request->getContent(), true);
-
-        $usuarioData['password'] = Hash::make($request->password);
-
-        $usuario->fill($usuarioData);
-        
-        $usuario->save();
+        $usuario->update($usuarioData);
 
         return new UsuarioResource($usuario);
     }
+
+    public function updatePassword(Request $request, string $id_usuario) {
+
+        $contraseña = Hash::make($request->password);
+
+        $usuario = DB::update('UPDATE users 
+                            SET password = "'. $contraseña. '" 
+                            WHERE id = '. $id_usuario
+        );
+
+        return $contraseña;
+
+
+    }
+
 
     /**
      * Remove the specified resource from storage.
