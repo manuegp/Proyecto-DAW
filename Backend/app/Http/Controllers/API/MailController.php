@@ -29,6 +29,8 @@ class MailController extends Controller
             'body' => 'Click aqui para poder cambiar su contraseña: http://localhost:4200/recuperar-password',
             'juegos' => '',
             'merch' => '',
+            'direccion' => '',
+            'coste' => '',
             'articulo_oferta' => ''
         ];
 
@@ -44,6 +46,8 @@ class MailController extends Controller
             'body' => 'Bienvenido a MMJ',
             'juegos' => '',
             'merch' => '',
+            'direccion' => '',
+            'coste' => '',
             'articulo_oferta' => ''
         ];
 
@@ -77,11 +81,28 @@ class MailController extends Controller
                                                   )'
         );
 
+        $direccion = DB::select('SELECT direccion 
+                                 from users
+                                 where email LIKE "'. $email. '"'
+        );
+
+
+        $coste = DB::select('SELECT SUM((articulos.precio - ((ofertas.porcentaje*articulos.precio)/100))*carritos.cantidad) AS precio_total
+                             from articulos, ofertas, carritos
+                             where articulos.id = ofertas.id_articulo
+                             and articulos.id = carritos.id_articulo
+                             and carritos.id_usuario = (select id 
+                                                     from users
+                                                     where email LIKE "'. $email. '")'
+        );
+
         $details = [
             'title' => 'Pago',
             'body' => 'Su pago ha sido realizado correctamente',
             'juegos' => $juegos,
             'merch' => $merch,
+            'direccion' => $direccion,
+            'coste' => $coste,
             'articulo_oferta' => ''
         ];
 
@@ -102,6 +123,8 @@ class MailController extends Controller
             'body' => 'Este producto de tu lista de deseados está en oferta',
             'juegos' => '',
             'merch' => '',
+            'direccion' => '',
+            'coste' => '',
             'articulo_oferta' => $articulo
         ];
 

@@ -89,7 +89,16 @@ class ArticuloController extends Controller
         );
 
         return $articulos_oferta;
-        
+
+    }
+
+
+    public function pruebas(string $email) {
+        $direccion = DB::select('SELECT direccion 
+                from users
+                where email LIKE "'. $email. '"'
+        );
+        return $direccion;
     }
 
     /**

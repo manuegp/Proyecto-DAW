@@ -62,6 +62,7 @@ Route::get('articulos/juego/{id_articulo}', [ArticuloController::class, 'juego_s
 Route::get('articulos/merchs', [ArticuloController::class, 'all_merch']);
 Route::get('articulos/merch/{id_articulo}', [ArticuloController::class, 'merch_seleccionado']);
 Route::get('articulos/oferta', [ArticuloController::class, 'articulos_en_oferta']);
+Route::get('articulos/pruebas/{correo}', [ArticuloController::class, 'pruebas']);
 Route::get('deseados/usuario/{id_usuario}', [DeseadoController::class, 'deseados_usuario']);
 Route::get('ventas/usuario/{id_usuario}', [VentaController::class, 'historial']);
 Route::get('carrito/usuario/{id_usuario}', [CarritoController::class, 'carrito_usuario']);

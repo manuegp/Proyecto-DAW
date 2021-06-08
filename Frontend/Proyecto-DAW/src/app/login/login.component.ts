@@ -48,6 +48,10 @@ export class LoginComponent  {
     
   }
 
+  if (localStorage.getItem("password")) {
+    localStorage.removeItem("password");
+  }
+
   this.autenticacionServe.login(this.login.controls.email.value, this.login.controls.password.value).subscribe(datos=>{
     localStorage.setItem("usuario", JSON.stringify(datos));
     console.log(datos);

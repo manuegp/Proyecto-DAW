@@ -42,7 +42,7 @@ export class ModificarJuegoComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   submit() {
     this.enviarDatos(
@@ -164,7 +164,7 @@ export class ModificarJuegoComponent implements OnInit {
             .then((data: any) => {
               console.log(data);
               console.log(JSON.stringify(data.JSON));
-              this.idCrear= data.data.id
+              this.idCrear = data.data.id
               this.http
                 .post('http://127.0.0.1:8000/api/requisitos_juego', {
                   id_juego: this.idCrear,
@@ -180,11 +180,26 @@ export class ModificarJuegoComponent implements OnInit {
                 .then((data: any) => {
                   console.log(data);
                   console.log(JSON.stringify(data.JSON));
-                  this.dialogRef.close();
                 });
             });
+
+            this.http.post('http://127.0.0.1:8000/api/ofertas', {
+                    id_articulo: this.idCrear,
+                    porcentaje: 0,
+                  }).toPromise()
+                    .then((data: any) => {
+                      console.log(data);
+                      console.log(JSON.stringify(data.JSON));
+                      this.dialogRef.close();
+                    });
+
         });
       console.log(this.idCrear);
+
+
+
     }
+
+
   }
 }

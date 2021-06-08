@@ -13,7 +13,8 @@ import { Inject } from '@angular/core';
   styleUrls: ['./modificar-producto.component.css']
 })
 export class ModificarProductoComponent  {
-  signupForm : FormGroup 
+  signupForm : FormGroup;
+  idCrear: any;
   
   constructor(
     private _builder : FormBuilder,
@@ -86,7 +87,19 @@ enviarDatos( tipo: string ,id:number, nombre:string, descripcion:string, precio:
   }).toPromise().then((data:any) => {
     console.log(data)
     console.log(JSON.stringify(data.JSON))
+    this.idCrear = data.data.id;
+    console.log(data.data.id);
+    console.log(this.idCrear);
     this.dialogRef.close()
+    this.http.post('http://127.0.0.1:8000/api/ofertas', {
+      id_articulo: this.idCrear,
+      porcentaje: 0,
+    }).toPromise()
+      .then((data: any) => {
+        console.log(data);
+        console.log(JSON.stringify(data.JSON));
+        this.dialogRef.close();
+    });
   })
   }
   }
