@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+     
+    </div>
+  </div>
+  <div class="row">
+      
+    <div class="col-12 col-lg-6 cont_img">
+      <img src="{{ data.imagen_principal }}" />
+    </div>
+
+    <div class="col-12 col-lg-6" id="contenido">
+        <h1>{{data.nombre}}</h1>
+      <div class="row">
+        <p class="col-12">
+          {{ data.descripcion }}
+        </p>
+        <button class=" boton fifth offset-4 col-3"  *ngIf="!enCesta"  (click)="anadirCesta()"> Añadir <i class="fa fa-shopping-cart ml-1"></i>  &nbsp; {{data.precio}} €</button>
+        <button class=" boton fifth offset-4 col-3"  *ngIf="enCesta"  (click)="anadirCesta()"> Añadido a cesta</button>
+        
+        <button class=" boton fifth offset-4 col-3 deseado" *ngIf="!enDeseado" (click)="anadirDeseados()" > Añadir lista deseados</button>
+        <button class=" boton fifth offset-4 col-3 deseado"  *ngIf="enDeseado" (click)="anadirDeseados()" > Añadido a deseados</button>
+      </div>
+    </div>
+  </div>
+</div>

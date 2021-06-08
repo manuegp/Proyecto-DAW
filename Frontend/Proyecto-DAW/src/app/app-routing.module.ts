@@ -10,6 +10,7 @@ import { SiginComponent  } from './sigin/sigin.component';
 import { AutenticacionGuard } from './login/autenticacion.guard';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 import { RecuperarPasswordComponent } from './recuperar-password/recuperar-password.component';
+import { ArticuloComponent } from './articulo/articulo.component';
 
 
 const routes: Routes = [
@@ -18,7 +19,7 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent, canActivate:[AutenticacionGuard]  },
   { path: 'products', component: ListProductsComponent },
   { path: 'shopping-cart', component: ShoppingCartComponent },
-  { path: 'product/:id', component: ProductComponent },
+  { path: 'product/:id', component: ArticuloComponent },
   { path: 'admin', component: AdminComponent },
   { path: 'shopping-cart', component: ShoppingCartComponent },
   { path: 'register', component: SiginComponent },
