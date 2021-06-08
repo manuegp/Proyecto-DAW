@@ -34,6 +34,12 @@ Route::post('/tokens/create', function (Request $request) {
     ]);
 
     $user = User::where('email', $request->email)->first();
+    /*$password = User::where('password', $request->password)->first();
+
+    if (! $user || ($request->password != $user->password) ) {
+        return "contraseña_introducida: ". $request->password. " contraseña_bbdd: ". $user->password;
+    }*/
+
 
     if (! $user || ! Hash::check($request->password, $user->password)) {
         return "hola";
@@ -61,6 +67,7 @@ Route::get('ventas/usuario/{id_usuario}', [VentaController::class, 'historial'])
 Route::get('carrito/usuario/{id_usuario}', [CarritoController::class, 'carrito_usuario']);
 Route::get('usuarios/correo/{email}', [UsuarioController::class, 'email_user']);
 Route::get('usuarios/articulo_deseado_oferta/{id_articulo}', [UsuarioController::class, 'articulo_deseado_oferta_users']);
+Route::put('usuarios/password/{id_usuario}', [UsuarioController::class, 'updatePassword']);
 
 Route::apiResource('usuarios', UsuarioController::class);
 Route::apiResource('articulos', ArticuloController::class);

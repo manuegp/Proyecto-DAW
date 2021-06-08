@@ -24,10 +24,11 @@ class ArticuloController extends Controller
     /*Para sacar los datos que tiene un articulo junto con los datos de juego, si es un juego*/
     public function all_juegos() {
 
-        $juegos = DB::select('SELECT articulos.*, juegos.etiquetas, juegos.plataforma, juegos.idioma, juegos.video, requisitos_juegos.os, requisitos_juegos.procesador, requisitos_juegos.memoria, requisitos_juegos.graficos, requisitos_juegos.directx, requisitos_juegos.storage, requisitos_juegos.tarjeta_sonido 
-                              FROM articulos, juegos, requisitos_juegos 
-                              WHERE articulos.id = juegos.id_articulo 
-                              AND juegos.id = requisitos_juegos.id_juego'
+        $juegos = DB::select('SELECT articulos.*, juegos.etiquetas, juegos.plataforma, juegos.idioma, juegos.video, requisitos_juegos.os, requisitos_juegos.procesador, requisitos_juegos.memoria, requisitos_juegos.graficos, requisitos_juegos.directx, requisitos_juegos.storage, requisitos_juegos.tarjeta_sonido, ofertas.porcentaje 
+                              FROM articulos, juegos, requisitos_juegos, ofertas 
+                              WHERE articulos.id = juegos.id_articulo
+                              AND juegos.id = requisitos_juegos.id_juego
+                              AND ofertas.id_articulo = articulos.id'
         );
 
         return $juegos;
@@ -36,11 +37,12 @@ class ArticuloController extends Controller
 
     public function juego_seleccionado(string $id_articulo) {
 
-        $juego = DB::select('SELECT articulos.*, juegos.etiquetas, juegos.plataforma, juegos.idioma, juegos.video, requisitos_juegos.os, requisitos_juegos.procesador, requisitos_juegos.memoria, requisitos_juegos.graficos, requisitos_juegos.directx, requisitos_juegos.storage, requisitos_juegos.tarjeta_sonido
-                             FROM articulos, juegos, requisitos_juegos
+        $juego = DB::select('SELECT articulos.*, juegos.etiquetas, juegos.plataforma, juegos.idioma, juegos.video, requisitos_juegos.os, requisitos_juegos.procesador, requisitos_juegos.memoria, requisitos_juegos.graficos, requisitos_juegos.directx, requisitos_juegos.storage, requisitos_juegos.tarjeta_sonido, ofertas.porcentaje
+                             FROM articulos, juegos, requisitos_juegos, ofertas
                              WHERE articulos.id = juegos.id_articulo
                              AND articulos.id = requisitos_juegos.id_juego
-                             AND articulos.id = '. $id_articulo
+                             AND articulos.id = '. $id_articulo. 
+                           ' AND ofertas.id_articulo = articulos.id'
         );
 
         return $juego;
@@ -49,11 +51,13 @@ class ArticuloController extends Controller
 
     public function all_merch() {
 
-        $merchs = DB::select('SELECT * FROM articulos 
-                              WHERE id NOT IN ( 
-                                                SELECT id_articulo 
-                                                FROM juegos
-                                              )'
+        $merchs = DB::select('SELECT articulos.*, ofertas.porcentaje 
+                              FROM articulos, ofertas
+                              WHERE articulos.id NOT IN (
+                                                        SELECT id_articulo 
+                                                        FROM juegos
+                                                        )
+                              AND ofertas.id_articulo = articulos.id'
         );
 
         return $merchs;
@@ -62,12 +66,14 @@ class ArticuloController extends Controller
 
     public function merch_seleccionado(string $id_articulo) {
 
-        $merch = DB::select('SELECT * FROM articulos 
-                             WHERE id NOT IN ( 
+        $merch = DB::select('SELECT articulos.*, ofertas.porcentaje 
+                             FROM articulos, ofertas 
+                             WHERE articulos.id NOT IN ( 
                                                SELECT id_articulo 
                                                FROM juegos
                                              )
-                             AND id = '. $id_articulo
+                             AND articulos.id = '. $id_articulo.
+                           ' AND ofertas.id_articulo = articulos.id'
         );
                    
         return $merch;

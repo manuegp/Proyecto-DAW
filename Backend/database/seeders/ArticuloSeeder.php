@@ -91,7 +91,7 @@ class ArticuloSeeder extends Seeder
             [
                 'nombre' => 'Super Mario Odyssey',
                 'descripcion' => 'Super Mario Odyssey es un videojuego de plataformas de mundo abierto que se lleva a cabo en el planeta Champiñón entero. Mario tendra que salvar a la princesa Peach de Bowser y para ello sacará el mejor provecho de su gorra gracias a su nuevo compañero Cappy; puede usarla de varias maneras que le ayudarán en su aventura.',
-                'precio' => '49.90',
+                'precio' => '49.99',
                 'fecha_salida' => '2017-09-27',
                 'imagen_principal' => 'https://lanetaneta.com/wp-content/uploads/2019/02/Super-Mario-Odyssey-es-el-juego-de-Mario-en-3D.jpg',
                 'archivo_imagen' => null,
