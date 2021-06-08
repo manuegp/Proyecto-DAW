@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 import {ModificarUsuarioComponent} from '../modificar-usuario/modificar-usuario.component'
 import { EmailValidator, FormGroup } from '@angular/forms';
 import { ModificarJuegoComponent } from '../modificar-juego/modificar-juego.component';
+import { GestionarOfertasComponent } from '../gestionar-ofertas/gestionar-ofertas.component';
 export interface ExampleTab {
   label: string;
   content: string;
@@ -35,7 +36,7 @@ export class VentanaPestanasComponent implements OnInit {
   asignar: any;
   asignarUsu: any;
   asignarMerch: any;
-  
+  asignarOfer: any;
   displayedColumns: string[] = [
     'Id',
     'Nombre',
@@ -53,22 +54,33 @@ export class VentanaPestanasComponent implements OnInit {
     'Nick',
     'Telefono',
     'Email',
-    'Fecha_creacion',
+    
     'Es_admin',
     'Modificar',
+  ];
+
+  displayedColumnsOfer: string[] = [
+    'Id',
+    'Nombre',
+    'Porcentaje',
+    'Precio_original',
+    'Modificar'
   ];
   dataSource: any;
   dataSourceUsuarios: any;
   dataSourceMerch: any;
+  dataSourceOfertas: any;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild('usu') paginator2!: MatPaginator;
   @ViewChild('usu2') paginator3!: MatPaginator;
+  @ViewChild('ofer') paginator4!: MatPaginator;
   ngAfterViewInit() {}
 
   ngOnInit(): void {
     this.asignarArticulos();
     this.asignarUsuarios();
     this.asignarMerchandising();
+    this.asignarOfertas()
   }
 
  
@@ -87,6 +99,7 @@ export class VentanaPestanasComponent implements OnInit {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSourceMerch.filter = filterValue.trim().toLowerCase();
   }
+  
   asignarArticulos() {
     console.log('lo hace')
     this.http.get('http://127.0.0.1:8000/api/articulos/juegos').subscribe((result) => {
@@ -105,6 +118,7 @@ export class VentanaPestanasComponent implements OnInit {
     dialogConfig.closeOnNavigation = true;
     this.dialogañadirArticulos.open(ModificarProductoComponent, {
       panelClass: 'custom-dialog-container',
+       
       data: {
         tipo: "add",
         id: null,
@@ -230,6 +244,15 @@ export class VentanaPestanasComponent implements OnInit {
     });
   }
 
+  asignarOfertas() {
+    this.http.get('http://127.0.0.1:8000/api/ofertas').subscribe((result) => {
+      this.asignarOfer = result;
+      console.log(this.asignarOfer);
+      this.dataSourceOfertas = new MatTableDataSource(this.asignarOfer.data);
+      this.dataSourceOfertas.paginator = this.paginator4;
+    });
+  }
+
   asignarMerchandising() {
     this.http.get('http://127.0.0.1:8000/api/articulos/merchs').subscribe((result) => {
       this.asignarMerch = result;
@@ -258,7 +281,7 @@ export class VentanaPestanasComponent implements OnInit {
         nombre_usuario: event.nick,
         telefono: event.telefono,
         email: event.email,
-        email_verified_at: event.email_verified_at,
+        
         es_admin : event.es_administrador
         
       },
@@ -277,5 +300,20 @@ export class VentanaPestanasComponent implements OnInit {
      
   });
   }
+
+  crearOferta(event: any){
+    console.log('añadiendo');
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.closeOnNavigation = true;
+    this.dialogañadirArticulos.open(GestionarOfertasComponent, {
+      panelClass: 'custom-dialog-container',
+       
+      
+      
+    });
+  }
+
+
 
 }

@@ -34,10 +34,11 @@ export class AppComponent implements OnInit{
      this.idUser= this.autenticacionServe.getIdUser()
      console.log(this.logState)
       if(this.idUser.id == undefined){
-        this.logState = true
+        this.logState = true;
+        this.comprobarAdmin()
       }
       
-    this.comprobarAdmin()
+    
     }
 
 

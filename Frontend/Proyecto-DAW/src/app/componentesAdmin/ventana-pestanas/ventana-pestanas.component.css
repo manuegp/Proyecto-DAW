@@ -1,6 +1,13 @@
 table{
     background-color: #212529;
-    text-align: center;
+   
+}
+
+th{
+    text-align: center !important;
+}
+td{
+    text-align: center !important;
 }
 
 mat-paginator{

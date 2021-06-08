@@ -46,9 +46,10 @@ import { PaymentComponent } from './payment/payment.component';
 import { SuccessComponent } from './payment/success/success.component';
 import { ModificarJuegoComponent } from './componentesAdmin/modificar-juego/modificar-juego.component';
 import { RecuperarPasswordComponent } from './recuperar-password/recuperar-password.component';
+import { GestionarOfertasComponent } from './componentesAdmin/gestionar-ofertas/gestionar-ofertas.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, ProfileComponent, AdminComponent, ProductComponent, ListProductsComponent, ShoppingCartComponent, LoginComponent, SiginComponent, VentanaPestanasComponent, ModificarProductoComponent, ModificarUsuarioComponent, ForgotpasswordComponent, PaymentComponent, SuccessComponent, ModificarJuegoComponent, RecuperarPasswordComponent],
+  declarations: [AppComponent, HomeComponent, ProfileComponent, AdminComponent, ProductComponent, ListProductsComponent, ShoppingCartComponent, LoginComponent, SiginComponent, VentanaPestanasComponent, ModificarProductoComponent, ModificarUsuarioComponent, ForgotpasswordComponent, PaymentComponent, SuccessComponent, ModificarJuegoComponent, RecuperarPasswordComponent, GestionarOfertasComponent],
   imports: [
     MatAutocompleteModule,
     BrowserModule,

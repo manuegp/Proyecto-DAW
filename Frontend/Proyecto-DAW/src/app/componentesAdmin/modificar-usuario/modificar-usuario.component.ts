@@ -20,12 +20,12 @@ export class ModificarUsuarioComponent  {
     private dialogRef: MatDialogRef<ModificarUsuarioComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
   ) { 
+    
     this.signupForm = this._builder.group({
       nombre: [data.nombre, Validators.required],
       apellido: [data.apellidos, Validators.required], 
       nick: [data.nombre_usuario, Validators.required], 
-      telefono: [data.telefono, Validators.required], 
-      email_verified_at: [data.email_verified_at, Validators.required], 
+      telefono: [data.telefono, Validators.required],  
       es_admin: []
     })
     
@@ -79,6 +79,7 @@ export class ModificarUsuarioComponent  {
     }
 
   cancelar(){
+    
     this.dialogRef.close();
   }
 }

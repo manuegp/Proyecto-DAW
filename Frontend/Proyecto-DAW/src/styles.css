@@ -11,6 +11,7 @@ body {
 .custom-dialog-container .mat-dialog-container {
   padding: 0;
   box-shadow: 5px 5px springgreen;
+  overflow-x: hidden;
 }
 
 mat-accordion {
@@ -77,3 +78,5 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
+

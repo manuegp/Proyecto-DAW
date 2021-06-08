@@ -32,10 +32,7 @@
         />
         </mat-form-field>
 
-        <mat-form-field>
-          <mat-label>Fecha verificado</mat-label>
-          <input matInput formControlName="email_verified_at" readonly />
-        </mat-form-field>
+        
   
         
         <mat-checkbox [(ngModel)]="checked" formControlName="es_admin" >Administrador</mat-checkbox>
@@ -45,7 +42,7 @@
 
         <div class="offset-5 col-5">
           <button [disabled]="signupForm.invalid" type="submit" class="boton">Enviar</button>
-          <button (click)="cancelar()" class="boton">Cancelar</button>
+          <button (click)="cancelar()" class="boton" type="button" >Cancelar</button>
         </div>
   
         <br />
