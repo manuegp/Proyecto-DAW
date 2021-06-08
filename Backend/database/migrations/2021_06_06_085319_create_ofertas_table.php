@@ -16,7 +16,6 @@ class CreateOfertasTable extends Migration
         Schema::create('ofertas', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_articulo');
-            $table->double('precio_original', 4, 2);
             $table->unsignedBigInteger('porcentaje');
             $table->foreign('id_articulo')->references('id')->on('articulos')->onDelete('cascade');
             $table->timestamps();

@@ -11,7 +11,6 @@ class Oferta extends Model
 
     protected $fillable = [
         'id_articulo',
-        'precio_original',
         'porcentaje'
     ];
 
