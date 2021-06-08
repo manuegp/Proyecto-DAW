@@ -27,7 +27,8 @@ class MailController extends Controller
         $details = [
             'title' => 'Contraseña olvidada',
             'body' => 'Click aqui para poder cambiar su contraseña: http://localhost:4200/recuperar-password',
-            'carrito' => '',
+            'juegos' => '',
+            'merch' => '',
             'articulo_oferta' => ''
         ];
 
@@ -41,7 +42,8 @@ class MailController extends Controller
         $details = [
             'title' => 'Registrado',
             'body' => 'Bienvenido a MMJ',
-            'carrito' => '',
+            'juegos' => '',
+            'merch' => '',
             'articulo_oferta' => ''
         ];
 
@@ -49,20 +51,37 @@ class MailController extends Controller
 
     }
 
-    public function sendEmailPago(string $email) {
+    public function sendEmailPago(string $email) {        
 
-        $carrito = DB::select('select articulos.nombre, articulos.imagen_principal, carritos.cantidad
-                                 from articulos, carritos
-                                 where carritos.id_articulo = articulos.id
-                                 and carritos.id_usuario = (select id
-                                                            FROM users
-                                                            WHERE email LIKE "'. $email. '")'
+        $juegos = DB::select('SELECT articulos.nombre, carritos.cantidad
+                              FROM articulos, carritos
+                              WHERE carritos.id_articulo = articulos.id
+                              AND carritos.id_usuario = (select id
+                                                      FROM users
+                                                      WHERE email LIKE "'. $email. '")
+                              and articulos.id IN (
+                                                  SELECT id_articulo 
+                                                  FROM juegos
+                                                  )'
+        );
+
+        $merch = DB::select('SELECT articulos.nombre, carritos.cantidad
+                              FROM articulos, carritos
+                              WHERE carritos.id_articulo = articulos.id
+                              AND carritos.id_usuario = (select id
+                                                      FROM users
+                                                      WHERE email LIKE "'. $email. '")
+                              and articulos.id NOT IN (
+                                                  SELECT id_articulo 
+                                                  FROM juegos
+                                                  )'
         );
 
         $details = [
             'title' => 'Pago',
             'body' => 'Su pago ha sido realizado correctamente',
-            'carrito' => $carrito,
+            'juegos' => $juegos,
+            'merch' => $merch,
             'articulo_oferta' => ''
         ];
 
@@ -81,7 +100,8 @@ class MailController extends Controller
         $details = [
             'title' => 'Nuevas ofertas',
             'body' => 'Este producto de tu lista de deseados está en oferta',
-            'carrito' => '',
+            'juegos' => '',
+            'merch' => '',
             'articulo_oferta' => $articulo
         ];
 

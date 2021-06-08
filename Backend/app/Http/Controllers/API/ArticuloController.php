@@ -80,13 +80,16 @@ class ArticuloController extends Controller
 
     }
 
-    public function descuento(string $id_articulo_oferta) {
+    public function articulos_en_oferta() {
 
-        $descuento = DB::update('UPDATE articulos, ofertas
-                                 SET articulos.precio = (ofertas.precio_original - (ofertas.precio_original*ofertas.porcentaje)/100)
-                                 WHERE articulos.id = '. $id_articulo_oferta
+        $articulos_oferta = DB::select('SELECT articulos.nombre, articulos.imagen_principal, articulos.precio, ofertas.porcentaje
+                                        from articulos, ofertas
+                                        where articulos.id = ofertas.id_articulo
+                                        and ofertas.porcentaje > 0'
         );
 
+        return $articulos_oferta;
+        
     }
 
     /**

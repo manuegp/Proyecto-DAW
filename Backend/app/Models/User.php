@@ -24,6 +24,7 @@ class User extends Authenticatable
         'password',
         'nick',
         'telefono',
+        'direccion',
         'email',
         'foto',
         'es_administrador',

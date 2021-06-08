@@ -26,7 +26,8 @@
         <h1>{{$details['title']}}</h1>
         <p>{{$details['body']}}</p>
         
-        <?php if ($details['carrito'] != ''): ?>
+
+        <?php if ($details['merch'] != ''): ?>
             
             <table>
                 <tr>
@@ -35,13 +36,53 @@
                     <th>Código</th>
                 </tr>
 
-                <?php for ($i = 0; $i < count($details['carrito']); $i++) :?>
+                <?php for ($i = 0; $i < count($details['merch']); $i++) :?>
                     <tr>
                         <!--<td> <img src="data:image/jpeg;base64, <?php /*base64_encode($details['carrito'][$i]->archivo_imagen)*/ ?>"/></td>-->
-                        <td>{{$details['carrito'][$i]->imagen_principal}}</td>
-                        <td>{{$details['carrito'][$i]->nombre}}</td>
+                        <td>{{$details['merch'][$i]->imagen_principal}}</td>
+                        <td>{{$details['merch'][$i]->nombre}}</td>
                         <td>
-                            <?php for ($e = 0; $e < $details['carrito'][$i]->cantidad; $e++) :?>
+                            <?php for ($e = 0; $e < $details['merch'][$i]->cantidad; $e++) :?>
+                                <?php 
+                                    
+                                    $chars_permitidos = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                                    $tamaño = 17;
+                                    $codigo = "";
+
+                                    for ($cont=0; $cont < $tamaño; $cont++) {
+                                        $char_random = $chars_permitidos[mt_rand(0, strlen($chars_permitidos) - 1)];
+                                        $codigo .= $char_random;
+                                    }
+
+                                    echo "Código ". ($e+1). ": ". $codigo
+
+                                ?> <br>
+                            
+                            <?php endfor; ?>
+                        </td>
+
+                    </tr>
+                <?php endfor; ?>
+
+            </table>
+
+        <?php endif ?>
+
+
+        <?php if ($details['juegos'] != ''): ?>
+            
+            <table>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Código</th>
+                </tr>
+
+                <?php for ($i = 0; $i < count($details['juegos']); $i++) :?>
+                    <tr>
+                        <!--<td> <img src="data:image/jpeg;base64, <?php /*base64_encode($details['carrito'][$i]->archivo_imagen)*/ ?>"/></td>-->
+                        <td>{{$details['juegos'][$i]->nombre}}</td>
+                        <td>
+                            <?php for ($e = 0; $e < $details['juegos'][$i]->cantidad; $e++) :?>
                                 <?php 
                                     
                                     $chars_permitidos = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
