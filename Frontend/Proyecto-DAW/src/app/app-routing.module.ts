@@ -11,16 +11,17 @@ import { AutenticacionGuard } from './login/autenticacion.guard';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 import { RecuperarPasswordComponent } from './recuperar-password/recuperar-password.component';
 import { ArticuloComponent } from './articulo/articulo.component';
+import { AutenticationProfileGuard } from './login/autentication-profile.guard';
 
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
-  { path: 'profile', component: ProfileComponent, canActivate:[AutenticacionGuard]  },
+  { path: 'profile', component: ProfileComponent, canActivate:[AutenticationProfileGuard]  },
   { path: 'products', component: ListProductsComponent },
   { path: 'shopping-cart', component: ShoppingCartComponent },
   { path: 'product/:id', component: ArticuloComponent },
-  { path: 'admin', component: AdminComponent },
+  { path: 'admin', component: AdminComponent , canActivate:[AutenticacionGuard]},
   { path: 'shopping-cart', component: ShoppingCartComponent },
   { path: 'register', component: SiginComponent },
   { path: 'forgotpassword', component: ForgotpasswordComponent },

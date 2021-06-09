@@ -20,6 +20,7 @@ export class GestionarOfertasComponent implements OnInit {
   filteredStates: Observable<any[]> | undefined;
 idOG: any;
 precioOg: any;
+usuarios:any;
   states: any[] =[];
   error: boolean= false;
   getArticulos(){
@@ -90,7 +91,19 @@ precioOg: any;
       console.log(data)
       console.log(JSON.stringify(data.JSON))
       this.dialogRef.close();
-      window.location.reload();
+      this.http.get("http://127.0.0.1:8000/api/usuarios/articulo_deseado_oferta/" + this.idOG).subscribe((result) => {
+
+          this.usuarios = result;
+
+          for (let i = 0; i < this.usuarios.length; i++) {
+
+            this.http.get("http://127.0.0.1:8000/api/email_ofertas/" + this.usuarios[i].email + "/" + this.idOG).subscribe();
+
+          }
+
+          window.location.reload();
+
+        });
 
     })
     
