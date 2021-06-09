@@ -14,6 +14,7 @@ class CreateDeseadosTable extends Migration
     public function up()
     {
         Schema::create('deseados', function (Blueprint $table) {
+            $table->id();
             $table->unsignedBigInteger('id_usuario');
             $table->unsignedBigInteger('id_articulo');
             $table->foreign('id_articulo')->references('id')->on('articulos')->onDelete('cascade');
