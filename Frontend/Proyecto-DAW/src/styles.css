@@ -10,7 +10,7 @@ body {
 }
 .custom-dialog-container .mat-dialog-container {
   padding: 0;
-  box-shadow: 5px 5px springgreen;
+  box-shadow: 5px 5px #d4b170;
   overflow-x: hidden;
 }
 
@@ -33,7 +33,7 @@ mat-panel-description {
 
 /*https://www.instintoprogramador.com.mx/2020/03/20-botones-animados-increibles-de-css.html */
 .boton {
-  background-color: aquamarine;
+  background-color: #d4b170;
 }
 .boton:hover,
 .boton:focus {
@@ -67,7 +67,7 @@ mat-panel-description {
   transition: width 1s ease-in-out;
 }
 .fifth:hover {
-  color: aquamarine;
+  color: #d4b170;
 }
 .fifth:hover:after {
   width: 110%;
@@ -79,4 +79,30 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
+body{
+  background-color: #212529;
+}
+
+.mat-divider{
+  border-top-color:  #d4b170;
+}
+
+.badge{
+  background-color:#d4b170 ;
+}
+
+.mat-tab-label-content {
+    
+  color: white !important;
+  
+}
+
+.mat-ink-bar{
+  border: solid #d4b170 1px;
+}
+
+.mat-checkbox .mat-checkbox-frame {
+  border-color: #d4b170;
+  background-color: black
+}
 

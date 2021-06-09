@@ -9,6 +9,7 @@
           (keyup)="applyFilter($event)"
           placeholder="Minecraft, Hollow Knight..."
           #input
+          autocomplete="off"
         />
       </mat-form-field>
       <button class="col-2 boton2" (click)="anadirArticulos($event, 'juego')">
@@ -62,7 +63,7 @@
 
               <button
                 mat-raised-button
-                class="boton"
+                class="boton borrar"
                 (click)="borrarArticulos(element)"
               >
                 Borrar
@@ -92,6 +93,7 @@
           (keyup)="applyFilterUsu($event)"
           placeholder="Minecraft, Hollow Knight..."
           #input
+          autocomplete="off"
         />
       </mat-form-field>
      
@@ -146,7 +148,7 @@
 
               <button
                 mat-raised-button
-                class="boton"
+                class="boton borrar"
                 (click)="borrarUsuario(element)"
               >
                 Borrar
@@ -176,6 +178,7 @@
           (keyup)="applyFilterMerch($event)"
           placeholder="Minecraft, Hollow Knight..."
           #input
+          autocomplete="off"
         />
       </mat-form-field>
       <button class="col-2 boton2" (click)="anadirArticulos($event, 'merch')">
@@ -229,7 +232,7 @@
 
               <button
                 mat-raised-button
-                class="boton"
+                class="boton borrar"
                 (click)="borrarArticulos(element)"
                 
               >
@@ -261,10 +264,11 @@
           (keyup)="applyFilterOfertas($event)"
           placeholder="Minecraft, Hollow Knight..."
           #input
+          autocomplete="off"
         />
       </mat-form-field>
       <button class="col-2 boton2" (click)="crearOferta($event)">
-        Crear oferta/modificar oferta
+        Gestionar ofertas
       </button>
       <div class="mat-elevation-z8">
         <table mat-table [dataSource]="dataSourceOfertas" class="col-12">
@@ -307,7 +311,7 @@
 
               <button
                 mat-raised-button
-                class="boton"
+                class="boton borrar"
                (click)="eliminarOferta(element)"
               >
                 Borrar

@@ -6,32 +6,23 @@
 }
 
 #fotoPerfil {
-  border: solid aquamarine 2px;
+  border: solid #d4b170 2px;
 }
 
 #fotoPerfil:hover {
-  border: solid aquamarine 2px;
-  box-shadow: 5px 5px red;
+  border: solid #d4b170 2px;
+  box-shadow: 5px 5px white;
 }
 
-#cambiarImagen {
-  margin-top: 5px;
-  background-color: transparent;
-  color: white;
-  border: none;
-  margin-left: 10px;
-}
-#cambiarImagen:hover {
-  background-color: aquamarine;
-  box-shadow: 5px 5px red;
-}
+
+
 
 #cambiarImagen .offset-4 {
   margin-left: 10px;
 }
 
 mat-label {
-  color: white;
+  color: #d4b170;
 }
 
 input::-webkit-outer-spin-button,
@@ -52,8 +43,8 @@ input {
   margin-left: 10px;
 }
 .boton:hover {
-  background-color: aquamarine;
-  box-shadow: 5px 5px red;
+  background-color: #d4b170;
+  box-shadow: 5px 5px white;
 }
 
 #contenedorInfo {
@@ -111,7 +102,11 @@ button{
 }
 
 button:hover{
-  background-color: aquamarine;
+  background-color: #d4b170;
+  box-shadow: 5px 5px white;
+}
+
+button:disabled:hover{
   box-shadow: 5px 5px red;
 }
 
@@ -136,4 +131,22 @@ h2{
   padding-top: 16px;
   border: white solid 1px;
   background-color: #212529;
+}
+h1{
+  color: #d4b170;
+}
+
+.mat-input-invalid .mat-input-placeholder {
+  color: red;
+}
+
+.mat-input-invalid .mat-input-ripple {
+  background-color: red;
+}
+
+
+ 
+::ng-deep.mat-form-field-ripple {
+ /*change color of underline when focused*/
+ background-color: #d4b170 !important;;
 }

@@ -6,7 +6,7 @@
           id="fotoPerfil"
           src="https://lh3.googleusercontent.com/ogw/ADGmqu-EMdPcOTH5Ixz6IAvaVytz6maQs5WNzOapsJbI=s83-c-mo"
         />
-        <button id="cambiarImagen">Cambiar imagen</button>
+        
       </div>
 
       <div id="contenedorInfo" class="col-lg-9">
@@ -35,8 +35,14 @@
             <div class="col-auto">
               <mat-form-field>
                 <mat-label>Email</mat-label>
-                <input matInput formControlName="email" type="text" />
+                <input matInput formControlName="email" type="email" />
                 <mat-error>Email no valido</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-auto">
+              <mat-form-field>
+                <mat-label>Direccion</mat-label>
+                <input matInput formControlName="direccion" />
               </mat-form-field>
             </div>
 
@@ -55,8 +61,8 @@
               
           </div>
           <div class="row">
-            <div class="">
-              <button type="submit" class="boton">Modificar</button>
+            <div >
+              <button type="submit" [disabled]="signupForm.invalid" class="boton">Modificar</button>
             </div>
           </div>
         </form>

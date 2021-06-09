@@ -37,8 +37,8 @@ export class ModificarJuegoComponent implements OnInit {
       plataforma: [data.plataforma, Validators.required],
       storage: [data.storage, Validators.required],
       procesador: [data.procesador, Validators.required],
-      tarjeta_sonido: [data.tarjeta_sonido],
-      video: [data.video],
+      tarjeta_sonido: [data.tarjeta_sonido, Validators.required],
+      video: [data.video, Validators.required],
     });
   }
 

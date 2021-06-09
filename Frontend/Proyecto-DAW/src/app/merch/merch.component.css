@@ -1,7 +1,7 @@
 #contenido{
     background-color: #212529;
     color: white;
-    
+    border: 1px white solid;
     padding: 10px;
     margin-bottom: 60px;
 }

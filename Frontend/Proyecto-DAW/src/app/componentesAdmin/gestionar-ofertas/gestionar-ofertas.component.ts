@@ -21,6 +21,7 @@ export class GestionarOfertasComponent implements OnInit {
 idOG: any;
 precioOg: any;
   states: any[] =[];
+  error: boolean= false;
   getArticulos(){
     this.http.get('http://127.0.0.1:8000/api/articulos').toPromise()
     .then((data: any) => {
@@ -56,19 +57,32 @@ precioOg: any;
   getIdfromArticulo(articulo: any){
     for (let i = 0; i < this.states.length; i++) {
         if(this.states[i].nombre === articulo){
-             this.idOG =this.states[i].id
-             this.precioOg =this.states[i].precio
+             
+             return this.states[i].id
         }
     }
+    return null
   }
+
+   ConvertStringToNumber(input: string) {
+    var numeric = Number(input);
+    return numeric;
+}
   submit(){
+    
    console.log(this.states)
    let porciento=  this.porciento.nativeElement.value
    let articulo = this.articuloSelect.nativeElement.value
-   
-   this.getIdfromArticulo(articulo)
-   //Aqui se envia servidor
+   console.log(porciento)
+   this.idOG = this.getIdfromArticulo(articulo)
+   console.log(this.idOG)
+    porciento= this.ConvertStringToNumber(porciento)
+   console.log(porciento)
   
+   //Aqui se envia servidor
+  if( porciento > 0 && porciento < 100 && this.idOG != null){
+    
+    console.log("pasa")
    this.http.put("http://127.0.0.1:8000/api/ofertas/"+ this.idOG,{
         
         porcentaje: porciento
@@ -76,7 +90,15 @@ precioOg: any;
       console.log(data)
       console.log(JSON.stringify(data.JSON))
       this.dialogRef.close();
+      window.location.reload()
 
-    }) 
+    })
+    
+    
+  }else{
+    console.log("error")
+    this.error= true
   }
+  
+}
 }

@@ -31,11 +31,12 @@ export class ProfileComponent implements OnInit {
     console.log(this.userData);
 
     this.signupForm = this._builder.group({
-      username: [],
-      nombre: [],
-      apellidos: [],
-      email: [],
-      telefono: [],
+      username: [,Validators.required],
+      nombre: [Validators.required],
+      apellidos: [Validators.required],
+      email: [Validators.required],
+      telefono: [Validators.required],
+      direccion: [Validators.required],
     });
   }
 
@@ -54,8 +55,9 @@ export class ProfileComponent implements OnInit {
       username: [this.userData.data.nick, Validators.required],
       nombre: [this.userData.data.nombre, Validators.required],
       apellidos: [this.userData.data.apellidos, Validators.required],
-      email: [this.userData.data.email, Validators.required],
+      email: [this.userData.data.email,Validators.compose([Validators.email, Validators.required])],
       telefono: [this.userData.data.telefono, Validators.required],
+      direccion: [this.userData.data.direccion, Validators.required],
     });
   }
   ngOnInit(): void {

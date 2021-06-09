@@ -6,14 +6,22 @@
 }*/
 
 .mat-row:hover {
-    background-color: red;
+    background-color: #d4b170;
+  }
+
+  .mat-row:hover .badge{
+    background-color: #212529;
   }
 th{
     color: white;
+    border-bottom: white 1px solid;
+
 }
 
 td{
     color: white;
+    
+
 }
 
 td:hover{
@@ -29,12 +37,17 @@ thead>tr:first-child:hover{
 
 table{
     background-color: #212529;
-    
+    border: white solid 1px;
 }
 
+mat-label{
+    color: #d4b170;
+}
 mat-paginator{
     background-color: #212529;
     color: white;
+    border: white solid 1px;
+
 }
 
 mat-paginator span{
@@ -46,9 +59,32 @@ mat-paginator span{
     color: white;
 }
 
+input::placeholder{
+    color: white;
+}
+
+input{
+    color: white;
+}
+
 ::ng-deep .mat-select-value {
     color: white;
 }
+
+::ng-deep .mat-focused .mat-form-field-label {
+    /*change color of label*/
+    color: #d4b170 !important;
+   }
+  
+   ::ng-deep.mat-form-field-underline {
+    /*change color of underline*/
+    background-color: #d4b170 !important;
+  } 
+  
+  ::ng-deep.mat-form-field-ripple {
+   /*change color of underline when focused*/
+   background-color: #d4b170 !important;;
+  }
 
 .mat-column-Descripcion {
     word-wrap: break-word !important;

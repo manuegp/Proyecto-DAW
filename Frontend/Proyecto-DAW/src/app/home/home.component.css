@@ -5,7 +5,19 @@ h1{
 .contenedor{
     background-color: #212529;
     color: white;
+    box-shadow: 10px 10px #d4b170;
+    border: solid white 1px;
 }
 .carousel-cells{
     width: 840px !important;
+}
+
+
+.seccion{
+    color: #d4b170;
+}
+
+iframe{
+    border: solid white 1px;
+    
 }

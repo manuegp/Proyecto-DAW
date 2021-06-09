@@ -19,7 +19,7 @@ ofertas: any;
   }
 
   conseguirTotalOfertas(){
-    this.http.get('http://127.0.0.1:8000/api/articulos/oferta').toPromise().then(data =>{
+    this.http.get('http://127.0.0.1:8000/api/articulos/oferta_administrador').toPromise().then(data =>{
            console.log(data)
            this.ofertas= data
            console.log(this.ofertas)

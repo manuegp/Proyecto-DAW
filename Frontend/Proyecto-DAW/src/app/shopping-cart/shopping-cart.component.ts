@@ -37,6 +37,7 @@ export class ShoppingCartComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.closeOnNavigation = true;
+    console.log(this.totalCoste)
     this.dialog.open(PaymentComponent, {
       panelClass: 'custom-dialog-container',
       data: {

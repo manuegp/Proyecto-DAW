@@ -1,67 +1,101 @@
-table{
-    background-color: #212529;
-   
+table {
+  background-color: #212529;
 }
 
-th{
-    text-align: center !important;
+th {
+  text-align: center !important;
 }
-td{
-    text-align: center !important;
-}
-
-mat-paginator{
-    background-color: #212529;
-    color: white;
+td {
+  text-align: center !important;
 }
 
-mat-paginator span{
-    background-color: #212529;
-    color: white;
+mat-paginator {
+  background-color: #212529;
+  border: solid white 1px;
+  color: white;
+}
+
+mat-paginator span {
+  background-color: #d4b170;
+  color: #d4b170;
+}
+
+.mat-tab-label-content {
+  color: white;
+}
+
+mat-label {
+  color: #d4b170;
 }
 
 ::ng-deep .mat-select-arrow {
-    color: white;
+  color: #d4b170;
 }
 
 ::ng-deep .mat-select-value {
-    color: white;
+  color: white;
 }
 
-th{
-    color: white;
-    font-size: 12px;
-    border: solid 1px white;
-    text-align: center;
+input {
+  color: white;
 }
 
-td{
-    color: white;
-    font-size: 10px;
-    border: solid 1px white;
+input::placeholder {
+  color: white;
 }
 
-.boton{
-    border: solid 1px white;
-    margin-top: 5px;
-    background-color: transparent;
-    color: white;
-    
-    margin-left: 10px;
-}
-.boton:hover{
-    background-color: aquamarine ;
-    box-shadow: 5px 5px red;
-    
+th {
+  color: white;
+  font-size: 12px;
+  border: solid 1px white;
+  text-align: center;
 }
 
-.boton2{
-background-color: #212529;
-border: none;
-color: white;
+td {
+  color: white;
+  font-size: 10px;
+  border: solid 1px white;
 }
-.boton2:hover{
-    
-    box-shadow: 5px 5px red;
-    
-    }
+
+.boton {
+  border: solid 1px white;
+  margin-top: 5px;
+  background-color: transparent;
+  color: white;
+
+  margin-left: 10px;
+}
+.boton:hover {
+  background-color: #d4b170;
+  
+}
+
+.borrar:hover{
+    background-color: red;
+    border: #d4b170 solid 1px;
+}
+
+.boton2 {
+  background-color: #212529;
+  border: solid 1px white;
+  color: white;
+}
+.boton2:hover {
+    background-color: #d4b170;
+}
+
+::ng-deep .mat-focused .mat-form-field-label {
+  /*change color of label*/
+  color: #d4b170 !important;
+}
+
+::ng-deep.mat-form-field-underline {
+  /*change color of underline*/
+  background-color: #d4b170 !important;
+}
+
+::ng-deep.mat-form-field-ripple {
+  /*change color of underline when focused*/
+  background-color: #d4b170 !important;
+}
+

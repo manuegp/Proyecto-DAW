@@ -3,6 +3,7 @@
     color: white;
     margin-bottom: 10px;
     padding-bottom: 10px;
+    border: solid white 1px;
 }
 
 
@@ -20,4 +21,14 @@ i{
 
 .deseado{
     margin-top: 5px;
+}
+
+iframe{
+    border: solid white 1px;
+    
+}
+
+
+h1{
+    color: white;
 }
