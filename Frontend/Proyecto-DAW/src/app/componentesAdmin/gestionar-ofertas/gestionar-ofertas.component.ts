@@ -69,9 +69,8 @@ precioOg: any;
    this.getIdfromArticulo(articulo)
    //Aqui se envia servidor
   
-   this.http.post("http://127.0.0.1:8000/api/ofertas",{
-        id_articulo: this.idOG,
-        precio_original: this.precioOg,
+   this.http.put("http://127.0.0.1:8000/api/ofertas/"+ this.idOG,{
+        
         porcentaje: porciento
     }).toPromise().then((data:any) => {
       console.log(data)

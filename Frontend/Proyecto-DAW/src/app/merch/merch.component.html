@@ -11,7 +11,7 @@
     </div>
 
     <div class="col-12 col-lg-6" id="contenido">
-      <mat-list-item><h1>{{data.nombre}} &nbsp; <span class="badge bg-dark">  Oferta -{{data.porcentaje}}%</span></h1></mat-list-item>
+      <mat-list-item><h1>{{data.nombre}} &nbsp; <span class="badge bg-dark" *ngIf="esOferta == true">  Oferta -{{data.porcentaje}}%</span></h1></mat-list-item>
       <div class="row">
         <p class="col-12">
           {{ data.descripcion }}

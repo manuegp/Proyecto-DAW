@@ -258,13 +258,13 @@
         <mat-label>Buscar...</mat-label>
         <input
           matInput
-          (keyup)="applyFilterMerch($event)"
+          (keyup)="applyFilterOfertas($event)"
           placeholder="Minecraft, Hollow Knight..."
           #input
         />
       </mat-form-field>
       <button class="col-2 boton2" (click)="crearOferta($event)">
-        Crear oferta
+        Crear oferta/modificar oferta
       </button>
       <div class="mat-elevation-z8">
         <table mat-table [dataSource]="dataSourceOfertas" class="col-12">
@@ -308,7 +308,7 @@
               <button
                 mat-raised-button
                 class="boton"
-               
+               (click)="eliminarOferta(element)"
               >
                 Borrar
               </button>

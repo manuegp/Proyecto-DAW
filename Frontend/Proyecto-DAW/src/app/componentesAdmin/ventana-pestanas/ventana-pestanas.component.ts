@@ -99,6 +99,12 @@ export class VentanaPestanasComponent implements OnInit {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSourceMerch.filter = filterValue.trim().toLowerCase();
   }
+
+  
+  applyFilterOfertas(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSourceOfertas.filter = filterValue.trim().toLowerCase();
+  }
   
   asignarArticulos() {
     console.log('lo hace')
@@ -295,7 +301,7 @@ export class VentanaPestanasComponent implements OnInit {
   borrarUsuario(event: any){
     this.http.delete("http://127.0.0.1:8000/api/usuarios/"+ event.id).subscribe({
       next: data => {
-         window.location.reload()
+         
       }
      
   });
@@ -313,6 +319,20 @@ export class VentanaPestanasComponent implements OnInit {
       
     });
   }
+
+  eliminarOferta(element: any){
+    console.log(element.id)
+    this.http
+      .put('http://127.0.0.1:8000/api/ofertas/' + element.id, {
+        porcentaje: 0
+      })
+      .toPromise()
+      .then((data: any) => {
+        console.log(data);
+        console.log(JSON.stringify(data.JSON));
+        window.location.reload()
+      });
+}
 
 
 
