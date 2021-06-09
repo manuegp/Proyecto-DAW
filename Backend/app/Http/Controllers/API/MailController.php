@@ -10,17 +10,6 @@ use Illuminate\Support\Facades\DB;
 
 class MailController extends Controller
 {
-    public function sendEmail() {
-
-        $details = [
-            'title' => 'Mail from Surfside Media',
-            'body' => 'Apruebanos porfa'
-        ];
-
-        Mail::to("fct.carlos3@gmail.com")->send(new TestMail($details));
-        return "Email Sent";
-
-    }
 
     public function sendEmailForgetPassword(string $email) {
 

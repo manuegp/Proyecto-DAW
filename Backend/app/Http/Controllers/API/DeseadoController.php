@@ -80,4 +80,19 @@ class DeseadoController extends Controller
     {
         $deseado->delete();
     }
+
+    //Funcion que utilizo para borrar en la lista de deseados, aquellos productos que el usuario ha comprado y estaba en la lista de deseados
+    public function deleteArticulosDeseadosPagados(string $id_usuario) {
+
+        DB::delete('DELETE from deseados 
+                    where id_articulo IN (
+                                            select id_articulo 
+                                            from carritos 
+                                            WHERE id_usuario = '. $id_usuario.'
+                                        ) 
+                    and id_usuario = 3'
+        );
+
+    }
+
 }
