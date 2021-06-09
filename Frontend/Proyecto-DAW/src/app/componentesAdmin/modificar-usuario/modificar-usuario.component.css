@@ -1,0 +1,41 @@
+.container{
+    background-color: #212529;
+}
+
+mat-label{
+    color: white;
+}
+
+input{
+    color: white;
+}
+
+textarea{
+    color: white;
+}
+
+
+mat-checkbox {
+    color: white;
+}
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background {
+    background-color: #d4b170 !important;
+  }
+
+  .boton {
+    border: solid 1px white;
+    margin-top: 5px;
+    background-color: transparent;
+    color: white;
+  
+    margin-left: 10px;
+  }
+  .boton:hover {
+    background-color: #d4b170;
+    
+  }
+
+  .borrar:hover{
+    background-color: red;
+    border: #d4b170 solid 1px;
+}

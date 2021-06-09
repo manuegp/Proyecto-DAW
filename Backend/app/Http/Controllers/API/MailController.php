@@ -76,7 +76,7 @@ class MailController extends Controller
         );
 
 
-        $coste = DB::select('SELECT ROUND(SUM((articulos.precio - ((ofertas.porcentaje*articulos.precio)/100))*carritos.cantidad), 2) AS precio_total
+        $coste = DB::select('SELECT SUM((articulos.precio - ((ofertas.porcentaje*articulos.precio)/100))*carritos.cantidad) AS precio_total
                              from articulos, ofertas, carritos
                              where articulos.id = ofertas.id_articulo
                              and articulos.id = carritos.id_articulo
@@ -103,10 +103,9 @@ class MailController extends Controller
 
     public function sendEmailOfertas(string $email, string $id_articulo) {
 
-        $articulo = DB::select('SELECT articulos.nombre, ROUND((articulos.precio - ((ofertas.porcentaje*articulos.precio)/100)), 2) AS precio 
-                                FROM articulos, ofertas 
-                                WHERE ofertas.id_articulo = '. $id_articulo. ' 
-                                and articulos.id = '. $id_articulo );
+        $articulo = DB::select('SELECT * 
+                                FROM articulos 
+                                WHERE id = '. $id_articulo );
 
         $details = [
             'title' => 'Nuevas ofertas',

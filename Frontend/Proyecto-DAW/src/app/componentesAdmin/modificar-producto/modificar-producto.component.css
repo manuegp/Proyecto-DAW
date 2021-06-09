@@ -1,0 +1,44 @@
+.container{
+    background-color: #212529;
+}
+
+mat-label{
+    color: white;
+}
+
+input{
+    color: white;
+}
+
+textarea{
+    color: white;
+}
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+::ng-deep .mat-input-wrapper{
+    width:40px !important;
+  }
+
+  .boton {
+    border: solid 1px white;
+    margin-top: 5px;
+    background-color: transparent;
+    color: white;
+  
+    margin-left: 10px;
+  }
+  .boton:hover {
+    background-color: #d4b170;
+    
+  }
+
+  .borrar:hover{
+    background-color: red;
+    border: #d4b170 solid 1px;
+}

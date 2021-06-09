@@ -1,0 +1,34 @@
+#contenido{
+    background-color: #212529;
+    color: white;
+    border: 1px white solid;
+    padding: 10px;
+    margin-bottom: 60px;
+}
+
+
+#nombre{
+    text-align: center;
+    margin-top: 10px;
+}
+
+img{
+    
+    width: 60%;
+}
+
+.cont_img{
+    text-align: center;
+}
+i{
+    margin-top: 2px;
+}
+
+
+
+.deseado{
+    margin-top: 5px;
+}
+.container{
+    margin-bottom: 30px;
+}

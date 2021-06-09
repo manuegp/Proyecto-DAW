@@ -1,0 +1,152 @@
+#info {
+  padding: 15px;
+  padding-left: 30px;
+  padding-right: 30px;
+  background-color: #212529;
+}
+
+#fotoPerfil {
+  border: solid #d4b170 2px;
+}
+
+#fotoPerfil:hover {
+  border: solid #d4b170 2px;
+  box-shadow: 5px 5px white;
+}
+
+
+
+
+#cambiarImagen .offset-4 {
+  margin-left: 10px;
+}
+
+mat-label {
+  color: #d4b170;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input {
+  color: white;
+}
+
+.boton {
+  margin-top: 5px;
+  background-color: transparent;
+  color: white;
+  border: none;
+  margin-left: 10px;
+}
+.boton:hover {
+  background-color: #d4b170;
+  box-shadow: 5px 5px white;
+}
+
+#contenedorInfo {
+  background-color: #212529;
+  border: solid white 1px;
+  padding: 10px;
+}
+
+table {
+  background-color: #212529;
+}
+
+mat-paginator {
+  background-color: #212529;
+  color: white;
+}
+
+mat-paginator span {
+  background-color: #212529;
+  color: white;
+}
+
+::ng-deep .mat-select-arrow {
+  color: white;
+}
+
+::ng-deep .mat-select-value {
+  color: white;
+}
+
+td {
+  color: white;
+}
+
+th {
+  color: white;
+}
+
+.mat-column-Imagen{
+    width: 100px;
+    padding-right: 24px;
+}
+
+.mat-column-Imagen img{
+    width: 250px;
+}
+.mat-column-Fecha{
+    width: 100px;
+    padding-right: 24px;
+}
+button{
+  background: none;
+  border: none;
+  color: white;
+}
+
+button:hover{
+  background-color: #d4b170;
+  box-shadow: 5px 5px white;
+}
+
+button:disabled:hover{
+  box-shadow: 5px 5px red;
+}
+
+i{
+    
+  color: red;
+  font-size: 20px;
+  padding: 5px;
+  border-radius: 20px;
+}
+
+i:hover{
+  background-color: red;
+  color: #212529;
+  font-size: 20px;
+}
+h2{
+  text-align: center;
+}
+.empty{
+  color: white;
+  padding-top: 16px;
+  border: white solid 1px;
+  background-color: #212529;
+}
+h1{
+  color: #d4b170;
+}
+
+.mat-input-invalid .mat-input-placeholder {
+  color: red;
+}
+
+.mat-input-invalid .mat-input-ripple {
+  background-color: red;
+}
+
+
+ 
+::ng-deep.mat-form-field-ripple {
+ /*change color of underline when focused*/
+ background-color: #d4b170 !important;;
+}

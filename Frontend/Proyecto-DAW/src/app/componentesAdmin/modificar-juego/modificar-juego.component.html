@@ -1,0 +1,103 @@
+<div class="container">
+  <br />
+  <mat-dialog-content>
+    <form [formGroup]="signupForm" autocomplete="off" (ngSubmit)="submit()">
+      <div class="row">
+        <mat-form-field>
+          <mat-label>Nombre</mat-label>
+          <input matInput formControlName="nombre" />
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Descripcion</mat-label>
+          <textarea matInput formControlName="descripcion"></textarea>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Precio</mat-label>
+          <input
+            matInput
+            type="number"
+            min="0"
+            max="999"
+            
+            class="example-right-align"
+            formControlName="precio"
+          />
+          <span matSuffix style="color: white">€</span>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Fecha salida YYYY-MM-DD</mat-label>
+          <input
+            matInput
+            formControlName="fecha_salida"
+            placeholder="YYYY-MM-DD"
+          />
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Imagen-URL</mat-label>
+          <input matInput formControlName="imagen" />
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Directx</mat-label>
+          <input matInput formControlName="directx" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Etiquetas</mat-label>
+          <input matInput formControlName="etiquetas" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>graficos</mat-label>
+          <input matInput formControlName="graficos" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>idioma</mat-label>
+          <input matInput formControlName="idioma" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>memoria</mat-label>
+          <input matInput formControlName="memoria" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>os</mat-label>
+          <input matInput formControlName="os" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>plataforma</mat-label>
+          <input matInput formControlName="plataforma" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>storage</mat-label>
+          <input matInput formControlName="storage" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>procesador</mat-label>
+          <input matInput formControlName="procesador" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>tarjeta_sonido</mat-label>
+          <input matInput formControlName="tarjeta_sonido" />
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Video-EMBED-URL</mat-label>
+            <input matInput formControlName="video" />
+          </mat-form-field>
+
+        <br />
+        <br />
+        <div class="offset-5 col-5">
+          <button [disabled]="signupForm.invalid" type="submit" class="boton">
+            Modificar
+          </button>
+          <button (click)="cancelar()" class="boton borrar" type="button">Cancelar</button>
+        </div>
+
+        <br />
+        <br />
+      </div>
+    </form>
+  </mat-dialog-content>
+</div>

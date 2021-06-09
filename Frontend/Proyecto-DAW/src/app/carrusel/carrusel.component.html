@@ -1,0 +1,47 @@
+<!--<carousel
+      
+      [loop]="true"
+      [cellsToScroll]="3"
+      [objectFit]="'cover'"
+      [arrowsOutside]="false"
+      [lightDOM]="false"
+      class="carousel--slider-aligment"
+    >
+      <div class="carousel-cell" *ngFor="let oferta of ofertas ">
+        <div class="card card-border-none">
+          <h5><span class="badge bg-secondary">50% off</span></h5>
+          
+            
+          
+        </div>
+      </div>
+
+      
+      
+    </carousel>
+
+-->
+
+
+<div class="container">
+  <div class="row">
+    <mat-card class="example-card col-12" *ngFor="let oferta of ofertas ">
+      <mat-card-header >
+        
+        <mat-card-title>{{oferta.nombre}}  </mat-card-title>
+        <mat-card-subtitle><span class="badge">-{{oferta.porcentaje}}% descuento</span></mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image src="{{oferta.imagen_principal}}" alt="Photo of a Shiba Inu">
+      <mat-card-content>
+        <p>
+        {{oferta.descripcion}}
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        
+        <button mat-button class="offset-4" (click)="redirigir(oferta)">  Ver </button>
+      </mat-card-actions>
+    </mat-card>
+    
+  </div>
+</div>

@@ -1,0 +1,157 @@
+/*---------------------------------------------*/
+                /*Foto de perfil*/
+/*---------------------------------------------*/
+
+.profile-header-img > img.img-circle {
+  width: 35px;
+  height: 35px;
+  margin-right: 0px;
+  border-radius: 60%;
+}
+
+#fotoPerfil:hover {
+  border: solid 2px #d4b170;
+}
+
+i:hover {
+  color: #d4b170;
+  -webkit-animation: heartbeat 1.5s ease-in-out infinite both;
+  animation: heartbeat 1.5s ease-in-out infinite both;
+}
+
+@-webkit-keyframes heartbeat {
+  from {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-transform-origin: center center;
+    transform-origin: center center;
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+  10% {
+    -webkit-transform: scale(0.91);
+    transform: scale(0.91);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+  17% {
+    -webkit-transform: scale(0.98);
+    transform: scale(0.98);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+  33% {
+    -webkit-transform: scale(0.87);
+    transform: scale(0.87);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+  45% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+}
+@keyframes heartbeat {
+  from {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-transform-origin: center center;
+    transform-origin: center center;
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+  10% {
+    -webkit-transform: scale(0.91);
+    transform: scale(0.91);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+  17% {
+    -webkit-transform: scale(0.98);
+    transform: scale(0.98);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+  33% {
+    -webkit-transform: scale(0.87);
+    transform: scale(0.87);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+  45% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+}
+
+
+/*---------------------------------------------*/
+                /*Navbar*/
+/*---------------------------------------------*/
+.navbar-dark .navbar-toggler {
+  
+  
+  border-color: #d4b170;
+  
+}
+
+.nav-item:hover {
+  cursor: pointer;
+  background-color: #d4b170;
+  box-shadow: 5px 5px white;
+}
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 60%;
+}
+
+#carrito:hover {
+        background-color: transparent;
+        box-shadow: none;
+}
+
+#fotoperfil{
+        margin-right: 20px;
+}
+
+#fotoperfil:hover {
+        background-color: transparent;
+        box-shadow: none;
+        border: solid transparent 0px;
+}
+
+
+
+
+#contenedor{
+  padding-top: 20px;
+  background-color: #212529;
+}
+
+nav{
+  padding:10px;
+  border-bottom: solid 1px white;
+}
+
+mat-option{
+  background-color: #212529;
+  color: white;
+}
+
+mat-option:hover{
+  background-color: #d4b170 !important ;
+  color: black;
+  
+}
+
+
