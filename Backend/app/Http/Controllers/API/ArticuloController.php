@@ -82,7 +82,7 @@ class ArticuloController extends Controller
 
     public function articulos_en_oferta() {
 
-        $articulos_oferta = DB::select('SELECT articulos.nombre, articulos.imagen_principal, articulos.precio, articulos.descripcion, ofertas.porcentaje
+        $articulos_oferta = DB::select('SELECT articulos.id, articulos.nombre, articulos.imagen_principal, articulos.precio, articulos.descripcion, ofertas.porcentaje
                                         from articulos, ofertas
                                         where articulos.id = ofertas.id_articulo
                                         and ofertas.porcentaje > 0'
