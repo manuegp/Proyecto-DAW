@@ -34,11 +34,6 @@ Route::post('/tokens/create', function (Request $request) {
     ]);
 
     $user = User::where('email', $request->email)->first();
-    /*$password = User::where('password', $request->password)->first();
-
-    if (! $user || ($request->password != $user->password) ) {
-        return "contraseña_introducida: ". $request->password. " contraseña_bbdd: ". $user->password;
-    }*/
 
 
     if (! $user || ! Hash::check($request->password, $user->password)) {
@@ -53,9 +48,9 @@ Route::post('/tokens/create', function (Request $request) {
     ]);
 });
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+/*Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
-});
+});*/
 
 Route::get('articulos/juegos', [ArticuloController::class, 'all_juegos']);
 Route::get('articulos/juego/{id_articulo}', [ArticuloController::class, 'juego_seleccionado']);
@@ -81,9 +76,9 @@ Route::apiResource('deseados', DeseadoController::class);
 Route::apiResource('ofertas', OfertaController::class);
 
 
-Route::middleware('auth:sanctum')->get('/', function(){
+/*Route::middleware('auth:sanctum')->get('/', function(){
     return response()->json(["nombre"=>"hola"]);
-});
+});*/
 
 Route::get('email', [MailController::class, 'sendEmail']);
 Route::get('email_password/{email}', [MailController::class, 'sendEmailForgetPassword']);

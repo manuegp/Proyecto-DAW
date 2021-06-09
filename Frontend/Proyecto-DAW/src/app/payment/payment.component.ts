@@ -66,7 +66,8 @@ this.btncerrar = true;
           console.log(this.btncerrar)
           //Aqui se usa la url para correo [Mario]
           this.enviarEmail()
-
+          this.eliminarProductosDeseados()
+          
           //AÃ±adir tabla ventas objetos vendidos [Manu]
 
           this.añadirVentas()
@@ -105,6 +106,7 @@ this.btncerrar = true;
   }
 
   eliminarCarrito(){
+
     for (let i = 0; i < this.data.juegos.length; i++) {
       this.http.delete("http://127.0.0.1:8000/api/carrito/"+this.data.juegos[i].id).subscribe({
         next: data => {
@@ -127,11 +129,15 @@ this.btncerrar = true;
     }
   
 
+eliminarProductosDeseados() {
+  this.http.delete("http://127.0.0.1:8000/api/deseados/productos_pagados/" + this.getIdUser()).subscribe();
+}
+
 
 enviarEmail(){
   if (this.getIdUser() != "") {
-    
-    let usuario = this.http.get("http://127.0.0.1:8000/api/usuarios/" + this.getIdUser()).subscribe((result) => {
+
+    this.http.get("http://127.0.0.1:8000/api/usuarios/" + this.getIdUser()).subscribe((result) => {
 
       this.prueba = result
       this.http.get("http://127.0.0.1:8000/api/email_pago/" + this.prueba.data.email).subscribe();

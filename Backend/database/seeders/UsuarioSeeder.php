@@ -22,7 +22,7 @@ class UsuarioSeeder extends Seeder
                 'password' => bcrypt('prueba1'),
                 'nick' => '2+2=Tortilla',
                 'telefono' => '675868596',
-                'email' => 'manuel123456@gmail.com',
+                'email' => 'manuel.mgp.2001@gmail.com',
                 'direccion' => 'C/Rio Garona, 25',
                 'foto' => null,
                 'es_administrador' => 1,

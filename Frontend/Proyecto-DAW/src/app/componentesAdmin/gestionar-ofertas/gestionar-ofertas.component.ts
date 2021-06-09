@@ -15,32 +15,34 @@ import { map, startWith } from 'rxjs/operators';
 export class GestionarOfertasComponent implements OnInit {
   @ViewChild('articulo') articuloSelect: any;
 
-   @ViewChild('percent') porciento: any;
+  @ViewChild('percent') porciento: any;
   stateCtrl = new FormControl();
   filteredStates: Observable<any[]> | undefined;
-idOG: any;
-precioOg: any;
-  states: any[] =[];
-  getArticulos(){
+  error: boolean = false;
+  usuarios: any;
+  idOG: any;
+  precioOg: any;
+  states: any[] = [];
+  getArticulos() {
     this.http.get('http://127.0.0.1:8000/api/articulos').toPromise()
-    .then((data: any) => {
-      this.states = data.data
-      this.filteredStates = this.stateCtrl.valueChanges
-      .pipe(
-        startWith(''),
-        map(state => state ? this._filterStates(state) : this.states.slice())
-      );
-    });
+      .then((data: any) => {
+        this.states = data.data
+        this.filteredStates = this.stateCtrl.valueChanges
+          .pipe(
+            startWith(''),
+            map(state => state ? this._filterStates(state) : this.states.slice())
+          );
+      });
   }
-  constructor(private dialogRef: MatDialogRef<GestionarOfertasComponent> ,private http: HttpClient, private _builder: FormBuilder,
-    ) {
+  constructor(private dialogRef: MatDialogRef<GestionarOfertasComponent>, private http: HttpClient, private _builder: FormBuilder,
+  ) {
     this.getArticulos()
-    
+
   }
 
 
   ngOnInit(): void {
-    
+
   }
 
   private _filterStates(value: string): any[] {
@@ -50,33 +52,76 @@ precioOg: any;
   }
 
   cancelar() {
-    
+
   }
 
-  getIdfromArticulo(articulo: any){
+  getIdfromArticulo(articulo: any) {
     for (let i = 0; i < this.states.length; i++) {
-        if(this.states[i].nombre === articulo){
-             this.idOG =this.states[i].id
-             this.precioOg =this.states[i].precio
-        }
-    }
-  }
-  submit(){
-   console.log(this.states)
-   let porciento=  this.porciento.nativeElement.value
-   let articulo = this.articuloSelect.nativeElement.value
-   
-   this.getIdfromArticulo(articulo)
-   //Aqui se envia servidor
-  
-   this.http.put("http://127.0.0.1:8000/api/ofertas/"+ this.idOG,{
-        
-        porcentaje: porciento
-    }).toPromise().then((data:any) => {
-      console.log(data)
-      console.log(JSON.stringify(data.JSON))
-      this.dialogRef.close();
+      if (this.states[i].nombre === articulo) {
 
-    }) 
+        return this.states[i].id
+      }
+    }
+    return null
+  }
+
+  ConvertStringToNumber(input: string) {
+    var numeric = Number(input);
+    return numeric;
+  }
+
+
+  submit() {
+
+    console.log(this.states)
+    let porciento = this.porciento.nativeElement.value
+    let articulo = this.articuloSelect.nativeElement.value
+    console.log(porciento)
+    this.idOG = this.getIdfromArticulo(articulo)
+    console.log(this.idOG)
+    porciento = this.ConvertStringToNumber(porciento)
+    console.log(porciento)
+
+
+    if (porciento > 0 && porciento < 100 && this.idOG != null) {
+
+
+
+      this.getIdfromArticulo(articulo)
+      //Aqui se envia servidor
+
+      this.http.put("http://127.0.0.1:8000/api/ofertas/" + this.idOG, {
+
+        porcentaje: porciento
+      }).toPromise().then((data: any) => {
+        console.log(data)
+        console.log(JSON.stringify(data.JSON))
+        this.dialogRef.close();
+
+        this.http.get("http://127.0.0.1:8000/api/usuarios/articulo_deseado_oferta/" + this.idOG).subscribe((result) => {
+
+          this.usuarios = result;
+
+          for (let i = 0; i < this.usuarios.length; i++) {
+
+            this.http.get("http://127.0.0.1:8000/api/email_ofertas/" + this.usuarios[i].email + "/" + this.idOG).subscribe();
+
+          }
+
+          window.location.reload();
+
+        });
+
+
+      })
+
+    }
+
+    else {
+      console.log("Error");
+      this.error = true;
+    }
+
+
   }
 }

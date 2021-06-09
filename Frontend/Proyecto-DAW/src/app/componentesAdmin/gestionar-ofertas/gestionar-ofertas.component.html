@@ -23,6 +23,7 @@
                 <mat-label>Porcentaje de descuento</mat-label>
                 <input matInput #percent type="number" min="1" max="100" size="2"/>
               </mat-form-field>
+              <span *ngIf="error">Error asegurate de introducir bien los datos y un porcentaje mayor de 100 y menor que 0</span>
       <div class="offset-5 col-5">
         <button type="submit" class="boton">
           Modificar
