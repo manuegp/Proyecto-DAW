@@ -90,7 +90,7 @@ precioOg: any;
       console.log(data)
       console.log(JSON.stringify(data.JSON))
       this.dialogRef.close();
-      window.location.reload()
+      window.location.reload();
 
     })
     
