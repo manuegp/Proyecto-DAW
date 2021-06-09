@@ -245,10 +245,10 @@ export class VentanaPestanasComponent implements OnInit {
   }
 
   asignarOfertas() {
-    this.http.get('http://127.0.0.1:8000/api/ofertas').subscribe((result) => {
+    this.http.get('http://127.0.0.1:8000/api/articulos/oferta').subscribe((result) => {
       this.asignarOfer = result;
       console.log(this.asignarOfer);
-      this.dataSourceOfertas = new MatTableDataSource(this.asignarOfer.data);
+      this.dataSourceOfertas = new MatTableDataSource(this.asignarOfer);
       this.dataSourceOfertas.paginator = this.paginator4;
     });
   }

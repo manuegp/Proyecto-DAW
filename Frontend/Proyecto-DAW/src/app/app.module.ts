@@ -23,7 +23,7 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatSidenavModule} from '@angular/material/sidenav';
-import {IvyCarouselModule} from 'angular-responsive-carousel';
+import {CarouselComponent, IvyCarouselModule} from 'angular-responsive-carousel';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {MatListModule} from '@angular/material/list';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
@@ -49,9 +49,10 @@ import { RecuperarPasswordComponent } from './recuperar-password/recuperar-passw
 import { GestionarOfertasComponent } from './componentesAdmin/gestionar-ofertas/gestionar-ofertas.component';
 import { MerchComponent } from './merch/merch.component';
 import { ArticuloComponent } from './articulo/articulo.component';
+import { CarruselComponent } from './carrusel/carrusel.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, ProfileComponent, AdminComponent, ProductComponent, ListProductsComponent, ShoppingCartComponent, LoginComponent, SiginComponent, VentanaPestanasComponent, ModificarProductoComponent, ModificarUsuarioComponent, ForgotpasswordComponent, PaymentComponent, SuccessComponent, ModificarJuegoComponent, RecuperarPasswordComponent, GestionarOfertasComponent, MerchComponent, ArticuloComponent],
+  declarations: [AppComponent, HomeComponent, ProfileComponent, AdminComponent, ProductComponent, ListProductsComponent, ShoppingCartComponent, LoginComponent, SiginComponent, VentanaPestanasComponent, ModificarProductoComponent, ModificarUsuarioComponent, ForgotpasswordComponent, PaymentComponent, SuccessComponent, ModificarJuegoComponent, RecuperarPasswordComponent, GestionarOfertasComponent, MerchComponent, ArticuloComponent, CarruselComponent],
   imports: [
     MatAutocompleteModule,
     BrowserModule,

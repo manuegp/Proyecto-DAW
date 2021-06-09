@@ -49,9 +49,27 @@ export class ProductComponent  {
     console.log(this.data.nombre)
     this.safeUrl = this._sanitizer.bypassSecurityTrustResourceUrl(this.data.video );
     console.log(this.safeUrl)
+    this.comprobarOferta(this.data);
+  }
+  
+esOferta:boolean = false;
+descuentoAplicado: any;
+  comprobarOferta(dato:any){
+    
+    if(dato.porcentaje !=0){
+      this.esOferta= true;
+      console.log(this.esOferta)
+      this.hacerDescuento(dato)
+    }
   }
 
-  
+  hacerDescuento(data: any){
+    let porcentajeInvertido = data.porcentaje
+    porcentajeInvertido = 1-((porcentajeInvertido* 0.01))
+    porcentajeInvertido = data.precio *porcentajeInvertido
+    this.descuentoAplicado= porcentajeInvertido.toFixed(2);
+    console.log(data.precio *porcentajeInvertido)
+  }
 
   obtenerID(){
     this._ac.paramMap.subscribe(params => {

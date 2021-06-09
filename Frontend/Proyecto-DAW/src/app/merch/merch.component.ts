@@ -40,7 +40,7 @@ export class MerchComponent implements OnInit {
 
   obtenerArticulo() {
     this.http
-      .get('http://127.0.0.1:8000/api/articulos/' + this.id)
+      .get('http://127.0.0.1:8000/api/articulos/merch/' + this.id)
       .toPromise()
       .then((result) => {
         console.log(result);
@@ -49,8 +49,9 @@ export class MerchComponent implements OnInit {
   }
 
   asignarArticulos(dato: any) {
-    this.data = dato.data;
+    this.data = dato[0];
     console.log(this.data);
+    this.comprobarOferta(this.data)
   }
 
   obtenerID() {
@@ -188,4 +189,23 @@ añadirDeseadosBBDD(){
   this.obtenerDeseados(this.idUser);
 })
 }
+
+esOferta:boolean = false;
+descuentoAplicado: any;
+  comprobarOferta(dato:any){
+    
+    if(dato.porcentaje !=0){
+      this.esOferta= true;
+      console.log(this.esOferta)
+      this.hacerDescuento(dato)
+    }
+  }
+
+  hacerDescuento(data: any){
+    let porcentajeInvertido = data.porcentaje
+    porcentajeInvertido = 1-((porcentajeInvertido* 0.01))
+    porcentajeInvertido = data.precio *porcentajeInvertido
+    this.descuentoAplicado= porcentajeInvertido.toFixed(2);
+    console.log(data.precio *porcentajeInvertido)
+  }
 }

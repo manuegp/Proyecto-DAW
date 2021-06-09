@@ -6,213 +6,52 @@
 
 <div class="container">
   <mat-list>
-    <mat-list-item><h1 >Nuevos juegos</h1></mat-list-item>
+    <mat-list-item><h1 >Juego destacado</h1></mat-list-item>
+    <mat-divider></mat-divider>
+    <br>
+<div class="row">
+  <div class="d-none d-sm-block col-lg-8 " >
+    <iframe
+      width="800"
+      height="490"
+      [src] =   "safeUrl"
+      title="YouTube video player"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+    ></iframe>
+  </div>
+
+  <div class="col-12 col-lg-4 contenedor" >
+    <u><h1>Hollow knight</h1></u>
+    <p>
+      Una aventura épica a través de un vasto reino de insectos y héroes que se encuentra en ruinas. Explora cavernas tortuosas, combate contra criaturas corrompidas y entabla amistad con extraños insectos, todo en un estilo clásico en 2D dibujado.
+    </p>
+<p>
+  El videojuego cuenta la historia del Caballero, en su búsqueda para descubrir los secretos del largamente abandonado reino de Hallownest, cuyas profundidades atraen a los aventureros y valientes con la promesa de tesoros o la respuesta a misterios antiguos.
+</p>
+<h1></h1><button  class=" boton fifth offset-4 col-3" (click)="redirigirDestacado()">Visitar producto</button>
+    <div class="col-12 d-sm-none" >
+      <iframe
+        width="460"
+        height="250"
+        [src] =   "safeUrl"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      ></iframe>
+    </div>
+  </div>
+</div>
+
+  
+    <mat-list-item><h1 > Ofertas</h1></mat-list-item>
     <mat-divider></mat-divider>
     
     <br>
-  <div class=" ">
-    <carousel
-      style="z-index: 1;"
-      [loop]="true"
-      [cellsToScroll]="3"
-      [objectFit]="'cover'"
-      [arrowsOutside]="true"
-      [lightDOM]="false"
-      class="carousel--slider-aligment"
-    >
-      <div class="carousel-cell">
-        <div class="card card-border-none">
-          <h5><span class="badge bg-secondary">50% off</span></h5>
-          <img
-            src=""
-            
-          />
-          <div class="card-body">
-            <h5 class="card-title">La wea</h5>
-            <p class="card-text">
-              <b class="global-text-color mr-1">35.00€</b> <s>75.00€</s>
-            </p>
-            <div class="d-flex justify-content-center">
-              <a href="#" class="btn btn-sm btn-dark">
-                Añadir <i class="fa fa-shopping-cart ml-1"></i
-              ></a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="carousel-cell">
-        <div class="card card-border-none">
-          <h5><span class="badge bg-secondary">50% off</span></h5>
-          <img
-            src=""
-          />
-          <div class="card-body">
-            <h5 class="card-title">La wea</h5>
-            <p class="card-text">
-              <b class="global-text-color mr-1">35.00€</b> <s>75.00€</s>
-            </p>
-            <div class="d-flex justify-content-center">
-              <a href="#" class="btn btn-sm btn-dark">
-                Añadir <i class="fa fa-shopping-cart ml-1"></i
-              ></a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="carousel-cell">
-        <div class="card card-border-none">
-          <h5><span class="badge bg-secondary">50% off</span></h5>
-          <img
-            src=""
-          />
-          <div class="card-body">
-            <h5 class="card-title">La wea</h5>
-            <p class="card-text">
-              <b class="global-text-color mr-1">35.00€</b> <s>75.00€</s>
-            </p>
-            <div class="d-flex justify-content-center">
-              <a href="#" class="btn btn-sm btn-dark">
-                Añadir <i class="fa fa-shopping-cart ml-1"></i
-              ></a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="carousel-cell">
-        <div class="card card-border-none">
-          <h5><span class="badge bg-secondary">50% off</span></h5>
-          <img
-            src=""
-          />
-          <div class="card-body">
-            <h5 class="card-title">La wea</h5>
-            <p class="card-text">
-              <b class="global-text-color mr-1">35.00€</b> <s>75.00€</s>
-            </p>
-            <div class="d-flex justify-content-center">
-              <a href="#" class="btn btn-sm btn-dark">
-                Añadir <i class="fa fa-shopping-cart ml-1"></i
-              ></a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="carousel-cell">
-        <div class="card card-border-none">
-          <h5><span class="badge bg-secondary">50% off</span></h5>
-          <img
-            src=""
-          />
-          <div class="card-body">
-            <h5 class="card-title">La wea</h5>
-            <p class="card-text">
-              <b class="global-text-color mr-1">35.00€</b> <s>75.00€</s>
-            </p>
-            <div class="d-flex justify-content-center">
-              <a href="#" class="btn btn-sm btn-dark">
-                Añadir <i class="fa fa-shopping-cart ml-1"></i
-              ></a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="carousel-cell">
-        <div class="card card-border-none">
-          <h5><span class="badge bg-secondary">50% off</span></h5>
-          <img
-            src=""
-          />
-          <div class="card-body">
-            <h5 class="card-title">La wea</h5>
-            <p class="card-text">
-              <b class="global-text-color mr-1">35.00€</b> <s>75.00€</s>
-            </p>
-            <div class="d-flex justify-content-center">
-              <a href="#" class="btn btn-sm btn-dark">
-                Añadir <i class="fa fa-shopping-cart ml-1"></i
-              ></a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="carousel-cell">
-        <div class="card card-border-none">
-          <h5><span class="badge bg-secondary">50% off</span></h5>
-          <img
-            src=""
-          />
-          <div class="card-body">
-            <h5 class="card-title">La wea</h5>
-            <p class="card-text">
-              <b class="global-text-color mr-1">35.00€</b> <s>75.00€</s>
-            </p>
-            <div class="d-flex justify-content-center">
-              <a href="#" class="btn btn-sm btn-dark">
-                Añadir <i class="fa fa-shopping-cart ml-1"></i
-              ></a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="carousel-cell">
-        <div class="card card-border-none">
-          <h5><span class="badge bg-secondary">50% off</span></h5>
-          <img
-            src=""
-          />
-          <div class="card-body">
-            <h5 class="card-title">La wea</h5>
-            <p class="card-text">
-              <b class="global-text-color mr-1">35.00€</b> <s>75.00€</s>
-            </p>
-            <div class="d-flex justify-content-center">
-              <a href="#" class="btn btn-sm btn-dark">
-                Añadir <i class="fa fa-shopping-cart ml-1"></i
-              ></a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="carousel-cell">
-        <div class="card card-border-none">
-          <h5><span class="badge bg-secondary">50% off</span></h5>
-          <img
-            src=""
-          />
-          <div class="card-body">
-            <h5 class="card-title">La wea</h5>
-            <p class="card-text">
-              <b class="global-text-color mr-1">35.00€</b> <s>75.00€</s>
-            </p>
-            <div class="d-flex justify-content-center">
-              <a href="#" class="btn btn-sm btn-dark">
-                Añadir <i class="fa fa-shopping-cart ml-1"></i
-              ></a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="carousel-cell">
-        <div class="card card-border-none">
-          <h5><span class="badge bg-secondary">50% off</span></h5>
-          <img
-            src=""
-          />
-          <div class="card-body">
-            <h5 class="card-title">La wea</h5>
-            <p class="card-text">
-              <b class="global-text-color mr-1">35.00€</b> <s>75.00€</s>
-            </p>
-            <div class="d-flex justify-content-center">
-              <a href="#" class="btn btn-sm btn-dark">
-                Añadir <i class="fa fa-shopping-cart ml-1"></i
-              ></a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </carousel>
+  <div >
+    <app-carrusel></app-carrusel>
     <br />
     <br />
     <br />
