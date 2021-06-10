@@ -27,7 +27,10 @@ use App\Http\Controllers\API\MailController;
 |
 */
 
+
+//Esta ruta es la que se usara para loggear al usuario
 Route::post('/tokens/create', function (Request $request) {
+
     $request->validate([
         'email' => 'required|email',
         'password' => 'required'
@@ -46,12 +49,21 @@ Route::post('/tokens/create', function (Request $request) {
         'id' => $user->id,
         'administrador' => $user->es_administrador
     ]);
+
 });
 
-/*Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});*/
+//Rutas con las funciones basicas index/show/store/update/delete ya juntas
+Route::apiResource('usuarios', UsuarioController::class);
+Route::apiResource('articulos', ArticuloController::class);
+Route::apiResource('juegos', JuegoController::class);
+Route::apiResource('ventas', VentaController::class);
+Route::apiResource('requisitos_juego', RequisitosJuegoController::class);
+Route::apiResource('carrito', CarritoController::class);
+Route::apiResource('deseados', DeseadoController::class);
+Route::apiResource('ofertas', OfertaController::class);
 
+
+//Estas son las rutas restantes, cada una con su respectiva funcion
 Route::get('articulos/juegos', [ArticuloController::class, 'all_juegos']);
 Route::get('articulos/juego/{id_articulo}', [ArticuloController::class, 'juego_seleccionado']);
 Route::get('articulos/merchs', [ArticuloController::class, 'all_merch']);
@@ -65,22 +77,6 @@ Route::get('carrito/usuario/{id_usuario}', [CarritoController::class, 'carrito_u
 Route::get('usuarios/correo/{email}', [UsuarioController::class, 'email_user']);
 Route::get('usuarios/articulo_deseado_oferta/{id_articulo}', [UsuarioController::class, 'articulo_deseado_oferta_users']);
 Route::put('usuarios/password/{id_usuario}', [UsuarioController::class, 'updatePassword']);
-
-Route::apiResource('usuarios', UsuarioController::class);
-Route::apiResource('articulos', ArticuloController::class);
-Route::apiResource('juegos', JuegoController::class);
-Route::apiResource('ventas', VentaController::class);
-Route::apiResource('requisitos_juego', RequisitosJuegoController::class);
-Route::apiResource('carrito', CarritoController::class);
-Route::apiResource('deseados', DeseadoController::class);
-Route::apiResource('ofertas', OfertaController::class);
-
-
-/*Route::middleware('auth:sanctum')->get('/', function(){
-    return response()->json(["nombre"=>"hola"]);
-});*/
-
-Route::get('email', [MailController::class, 'sendEmail']);
 Route::get('email_password/{email}', [MailController::class, 'sendEmailForgetPassword']);
 Route::get('email_registro/{email}', [MailController::class, 'sendEmailUsuarioRegistrado']);
 Route::get('email_pago/{email}', [MailController::class, 'sendEmailPago']);

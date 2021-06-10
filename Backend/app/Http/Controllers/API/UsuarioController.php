@@ -61,6 +61,7 @@ class UsuarioController extends Controller
             'telefono' => 'required',
             'email' => 'required',
             'es_administrador'=> 'required',
+            'direccion'=> 'required',
         ]);
     
         $usuario = User::create([
@@ -71,6 +72,7 @@ class UsuarioController extends Controller
             'telefono' => $request['telefono'],
             'email' => $request['email'],
             'es_administrador'=> $request['es_administrador'],
+            'direccion'=> $request['direccion'],
         ]);
 
         return new UsuarioResource($usuario);

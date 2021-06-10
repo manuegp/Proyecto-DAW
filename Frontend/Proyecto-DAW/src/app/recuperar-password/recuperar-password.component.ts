@@ -28,25 +28,21 @@ retrieveForm : FormGroup;
 
     let usuario = this.getIdUser();
 
-    if (usuario != "") {
-
       alert("La contraseña se ha cambiado correctamente");
       console.log(this.retrieveForm.controls['confirmarContra'].value);
 
       this.http.put("http://127.0.0.1:8000/api/usuarios/password/"+ usuario, {
         password: this.retrieveForm.controls['confirmarContra'].value
       }).toPromise().then((data:any) => {
-        console.log(data)
-        console.log(JSON.stringify(data.JSON))
-
-        localStorage.removeItem("password");
-      window.location.href ="home";
+        console.log(data);
+        console.log(JSON.stringify(data.JSON));
 
       console.log("Hecho");
         
       });
 
-    }
+      localStorage.removeItem("password");
+      window.location.href ="home";
 
   }
 

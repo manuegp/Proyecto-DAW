@@ -23,9 +23,9 @@ const routes: Routes = [
   { path: 'product/:id', component: ArticuloComponent },
   { path: 'admin', component: AdminComponent , canActivate:[AutenticacionGuard]},
   { path: 'shopping-cart', component: ShoppingCartComponent },
-  { path: 'register', component: SiginComponent },
+  { path: 'register', component: SiginComponent }, 
   { path: 'forgotpassword', component: ForgotpasswordComponent  },
-  { path: 'recuperar-password', component: RecuperarPasswordComponent ,canActivate:[AutenticationProfileGuard]}
+  { path: 'recuperar-password', component: RecuperarPasswordComponent}
 
 ];
 

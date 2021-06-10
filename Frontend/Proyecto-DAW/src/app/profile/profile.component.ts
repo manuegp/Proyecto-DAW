@@ -180,5 +180,13 @@ export class ProfileComponent implements OnInit {
 
   cambiarContra(){
     
+    this.http.get("http://127.0.0.1:8000/api/usuarios/correo/" + this.signupForm.controls.email.value).subscribe((result) => {
+
+      localStorage.setItem("password", JSON.stringify(result));
+      this.router.navigate(['/recuperar-password']);
+
+    });
+
   }
+
 }
