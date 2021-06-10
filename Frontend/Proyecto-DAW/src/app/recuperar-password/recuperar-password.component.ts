@@ -50,13 +50,29 @@ retrieveForm : FormGroup;
 
   comprobarNuevaContrasena() {
 
-    if (this.retrieveForm.controls['contra'].value == this.retrieveForm.controls['confirmarContra'].value) {
+    let contra= this.retrieveForm.get("contra")?.value
+    let contraConf = this.retrieveForm.get("confirmarContra")?.value
+    console.log(contra);
+    console.log(contraConf);
+    console.log(!contra.trim().length)
+    console.log(!contraConf.trim().length)
+    
+     if(contra != contraConf || this.isEmpty(contra) == true && this.isEmpty(contraConf) == true){
+      
+      console.log(" no coinciden");
+      this.pass_correcto= false;
 
-      this.pass_correcto = true;
-
+    }else if(contra == contraConf){
+      console.log("coinciden");
+      this.pass_correcto= true;
     }    
 
   }
+
+  isEmpty(str) {
+    console.log(!str.trim().length)
+  return !str.trim().length;
+}
 
   getIdUser(){
     if (localStorage.getItem("password")) {

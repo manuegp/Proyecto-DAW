@@ -65,13 +65,19 @@ export class ShoppingCartComponent implements OnInit {
   calcularTotal(){
     let total = 0;
     for (let i = 0; i < this.juegosCesta.length; i++) {
-      total = total + (this.juegosCesta[i].precio * this.juegosCesta[i].cantidad)
+      total = total + ( this.aplicarDescuento(this.juegosCesta[i].precio, this.juegosCesta[i].porcentaje) * this.juegosCesta[i].cantidad)
     }
     console.log(this.juegosCesta, total)
     this.totalCoste = total.toFixed(2)
   }
  
-  
+  aplicarDescuento(precio, descuento){
+    let porcentajeInvertido = descuento
+    porcentajeInvertido = 1-((porcentajeInvertido* 0.01))
+    porcentajeInvertido = precio *porcentajeInvertido
+    let descuentoAplicado= porcentajeInvertido.toFixed(2);
+    return descuentoAplicado;
+  }
   obtenerArticulos() {
     this.http
       .get('http://127.0.0.1:8000/api/carrito/usuario/' + this.idUser.id)

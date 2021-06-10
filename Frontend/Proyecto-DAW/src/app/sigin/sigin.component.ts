@@ -80,16 +80,23 @@ export class SiginComponent  {
     let contraConf = this.signupForm.get("confcontraseña")?.value
     console.log(contra);
     console.log(contraConf);
-    if(contra == contraConf){
-      console.log("coinciden");
-      this.contrasenas= true;
-    }else{
+    console.log(!contra.trim().length)
+    console.log(!contraConf.trim().length)
+    
+     if(contra != contraConf || this.isEmpty(contra) == true && this.isEmpty(contraConf) == true){
+      
       console.log(" no coinciden");
       this.contrasenas= false;
 
+    }else if(contra == contraConf){
+      console.log("coinciden");
+      this.contrasenas= true;
     }
    }
 
-
+    isEmpty(str) {
+      console.log(!str.trim().length)
+    return !str.trim().length;
+}
 
 }

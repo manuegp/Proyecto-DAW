@@ -53,6 +53,8 @@ usuarios:any;
 
   cancelar() {
     
+      this.dialogRef.close();
+    
   }
 
   getIdfromArticulo(articulo: any){

@@ -20,6 +20,9 @@
     background-color: #d4b170;
     
   }
+  .mat-label{
+    color:#d4b170 ;
+  }
 
   .borrar:hover{
     background-color: red;
@@ -43,3 +46,10 @@
   span{
       color: red;
   }
+
+  input{
+    color: white;
+  }
+  mat-label{
+    color: white;
+}
