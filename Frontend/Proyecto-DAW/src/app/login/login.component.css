@@ -6,11 +6,12 @@ form{
 }
 
 button{
-    background-color: springgreen;
+    background-color: #d4b170;;
+    ;
 }
 
 button:hover{
-    box-shadow: 5px 5px red;
+    box-shadow: 5px 5px white;
 }
 
 p{
@@ -21,4 +22,6 @@ mat-label{
     color: white;
 }
 
-
+a{
+    color: white
+}

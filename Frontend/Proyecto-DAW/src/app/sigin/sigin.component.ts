@@ -19,7 +19,7 @@ export class SiginComponent  {
    
 
 
-  enviarDatos(nombre:string, apellidos:string, password:string, nick:string,  telefono:number, email:string,){
+  enviarDatos(nombre:string, apellidos:string, password:string, nick:string,  telefono:number, email:string, direccion:string){
     this.http.post(this.url,{
         nombre: nombre,
         apellidos: apellidos,
@@ -27,7 +27,8 @@ export class SiginComponent  {
         nick: nick,
         telefono: telefono,
         email: email,
-        es_administrador : 0
+        es_administrador : 0,
+        direccion: direccion
     }).toPromise().then((data:any) => {
       console.log(data)
       console.log(JSON.stringify(data.JSON))
@@ -47,6 +48,7 @@ export class SiginComponent  {
       apellidos: ['', Validators.required], 
       email: ['', Validators.compose([Validators.email, Validators.required])],
       telefono: ['', Validators.required],
+      direccion: ['', Validators.required],
       contraseña: ['', Validators.required],
       confcontraseña: ['', Validators.required]
     })
@@ -63,9 +65,10 @@ export class SiginComponent  {
     this.signupForm.controls['contraseña'].value, 
     this.signupForm.controls['username'].value,
     this.signupForm.controls['telefono'].value,
-    this.signupForm.controls['email'].value  
+    this.signupForm.controls['email'].value,
+    this.signupForm.controls['direccion'].value   
     );
-    
+    confirm("Cuenta creada con exito, recibira un email")
     this.router.navigate(['home']);
     
   }

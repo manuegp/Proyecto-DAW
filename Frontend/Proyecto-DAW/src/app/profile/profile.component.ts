@@ -177,4 +177,8 @@ export class ProfileComponent implements OnInit {
   redirigir(event: any) {
     this.router.navigate(['/product/' + event.id_articulo]);
   }
+
+  cambiarContra(){
+    
+  }
 }

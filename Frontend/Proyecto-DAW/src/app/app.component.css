@@ -105,11 +105,7 @@ i:hover {
   box-shadow: 5px 5px white;
 }
 
-.example-form {
-  min-width: 150px;
-  max-width: 500px;
-  width: 100%;
-}
+
 
 .example-full-width {
   width: 60%;

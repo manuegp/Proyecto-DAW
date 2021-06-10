@@ -2,7 +2,7 @@
 
 <div class="container">
   <div class="row">
-    <div class="mat-elevation-z8">
+    <div class="mat-elevation-z8 contenido">
       <mat-list-item><h1 >Mis productos</h1></mat-list-item>
     <mat-divider></mat-divider>
       <table mat-table [dataSource]="juegosCesta" class="col-12">
@@ -45,6 +45,7 @@
           <td mat-cell *matCellDef="let element">
             <div>
               <ngx-number-spinner
+              
                 [min]="1"
                 [value]="element.cantidad"
                 [max]="99"

@@ -14,6 +14,9 @@
             formControlName="username"
             autocomplete="doNotAutoComplete"
           />
+          <mat-error *ngIf="signupForm.get('username')!.touched"
+            >Nombre de usuario no valido</mat-error >
+
         </mat-form-field>
       </p>
       <p>
@@ -25,6 +28,8 @@
             formControlName="nombre"
             autocomplete="doNotAutoComplete"
           />
+          <mat-error *ngIf="signupForm.get('nombre')!.touched"
+            >Nombre no valido</mat-error >
         </mat-form-field>
       </p>
       <p>
@@ -36,6 +41,8 @@
             formControlName="apellidos"
             autocomplete="doNotAutoComplete"
           />
+          <mat-error *ngIf="signupForm.get('apellidos')!.touched"
+            >Apellidos no valido</mat-error >
         </mat-form-field>
       </p>
 
@@ -70,8 +77,25 @@
             formControlName="telefono"
             pattern="(\+34|0034|34)?[ -]*(6|7)[ -]*([0-9][ -]*){8}"
           />
+          
+        </mat-form-field>
+        
+      </p>
+
+      <p>
+        <mat-form-field appearance="standard">
+          <mat-label>Direccion</mat-label>
+          <input
+            matInput
+            
+            formControlName="direccion"
+            autocomplete="doNotAutoComplete"
+          />
+          <mat-error *ngIf="signupForm.get('direccion')!.touched"
+            >Direccion no valida</mat-error >
         </mat-form-field>
       </p>
+
 
       <p>
         <mat-form-field class="example-full-width">

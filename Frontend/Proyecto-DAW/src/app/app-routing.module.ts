@@ -24,8 +24,8 @@ const routes: Routes = [
   { path: 'admin', component: AdminComponent , canActivate:[AutenticacionGuard]},
   { path: 'shopping-cart', component: ShoppingCartComponent },
   { path: 'register', component: SiginComponent },
-  { path: 'forgotpassword', component: ForgotpasswordComponent },
-  { path: 'recuperar-password', component: RecuperarPasswordComponent }
+  { path: 'forgotpassword', component: ForgotpasswordComponent  },
+  { path: 'recuperar-password', component: RecuperarPasswordComponent ,canActivate:[AutenticationProfileGuard]}
 
 ];
 

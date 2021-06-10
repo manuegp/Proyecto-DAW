@@ -1,9 +1,4 @@
-#contenido{
-    background-color: #212529;
-    color: white;
-    margin-bottom: 10px;
-    padding-bottom: 10px;
-}
+
 .mat-list-item{
     color: white !important;
     height: 130px !important;
@@ -14,6 +9,12 @@ background-color: aquamarine;
 
 
 }
+
+.contenido{
+    box-shadow: 10px 10px #d4b170;
+    border: white 1px solid;
+}
+
 img{
     width: 230px;
     height: 107.5px;
@@ -69,10 +70,12 @@ i:hover{
 .sad{
     
 font-size: 50px;
+color: #d4b170;;
+
 }
 
 .sad:hover{
-    color: red;
+    color: #d4b170;;
     font-size: 50px;
     background-color: transparent;
 }
@@ -95,4 +98,18 @@ button{
 button:hover{
     
   box-shadow: 5px 5px red;
+}
+
+h1{
+
+    color: white;
+}
+
+a{
+    color: #d4b170
+}
+
+
+ .ripple{
+    background-color:  #d4b170;;
 }
