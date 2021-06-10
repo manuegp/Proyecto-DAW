@@ -10,10 +10,17 @@ import { AnonymousSubject } from 'rxjs/internal/Subject';
   styleUrls: ['./articulo.component.css'],
 })
 export class ArticuloComponent implements OnInit {
-  id: any;
-  datos: any;
-  esTipo: string = '';
-  Articulos: any;
+  //---------------------------------------------------------
+  //---------Variables---------------------------------------
+  //---------------------------------------------------------
+  id: any; //Id de la URL
+  datos: any //Datos del juego de la pagina; 
+  esTipo: string = ''; //El tipo de producto de la id de la URL
+  Articulos: any; //Todos los articulos
+
+  //---------------------------------------------------------
+  //--Constructor/Funciones de inicio del componente---------
+  //---------------------------------------------------------
   constructor(private _ac: ActivatedRoute, private http: HttpClient) {}
 
   ngOnInit(): void {
@@ -21,6 +28,11 @@ export class ArticuloComponent implements OnInit {
     this.conseguirTotalArticulos();
   }
 
+  //---------------------------------------------------------
+  //---------Funciones---------------------------------------
+  //---------------------------------------------------------
+
+  //Obtengo el id del producto de la URL
   obtenerID() {
     this._ac.paramMap.subscribe((params) => {
       const id = params.get('id');
@@ -28,50 +40,46 @@ export class ArticuloComponent implements OnInit {
     });
   }
 
+  //Coger toodos los articulos de la BBDD
   conseguirTotalArticulos() {
     this.http
-      .get('http://127.0.0.1:8000/api/articulos')
+      .get('http://127.0.0.1:8000/api/articulos') //--->Llamada a la url
       .toPromise()
       .then((data) => {
         this.Articulos = data;
-        this.Articulos = this.Articulos.data;
-        console.log(this.Articulos);
+        this.Articulos = this.Articulos.data; //Asigno todos los articulos
         this.comprobarArticulo();
       });
   }
-  verArticulo() {
-    console.log(this.Articulos);
-    console.log( this.Articulos[1].id)
-    for (let i = 0; i < this.Articulos.length; i++) {
-      console.log( this.Articulos[i].id)
-      if(this.id == this.Articulos[i].id){
-        
-        return true
-      }
-      
-    }
-    return false
-  }
 
+  //Compruebo que el articulo de la URL exista en la BBDD y compruebo tambien que tipo es juego/merch para cargar el componente adecuado
   comprobarArticulo() {
     this.http
-      .get('http://127.0.0.1:8000/api/articulos/juego/' + this.id)
+      .get('http://127.0.0.1:8000/api/articulos/juego/' + this.id) //Traigo los juegos
       .toPromise()
       .then((data) => {
         this.datos = data;
-        if (this.verArticulo()) {
-          if (this.datos.length == 0) {
-            console.log('Es merch');
-            this.esTipo = 'merch';
+        console.log(this.datos);
+        if (this.verArticulo()) { //TRUE: el articulo esta en la BBDD y se mira que tipo es; FALSE: devuelve a /home
+          if (this.datos.length == 0) { //Si el id no se encuentra en la tabla juegos devolvera una array con length 0 haciendo que sea merch
+            this.esTipo = 'merch'; 
           } else {
-            console.log('Es juego');
-            this.esTipo = 'juego';
+            this.esTipo = 'juego'; //Si el id  se encuentra en la tabla juegos devolvera una array con datos haciendo que sea juegos
           }
         } else {
-          console.log('Primo te has pasado');
           this.esTipo = 'error';
-          window.location.href="home"
+          window.location.href = 'home';
         }
       });
+  }
+
+  //Compruebo si el id de la URL introducida se encuentra entre los articulos de la BBDD
+  verArticulo() {
+    for (let i = 0; i < this.Articulos.length; i++) {
+      if (this.id == this.Articulos[i].id) { //Coinciden los Id
+        return true;
+      }
+    }
+    return false;
   }
 }
