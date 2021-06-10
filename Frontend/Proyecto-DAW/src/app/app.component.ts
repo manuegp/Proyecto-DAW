@@ -19,7 +19,7 @@ export class AppComponent implements OnInit{
   idUser : any ;
   logState: boolean = false;
   esAdmin: boolean = false;
-
+imagePath : string ="C:\Users\manue\Desktop\Proyecto-DAW\Frontend\Proyecto-DAW\src\app\img_prueba\mmj-games.svg";
   constructor(private router:Router,
     private dialog: MatDialog,
     private http: HttpClient,

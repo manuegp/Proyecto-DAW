@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="2.7in"
+   height="0.40000001in"
+   viewBox="0 0 68.580001 10.16"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1 (c68e22c387, 2021-05-23)"
+   sodipodi:docname="mmj-games.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     units="in"
+     width="8.5in"
+     inkscape:zoom="11.859035"
+     inkscape:cx="70.199642"
+     inkscape:cy="23.652852"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2">
+    <rect
+       x="164.60023"
+       y="152.4576"
+       width="163.25105"
+       height="111.98213"
+       id="rect6881" />
+    <rect
+       x="72.855843"
+       y="163.25105"
+       width="669.19446"
+       height="153.80678"
+       id="rect2079" />
+  </defs>
+  <g
+     inkscape:label="Capa 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <text
+       xml:space="preserve"
+       transform="scale(0.26458333)"
+       id="text2077"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect2079);fill:#000000;fill-opacity:1;stroke:none" />
+    <text
+       xml:space="preserve"
+       transform="scale(0.26458333)"
+       id="text6879"
+       style="font-size:40px;line-height:1.25;font-family:Azonix;-inkscape-font-specification:Azonix;white-space:pre;shape-inside:url(#rect6881)" />
+    <text
+       xml:space="preserve"
+       style="font-size:10.5833px;line-height:1.25;font-family:Azonix;-inkscape-font-specification:Azonix;white-space:pre;inline-size:70.9392;fill:#ffffff;stroke-width:0.264583"
+       x="68.895432"
+       y="61.756008"
+       id="text7789"
+       transform="matrix(1.0004035,0,0,1,-67.852715,-52.831731)"><tspan
+         x="68.895432"
+         y="61.756008"
+         id="tspan31354">MMJGAMES</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:10.5833px;line-height:1.25;font-family:Azonix;-inkscape-font-specification:Azonix;white-space:pre;inline-size:70.9392;fill:#ffffff;stroke-width:0.264583"
+       x="68.895432"
+       y="61.756008"
+       id="text7789-61"
+       transform="matrix(0.99959665,0,0,1,-67.753438,-52.823698)"><tspan
+         x="68.895432"
+         y="61.756008"
+         id="tspan31356">MMJGAMES</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:10.5833px;line-height:1.25;font-family:Azonix;-inkscape-font-specification:Azonix;white-space:pre;inline-size:70.9392;fill:#ffffff;stroke-width:0.264583"
+       x="68.895432"
+       y="61.756008"
+       id="text7789-6"
+       transform="matrix(1.0008069,0,0,1,-67.922377,-52.822905)"><tspan
+         x="68.895432"
+         y="61.756008"
+         id="tspan31358">MMJGAMES</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:10.5833px;line-height:1.25;font-family:Azonix;-inkscape-font-specification:Azonix;white-space:pre;inline-size:70.9392;stroke-width:0.264583"
+       x="68.895432"
+       y="61.756008"
+       id="text7789-3"
+       transform="translate(-68.151844,-52.828196)"><tspan
+         x="68.895432"
+         y="61.756008"
+         id="tspan31362"><tspan
+           style="fill:#dab170"
+           id="tspan31360">MMJGAMES</tspan></tspan></text>
+  </g>
+</svg>
