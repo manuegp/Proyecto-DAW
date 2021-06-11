@@ -37,6 +37,19 @@ export class ProductComponent  {
   
   id :any;
  
+  ngOnInit(): void {
+    this.obtenerID();
+    this.obtenerArticulos();
+    this.idUser= this.autenticacionServe.getIdUser()
+    this.obtenerCarrito(this.idUser);
+    this.obtenerDeseados(this.idUser)
+    
+    //this.comprobarCarrito(this.cesta)
+    console.log(this.cesta)
+    console.log(this.data);
+    console.log(this.id)
+  }
+
   obtenerArticulos() {
     this.http.get('http://127.0.0.1:8000/api/articulos/juego/'+this.id).subscribe(result => {
       console.log(result)
@@ -84,6 +97,7 @@ descuentoAplicado: any;
     this.http.get('http://127.0.0.1:8000/api/carrito/usuario/'+user.id).subscribe(result => {
       this.cesta = result;
       this.comprobarCarrito(this.cesta)
+      
     });
     
   }
@@ -108,12 +122,15 @@ descuentoAplicado: any;
     });
     
   }
+
+  
   comprobarDeseados(deseados:any){
-    
+    console.log(deseados)
+    console.log(this.id)
     for(var i = 0; i < deseados.length; i++){
       if(deseados[i].id_articulo == this.id){
         
-        console.log(this.cesta[i].id)
+        console.log(this.cesta[i])
         this.idEnDeseados = this.deseados[i].id;
         console.log("coinciden")
         this.enDeseado= true;
@@ -123,18 +140,7 @@ descuentoAplicado: any;
   
 
 
-  ngOnInit(): void {
-    this.obtenerID();
-    this.obtenerArticulos();
-    this.idUser= this.autenticacionServe.getIdUser()
-    this.obtenerCarrito(this.idUser);
-    
-    this.obtenerDeseados(this.idUser);
-    //this.comprobarCarrito(this.cesta)
-    console.log(this.cesta)
-    console.log(this.data);
-    console.log(this.id)
-  }
+  
 
   ngAfterViewInit(): void {
     
