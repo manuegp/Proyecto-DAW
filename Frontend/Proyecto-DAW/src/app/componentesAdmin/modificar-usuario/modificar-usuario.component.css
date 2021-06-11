@@ -2,6 +2,7 @@
     background-color: #212529;
 }
 
+/*Cambiar inputs*/
 mat-label{
     color: white;
 }
@@ -21,7 +22,7 @@ mat-checkbox {
 ::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background {
     background-color: #d4b170 !important;
   }
-
+/*Botones*/
   .boton {
     border: solid 1px white;
     margin-top: 5px;

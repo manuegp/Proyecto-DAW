@@ -24,8 +24,8 @@ export class ArticuloComponent implements OnInit {
   constructor(private _ac: ActivatedRoute, private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.obtenerID();
-    this.conseguirTotalArticulos();
+    this.obtenerID(); //Obtengo el ID de la URL
+    this.conseguirTotalArticulos(); //Obtengo todos los articulos
   }
 
   //---------------------------------------------------------
