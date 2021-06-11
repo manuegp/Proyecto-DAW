@@ -52,16 +52,6 @@ Route::post('/tokens/create', function (Request $request) {
 
 });
 
-//Rutas con las funciones basicas index/show/store/update/delete ya juntas
-Route::apiResource('usuarios', UsuarioController::class);
-Route::apiResource('articulos', ArticuloController::class);
-Route::apiResource('juegos', JuegoController::class);
-Route::apiResource('ventas', VentaController::class);
-Route::apiResource('requisitos_juego', RequisitosJuegoController::class);
-Route::apiResource('carrito', CarritoController::class);
-Route::apiResource('deseados', DeseadoController::class);
-Route::apiResource('ofertas', OfertaController::class);
-
 
 //Estas son las rutas restantes, cada una con su respectiva funcion
 Route::get('articulos/juegos', [ArticuloController::class, 'all_juegos']);
@@ -81,3 +71,14 @@ Route::get('email_password/{email}', [MailController::class, 'sendEmailForgetPas
 Route::get('email_registro/{email}', [MailController::class, 'sendEmailUsuarioRegistrado']);
 Route::get('email_pago/{email}', [MailController::class, 'sendEmailPago']);
 Route::get('email_ofertas/{email}/{id_articulo}', [MailController::class, 'sendEmailOfertas']);
+
+
+//Rutas con las funciones basicas index/show/store/update/delete ya juntas
+Route::apiResource('usuarios', UsuarioController::class);
+Route::apiResource('articulos', ArticuloController::class);
+Route::apiResource('juegos', JuegoController::class);
+Route::apiResource('ventas', VentaController::class);
+Route::apiResource('requisitos_juego', RequisitosJuegoController::class);
+Route::apiResource('carrito', CarritoController::class);
+Route::apiResource('deseados', DeseadoController::class);
+Route::apiResource('ofertas', OfertaController::class);

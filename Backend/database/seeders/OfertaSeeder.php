@@ -19,7 +19,7 @@ class OfertaSeeder extends Seeder
 
             [
                 'id_articulo' => '1',
-                'porcentaje' => 0,
+                'porcentaje' => 24,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -33,7 +33,7 @@ class OfertaSeeder extends Seeder
 
             [
                 'id_articulo' => '3',
-                'porcentaje' => 0,
+                'porcentaje' => 32,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -47,7 +47,7 @@ class OfertaSeeder extends Seeder
 
             [
                 'id_articulo' => '5',
-                'porcentaje' => 0,
+                'porcentaje' => 24,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -68,14 +68,14 @@ class OfertaSeeder extends Seeder
 
             [
                 'id_articulo' => '8',
-                'porcentaje' => 0,
+                'porcentaje' => 11,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
 
             [
                 'id_articulo' => '9',
-                'porcentaje' => 0,
+                'porcentaje' => 23,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],

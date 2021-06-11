@@ -13,5 +13,6 @@ class Venta extends Model
         'id_articulo',
         'id_usuario',
         'cantidad',
+        'precio_total'
     ];
 }

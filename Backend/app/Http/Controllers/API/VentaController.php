@@ -17,7 +17,14 @@ class VentaController extends Controller
      */
     public function index()
     {
-        return VentaResource::collection(Venta::all());
+
+        $ventas = DB::select('SELECT ventas.id_articulo, articulos.nombre AS nombre_articulo, ventas.id_usuario, users.nombre AS nombre_usuario, ventas.cantidad, ventas.precio_total, ventas.created_at
+                              from ventas, articulos, users
+                              where ventas.id_articulo = articulos.id
+                              and ventas.id_usuario = users.id'
+        );
+
+        return $ventas;
     }
 
     /**

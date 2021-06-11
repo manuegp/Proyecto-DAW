@@ -17,7 +17,7 @@ class CreateArticulosTable extends Migration
             $table->id();
             $table->string('nombre', 100);
             $table->string('descripcion', 500);
-            $table->double('precio', 4, 2);
+            $table->double('precio', 6, 2);
             $table->date('fecha_salida');
             $table->string('imagen_principal')->nullable();
             $table->timestamps();
