@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-recuperar-password',
@@ -8,8 +9,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./recuperar-password.component.css']
 })
 export class RecuperarPasswordComponent implements OnInit {
+
 retrieveForm : FormGroup;
-  constructor(    private _builder : FormBuilder, private http:HttpClient) {
+  constructor(    private _builder : FormBuilder, private http:HttpClient, private router:Router) {
       this.retrieveForm = this._builder.group({
         contra: ['', Validators.required],
         confirmarContra: ['', Validators.required]
@@ -42,7 +44,7 @@ retrieveForm : FormGroup;
       });
 
       localStorage.removeItem("password");
-      window.location.href ="home";
+      this.router.navigate(['home']);
 
   }
 

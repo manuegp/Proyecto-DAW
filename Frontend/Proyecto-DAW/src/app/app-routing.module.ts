@@ -13,6 +13,7 @@ import { RecuperarPasswordComponent } from './recuperar-password/recuperar-passw
 import { ArticuloComponent } from './articulo/articulo.component';
 import { AutenticationProfileGuard } from './login/autentication-profile.guard';
 import { PasswordGuard } from './login/password.guard';
+import { RegistroGuard } from './login/registro.guard';
 
 
 const routes: Routes = [
@@ -24,7 +25,7 @@ const routes: Routes = [
   { path: 'product/:id', component: ArticuloComponent },
   { path: 'admin', component: AdminComponent , canActivate:[AutenticacionGuard]},
   { path: 'shopping-cart', component: ShoppingCartComponent },
-  { path: 'register', component: SiginComponent }, 
+  { path: 'register', component: SiginComponent, canActivate:[RegistroGuard]}, 
   { path: 'forgotpassword', component: ForgotpasswordComponent  },
   { path: 'recuperar-password', component: RecuperarPasswordComponent, canActivate:[PasswordGuard]}
 
