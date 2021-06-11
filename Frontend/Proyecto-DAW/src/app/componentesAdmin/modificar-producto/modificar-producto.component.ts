@@ -57,6 +57,7 @@ export class ModificarProductoComponent {
       this.signupForm.controls['fecha_salida'].value,
       this.signupForm.controls['imagen'].value
     );
+
   }
 
   cancelar() {
@@ -111,8 +112,11 @@ export class ModificarProductoComponent {
             .toPromise()
             .then((data: any) => {
               this.dialogRef.close(); //Cierro el dialogo
+              
+            window.location.reload();
             });
         });
     }
+
   }
 }
