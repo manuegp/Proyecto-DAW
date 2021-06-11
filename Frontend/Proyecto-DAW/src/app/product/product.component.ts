@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import { AutenticacionService } from '../login/autenticacion.service';
-import { createThis } from 'typescript';
 import { waitForAsync } from '@angular/core/testing';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { LoginComponent } from '../login/login.component';
@@ -11,228 +10,243 @@ import { LoginComponent } from '../login/login.component';
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
-  styleUrls: ['./product.component.css']
+  styleUrls: ['./product.component.css'],
 })
-export class ProductComponent  {
-  panelOpenState = false;
-  data : any;
-  safeUrl : any;
-  videoURL : any;
-  idUser: any;
-  cesta: any;
-  deseados: any;
-  enCesta : boolean = false; 
-  enDeseado : boolean = false; 
+export class ProductComponent {
+  //---------------------------------------------------------
+  //---------Variables---------------------------------------
+  //---------------------------------------------------------
+  panelOpenState = false; //Para abrir el panel extensible
+  data: any; //Datos de los articulos
+  safeUrl: any; //URL del video segura
+  videoURL: any; //URL del video no segura
+  idUser: any; //ID del usuario logueado
+  cesta: any; //cesta del usuario
+  deseados: any; //deseados del usuario
+  enCesta: boolean = false; //Si se encuentra en cesta del usuario
+  enDeseado: boolean = false; //Si se encuentra en deseado del usuario
+  idEnDeseados: any; //ID en la tabla de deseados
+  idEnCesta: any; //ID en la tabla de carrito
+  id: any; //id de la url
+  esOferta: boolean = false; //si el producto esta en oferta
+  descuentoAplicado: any; //precio con descuento aplicado
 
-  idEnDeseados: any;
-  idEnCesta :any;
-  constructor(private _ac: ActivatedRoute,
-              private http: HttpClient,
-              private autenticacionServe:AutenticacionService,
-              private dialog: MatDialog,
-              private _sanitizer: DomSanitizer) {
-       
+  //---------------------------------------------------------
+  //--Constructor/Funciones de inicio del componente---------
+  //---------------------------------------------------------
+  constructor(
+    private _ac: ActivatedRoute,
+    private http: HttpClient,
+    private autenticacionServe: AutenticacionService,
+    private dialog: MatDialog,
+    private _sanitizer: DomSanitizer
+  ) {}
 
-               }
-  
-  id :any;
- 
   ngOnInit(): void {
     this.obtenerID();
     this.obtenerArticulos();
-    this.idUser= this.autenticacionServe.getIdUser()
+    this.idUser = this.autenticacionServe.getIdUser(); //Consigo el id del usuario
     this.obtenerCarrito(this.idUser);
-    this.obtenerDeseados(this.idUser)
-    
+    this.obtenerDeseados(this.idUser);
+
     //this.comprobarCarrito(this.cesta)
-    console.log(this.cesta)
+    console.log(this.cesta);
     console.log(this.data);
-    console.log(this.id)
+    console.log(this.id);
   }
+  //---------------------------------------------------------
+  //---------Funciones---------------------------------------
+  //---------------------------------------------------------
 
   obtenerArticulos() {
-    this.http.get('http://127.0.0.1:8000/api/articulos/juego/'+this.id).subscribe(result => {
-      console.log(result)
-      this.asignarArticulos(result)
-    });
+    //obtengo el articulo con el id de la url
+    this.http
+      .get('http://127.0.0.1:8000/api/articulos/juego/' + this.id)
+      .subscribe((result) => {
+        console.log(result);
+        this.asignarArticulos(result);
+      });
   }
 
-  asignarArticulos(dato : any){
-    this.data = dato[0]; 
-    console.log(this.data.nombre)
-    this.safeUrl = this._sanitizer.bypassSecurityTrustResourceUrl(this.data.video );
-    console.log(this.safeUrl)
+  //asigno los usuarios saneando la url del video y compruebo si tiene oferta
+  asignarArticulos(dato: any) {
+    this.data = dato[0];
+    this.safeUrl = this._sanitizer.bypassSecurityTrustResourceUrl(
+      this.data.video
+    );
     this.comprobarOferta(this.data);
   }
-  
-esOferta:boolean = false;
-descuentoAplicado: any;
-  comprobarOferta(dato:any){
-    
-    if(dato.porcentaje !=0){
-      this.esOferta= true;
-      console.log(this.esOferta)
-      this.hacerDescuento(dato)
+
+  //Compruebo si es oferta y luego hago el descuento
+  comprobarOferta(dato: any) {
+    if (dato.porcentaje != 0) {
+      this.esOferta = true;
+      console.log(this.esOferta);
+      this.hacerDescuento(dato);
     }
   }
 
-  hacerDescuento(data: any){
-    let porcentajeInvertido = data.porcentaje
-    porcentajeInvertido = 1-((porcentajeInvertido* 0.01))
-    porcentajeInvertido = data.precio *porcentajeInvertido
-    this.descuentoAplicado= porcentajeInvertido.toFixed(2);
-    console.log(data.precio *porcentajeInvertido)
+  //Aplico el descuento y lo guardo
+  hacerDescuento(data: any) {
+    let porcentajeInvertido = data.porcentaje;
+    porcentajeInvertido = 1 - porcentajeInvertido * 0.01;
+    porcentajeInvertido = data.precio * porcentajeInvertido;
+    this.descuentoAplicado = porcentajeInvertido.toFixed(2);
+    console.log(data.precio * porcentajeInvertido);
   }
 
-  obtenerID(){
-    this._ac.paramMap.subscribe(params => {
-      const id = params.get('id')
+  //Obtengo id de la URL
+  obtenerID() {
+    this._ac.paramMap.subscribe((params) => {
+      const id = params.get('id');
       this.id = id;
-      
-    })
+    });
   }
 
-  obtenerCarrito(user: any){
-    console.log(user.id)
-    this.http.get('http://127.0.0.1:8000/api/carrito/usuario/'+user.id).subscribe(result => {
-      this.cesta = result;
-      this.comprobarCarrito(this.cesta)
-      
-    });
-    
+  //Obtengo el carrito del usuario
+  obtenerCarrito(user: any) {
+    console.log(user.id);
+    this.http
+      .get('http://127.0.0.1:8000/api/carrito/usuario/' + user.id)
+      .subscribe((result) => {
+        this.cesta = result;
+        this.comprobarCarrito(this.cesta);
+      });
   }
-  comprobarCarrito(cesta:any){
-    for(var i = 0; i < cesta.length; i++){
-      if(cesta[i].id_articulo == this.id){
-        
-        console.log(this.cesta[i].id)
+
+  //Compruebo si el articulo esta en el carrito del usuario
+  comprobarCarrito(cesta: any) {
+    for (var i = 0; i < cesta.length; i++) {
+      if (cesta[i].id_articulo == this.id) {
         this.idEnCesta = this.cesta[i].id;
-        console.log("coinciden")
-        this.enCesta= true;
+        this.enCesta = true;
       }
     }
-}
-
-  obtenerDeseados(user: any){
-    console.log(user.id)
-    this.http.get('http://127.0.0.1:8000/api/deseados/usuario/'+user.id).subscribe(result => {
-      this.deseados = result;
-      console.log(this.deseados)
-      this.comprobarDeseados(this.deseados)
-    });
-    
   }
 
-  
-  comprobarDeseados(deseados:any){
-    console.log(deseados)
-    console.log(this.id)
-    for(var i = 0; i < deseados.length; i++){
-      if(deseados[i].id_articulo == this.id){
-        
-        console.log(this.cesta[i])
+  //Obtengo los deseados deol usuario
+  obtenerDeseados(user: any) {
+    console.log(user.id);
+    this.http
+      .get('http://127.0.0.1:8000/api/deseados/usuario/' + user.id)
+      .subscribe((result) => {
+        this.deseados = result;
+        console.log(this.deseados);
+        this.comprobarDeseados(this.deseados);
+      });
+  }
+
+  //Compruebo si el usuario tiene el articulo en su lista de deseados
+  comprobarDeseados(deseados: any) {
+    console.log(deseados);
+    console.log(this.id);
+    for (var i = 0; i < deseados.length; i++) {
+      if (deseados[i].id_articulo == this.id) {
         this.idEnDeseados = this.deseados[i].id;
-        console.log("coinciden")
-        this.enDeseado= true;
+        this.enDeseado = true;
       }
     }
-}
-  
-
-
-  
-
-  ngAfterViewInit(): void {
-    
   }
 
+  //Comprueba si el producto esta en la cesta del usuario y lo añade o quita
+  anadirCesta() {
+    if (this.idUser != '') {
+      if (this.enCesta == true) {
+        this.enCesta = false;
+        this.borrarBBDD();
+      } else if (this.enCesta == false) {
+        this.enCesta = true;
+        console.log(this.enCesta);
 
-
-  anadirCesta(){
-    if(this.idUser != ""){
-    if(this.enCesta == true){
-    this.enCesta = false;
-    this.borrarBBDD()
-    }else if(this.enCesta == false){
-      this.enCesta = true;
-      console.log(this.enCesta)
-      
-      this.añadirBBDD()
+        this.añadirBBDD();
+      }
+    } else {
+      this.enCesta = false;
+      this.onCreate();
     }
-  }else{
-    this.enCesta = false;
-    this.onCreate()
   }
-  }
-  onCreate(){
+  onCreate() {
+    //En caso que el usuario no este logeado se abrira este dialog
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.closeOnNavigation = true;
     this.dialog.open(LoginComponent, { panelClass: 'custom-dialog-container' });
     this.dialog.afterAllClosed.subscribe((result) => {
-      window.location.reload()
+      window.location.reload();
     });
   }
 
-  añadirBBDD(){
-    console.log(this.idUser)
-    console.log(this.id)
-    this.http.post("http://127.0.0.1:8000/api/carrito",{
-      id_usuario: this.idUser.id,
-      id_articulo: this.id,
-      cantidad: 1
-  }).toPromise().then((data:any) => {
-    console.log(data)
-    console.log(JSON.stringify(data.JSON))
-    this.obtenerCarrito(this.idUser);
-  })
+ //Añado el articulo del carrito de la base de datos
+  añadirBBDD() {
+    console.log(this.idUser);
+    console.log(this.id);
+    this.http
+      .post('http://127.0.0.1:8000/api/carrito', {
+        id_usuario: this.idUser.id,
+        id_articulo: this.id,
+        cantidad: 1,
+      })
+      .toPromise()
+      .then((data: any) => {
+        console.log(data);
+        console.log(JSON.stringify(data.JSON));
+        this.obtenerCarrito(this.idUser);
+      });
   }
 
-  borrarBBDD(){
-    this.http.delete("http://127.0.0.1:8000/api/carrito/"+ this.idEnCesta).subscribe({
-      next: data => {
-         console.log("funciona")
-      }
-     
-  });
-}
+  //Borro el articulo del carrito de la base de datos
+  borrarBBDD() {
+    this.http
+      .delete('http://127.0.0.1:8000/api/carrito/' + this.idEnCesta)
+      .subscribe({
+        next: (data) => {
+          console.log('funciona');
+        },
+      });
+  }
 
-  anadirDeseados(){
-    console.log(this.deseados)
-    if(this.idUser != ""){
-      if(this.enDeseado == true){
-      this.enDeseado = false;
-      this.borrarDeseadosBBDD()
-      }else if(this.enDeseado == false){
+  //Compruebo si esta deseado y lo borro o añado a la base de datos, y en caso de que el usuario no este logueado le abrira el dialog login
+  anadirDeseados() {
+    console.log(this.deseados);
+    if (this.idUser != '') {
+      if (this.enDeseado == true) {
+        this.enDeseado = false;
+        this.borrarDeseadosBBDD();
+      } else if (this.enDeseado == false) {
         this.enDeseado = true;
-        console.log(this.enDeseado)
-        
-        this.añadirDeseadosBBDD()
+        console.log(this.enDeseado);
+
+        this.añadirDeseadosBBDD();
       }
-    }else{
+    } else {
       this.enDeseado = false;
-      this.onCreate()
+      this.onCreate();
     }
   }
 
-  borrarDeseadosBBDD(){
-    console.log(this.idEnDeseados)
-    this.http.delete("http://127.0.0.1:8000/api/deseados/"+ this.idEnDeseados).subscribe({
-      next: data => {
-         console.log("funciona")
-      }
-    });
+  //Borro deseado de la base de datos
+  borrarDeseadosBBDD() {
+    console.log(this.idEnDeseados);
+    this.http
+      .delete('http://127.0.0.1:8000/api/deseados/' + this.idEnDeseados)
+      .subscribe({
+        next: (data) => {
+        },
+      });
   }
-  añadirDeseadosBBDD(){
-    console.log(this.id)
-    this.http.post("http://127.0.0.1:8000/api/deseados",{
-      id_usuario: this.idUser.id,
-      id_articulo: this.id,
-      
-  }).toPromise().then((data:any) => {
-    console.log(data)
-    console.log(JSON.stringify(data.JSON))
-    this.obtenerDeseados(this.idUser);
-  })
+
+  //Añado deseado de la base de datos
+  añadirDeseadosBBDD() {
+    console.log(this.id);
+    this.http
+      .post('http://127.0.0.1:8000/api/deseados', {
+        id_usuario: this.idUser.id,
+        id_articulo: this.id,
+      })
+      .toPromise()
+      .then((data: any) => {
+        
+        this.obtenerDeseados(this.idUser);
+      });
   }
 }

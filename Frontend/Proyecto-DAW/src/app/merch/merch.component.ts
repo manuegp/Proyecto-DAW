@@ -12,21 +12,27 @@ import { LoginComponent } from '../login/login.component';
   styleUrls: ['./merch.component.css'],
 })
 export class MerchComponent implements OnInit {
-  data: any;
-  id: any;
-  deseados: any;
-  cesta: any;
-  enDeseado: boolean = false;
-  enCesta: boolean = false;
-  idUser: any;
-  idEnDeseados: any;
-  idEnCesta: any;
+  //---------------------------------------------------------
+  //---------Variables---------------------------------------
+  //---------------------------------------------------------
+  data: any; //Datos de los articulos
+  id: any; //Id de la url de la pagina
+  deseados: any; //articulos de los deseados del usuario
+  cesta: any; //articulos de la cesta del usuario
+  enDeseado: boolean = false; //True: esta en el deseado del usuario
+  enCesta: boolean = false; //True: esta en el carrito del usuario
+  idUser: any; //Id del usuario
+  idEnDeseados: any; //Id del articulo en la tabla deseados
+  idEnCesta: any; //Id del articulo en la tabla cesta
+
+  //---------------------------------------------------------
+  //--Constructor/Funciones de inicio del componente---------
+  //---------------------------------------------------------
   constructor(
     private http: HttpClient,
     private autenticacionServe: AutenticacionService,
     private _ac: ActivatedRoute,
-    private dialog: MatDialog,
-
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -35,25 +41,41 @@ export class MerchComponent implements OnInit {
     this.idUser = this.autenticacionServe.getIdUser();
     this.obtenerCarrito(this.idUser);
     this.obtenerDeseados(this.idUser);
-
   }
+  //---------------------------------------------------------
+  //---------Funciones---------------------------------------
+  //---------------------------------------------------------
 
+  //Obtengo todos los articulos de merch y los asigno
   obtenerArticulo() {
     this.http
       .get('http://127.0.0.1:8000/api/articulos/merch/' + this.id)
       .toPromise()
       .then((result) => {
-        console.log(result);
         this.asignarArticulos(result);
       });
   }
 
-  asignarArticulos(dato: any) {
-    this.data = dato[0];
-    console.log(this.data);
-    this.comprobarOferta(this.data)
+  //Obtengo todos los articulos deseados del ususario
+
+  obtenerDeseados(user: any) {
+    this.http
+      .get('http://127.0.0.1:8000/api/deseados/usuario/' + user.id)
+      .subscribe((result) => {
+        this.deseados = result;
+
+        this.comprobarDeseados(this.deseados);
+      });
   }
 
+  //Compruebo si tiene oferta
+  asignarArticulos(dato: any) {
+    this.data = dato[0];
+
+    this.comprobarOferta(this.data);
+  }
+
+  //Obtengo el id del articulo
   obtenerID() {
     this._ac.paramMap.subscribe((params) => {
       const id = params.get('id');
@@ -61,29 +83,19 @@ export class MerchComponent implements OnInit {
     });
   }
 
-  obtenerDeseados(user: any) {
-    console.log(user.id);
-    this.http
-      .get('http://127.0.0.1:8000/api/deseados/usuario/' + user.id)
-      .subscribe((result) => {
-        this.deseados = result;
-        console.log(this.deseados);
-        this.comprobarDeseados(this.deseados);
-      });
-  }
+  //Compruebo si el usuario tiene este producto en su lista de deseados
   comprobarDeseados(deseados: any) {
     for (var i = 0; i < deseados.length; i++) {
       if (deseados[i].id_articulo == this.id) {
-        console.log(this.cesta[i].id);
         this.idEnDeseados = this.deseados[i].id;
-        console.log('coinciden');
+
         this.enDeseado = true;
       }
     }
   }
 
+  //Obtengo el carrito del usuario
   obtenerCarrito(user: any) {
-    console.log(user.id);
     this.http
       .get('http://127.0.0.1:8000/api/carrito/usuario/' + user.id)
       .subscribe((result) => {
@@ -91,17 +103,19 @@ export class MerchComponent implements OnInit {
         this.comprobarCarrito(this.cesta);
       });
   }
+
+  //Conpruebo si el usuario tiene este articulo y cambio la variable 'enCesta'
   comprobarCarrito(cesta: any) {
     for (var i = 0; i < cesta.length; i++) {
       if (cesta[i].id_articulo == this.id) {
-        console.log(this.cesta[i].id);
         this.idEnCesta = this.cesta[i].id;
-        console.log('coinciden');
+
         this.enCesta = true;
       }
     }
   }
 
+  //Comprueba si el producto esta en la cesta del usuario y lo añade o quita
   anadirCesta() {
     if (this.idUser != '') {
       if (this.enCesta == true) {
@@ -109,7 +123,6 @@ export class MerchComponent implements OnInit {
         this.borrarBBDD();
       } else if (this.enCesta == false) {
         this.enCesta = true;
-        console.log(this.enCesta);
 
         this.añadirBBDD();
       }
@@ -118,94 +131,96 @@ export class MerchComponent implements OnInit {
       this.onCreate();
     }
   }
-  onCreate(){
+
+  onCreate() {
+    //En caso que el usuario no este logeado se abrira este dialog
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.closeOnNavigation = true;
     this.dialog.open(LoginComponent, { panelClass: 'custom-dialog-container' });
     this.dialog.afterAllClosed.subscribe((result) => {
-      window.location.reload()
+      window.location.reload();
     });
   }
-  
-  añadirBBDD(){
-    console.log(this.idUser)
-    console.log(this.id)
-    this.http.post("http://127.0.0.1:8000/api/carrito",{
-      id_usuario: this.idUser.id,
-      id_articulo: this.id,
-      cantidad: 1
-  }).toPromise().then((data:any) => {
-    console.log(data)
-    console.log(JSON.stringify(data.JSON))
-    this.obtenerCarrito(this.idUser);
-  })
+
+  //Añado el articulo del carrito de la base de datos
+  añadirBBDD() {
+    this.http
+      .post('http://127.0.0.1:8000/api/carrito', {
+        id_usuario: this.idUser.id,
+        id_articulo: this.id,
+        cantidad: 1,
+      })
+      .toPromise()
+      .then((data: any) => {
+        this.obtenerCarrito(this.idUser);
+      });
   }
 
-  borrarBBDD(){
-    this.http.delete("http://127.0.0.1:8000/api/carrito/"+ this.idEnCesta).subscribe({
-      next: data => {
-         console.log("funciona")
+  //Borro el articulo del carrito de la base de datos
+  borrarBBDD() {
+    this.http
+      .delete('http://127.0.0.1:8000/api/carrito/' + this.idEnCesta)
+      .subscribe({
+        next: (data) => {},
+      });
+  }
+
+  //Compruebo si esta deseado y lo borro o añado a la base de datos, y en caso de que el usuario no este logueado le abrira el dialog login
+  anadirDeseados() {
+    if (this.idUser != '') {
+      if (this.enDeseado == true) {
+        this.enDeseado = false;
+        this.borrarDeseadosBBDD();
+      } else if (this.enDeseado == false) {
+        this.enDeseado = true;
+
+        this.añadirDeseadosBBDD();
       }
-     
-  });
-}
-
-anadirDeseados(){
-  console.log(this.deseados)
-  if(this.idUser != ""){
-    if(this.enDeseado == true){
-    this.enDeseado = false;
-    this.borrarDeseadosBBDD()
-    }else if(this.enDeseado == false){
-      this.enDeseado = true;
-      console.log(this.enDeseado)
-      
-      this.añadirDeseadosBBDD()
-    }
-  }else{
-    this.enDeseado = false;
-    this.onCreate()
-  }
-}
-
-borrarDeseadosBBDD(){
-  console.log(this.idEnDeseados)
-  this.http.delete("http://127.0.0.1:8000/api/deseados/"+ this.idEnDeseados).subscribe({
-    next: data => {
-       console.log("funciona")
-    }
-  });
-}
-añadirDeseadosBBDD(){
-  console.log(this.id)
-  this.http.post("http://127.0.0.1:8000/api/deseados",{
-    id_usuario: this.idUser.id,
-    id_articulo: this.id,
-    
-}).toPromise().then((data:any) => {
-  console.log(data)
-  console.log(JSON.stringify(data.JSON))
-  this.obtenerDeseados(this.idUser);
-})
-}
-
-esOferta:boolean = false;
-descuentoAplicado: any;
-  comprobarOferta(dato:any){
-    
-    if(dato.porcentaje !=0){
-      this.esOferta= true;
-      console.log(this.esOferta)
-      this.hacerDescuento(dato)
+    } else {
+      this.enDeseado = false;
+      this.onCreate();
     }
   }
 
-  hacerDescuento(data: any){
-    let porcentajeInvertido = data.porcentaje
-    porcentajeInvertido = 1-((porcentajeInvertido* 0.01))
-    porcentajeInvertido = data.precio *porcentajeInvertido
-    this.descuentoAplicado= porcentajeInvertido.toFixed(2);
-    console.log(data.precio *porcentajeInvertido)
+  //Borro deseado de la base de datos
+  borrarDeseadosBBDD() {
+    this.http
+      .delete('http://127.0.0.1:8000/api/deseados/' + this.idEnDeseados)
+      .subscribe({
+        next: (data) => {},
+      });
+  }
+
+  //Añado deseado de la base de datos
+  añadirDeseadosBBDD() {
+    this.http
+      .post('http://127.0.0.1:8000/api/deseados', {
+        id_usuario: this.idUser.id,
+        id_articulo: this.id,
+      })
+      .toPromise()
+      .then((data: any) => {
+        this.obtenerDeseados(this.idUser);
+      });
+  }
+
+  esOferta: boolean = false;
+  descuentoAplicado: any;
+
+  //Si tiene oferta cambio la variable esOferta a true y le hago el descuento
+  comprobarOferta(dato: any) {
+    if (dato.porcentaje != 0) {
+      this.esOferta = true;
+      this.hacerDescuento(dato);
+    }
+  }
+
+  //Saco el valor del descuento
+  hacerDescuento(data: any) {
+    let porcentajeInvertido = data.porcentaje;
+    porcentajeInvertido = 1 - porcentajeInvertido * 0.01;
+    porcentajeInvertido = data.precio * porcentajeInvertido;
+    this.descuentoAplicado = porcentajeInvertido.toFixed(2); //Saco 2 decimales y aplico el descuento
   }
 }

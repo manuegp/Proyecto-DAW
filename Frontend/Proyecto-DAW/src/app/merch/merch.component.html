@@ -21,21 +21,25 @@
           {{ data.descripcion }}
         </p>
         <div *ngIf="esOferta == false">
+          <!-- Si este producto no esta en oferta -->
           <button
             class="boton fifth offset-4 col-3"
             *ngIf="!enCesta"
             (click)="anadirCesta()"
           >
+            <!-- Si este producto no esta en cesta -->
             Añadir <i class="fa fa-shopping-cart ml-1"></i> &nbsp;
             {{ data.precio }} €
           </button>
         </div>
         <div *ngIf="esOferta == true">
+          <!-- Si este producto esta en oferta -->
           <button
             class="boton fifth offset-4 col-3"
             *ngIf="!enCesta"
             (click)="anadirCesta()"
           >
+            <!-- Si este producto no esta en cesta -->
             Añadir <i class="fa fa-shopping-cart ml-1"></i> &nbsp;<s>
               {{ data.precio }}€</s
             >
@@ -49,11 +53,13 @@
         >
           Añadido a cesta
         </button>
+        <!-- Si este producto esta en cesta -->
         <button
           class="boton fifth offset-4 col-3 deseado"
           *ngIf="!enDeseado"
           (click)="anadirDeseados()"
         >
+          <!-- Si este producto no esta en deseados -->
           Añadir lista deseados
         </button>
         <button
@@ -63,6 +69,7 @@
         >
           Añadido a deseados
         </button>
+        <!-- Si este producto no esta en deseados -->
       </div>
     </div>
   </div>

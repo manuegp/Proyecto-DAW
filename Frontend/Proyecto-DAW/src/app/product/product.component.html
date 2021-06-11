@@ -1,8 +1,15 @@
 <div class="container">
   <div class="row">
-    <div class="col-12 ">
+    <div class="col-12">
       <mat-list>
-        <mat-list-item><h1>{{data.nombre}} &nbsp; <span class="badge " *ngIf="esOferta == true">  Oferta -{{data.porcentaje}}%</span></h1></mat-list-item>
+        <mat-list-item
+          ><h1>
+            {{ data.nombre }} &nbsp;
+            <span class="badge" *ngIf="esOferta == true">
+              Oferta -{{ data.porcentaje }}%</span
+            >
+          </h1></mat-list-item
+        >
         <mat-divider></mat-divider>
         <br />
       </mat-list>
@@ -11,7 +18,7 @@
       <iframe
         width="550"
         height="400"
-        [src] =   "safeUrl"
+        [src]="safeUrl"
         title="YouTube video player"
         frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -21,47 +28,81 @@
 
     <div class="col-12 col-lg-6" id="contenido">
       <div class="row">
-        
-        <img
-          src={{data.imagen_principal}}
-        />
+        <img src="{{ data.imagen_principal }}" />
         <p id="nombre" class="col-12">
-          {{data.descripcion}}
+          {{ data.descripcion }}
         </p>
-<div *ngIf="esOferta == false">
-        <button class=" boton fifth offset-4 col-3" *ngIf="!enCesta" (click)="anadirCesta()" > Añadir <i class="fa fa-shopping-cart ml-1"></i>  &nbsp; {{data.precio}} €</button>
-      </div>
-      <div *ngIf="esOferta == true">
-        <button class=" boton fifth offset-4 col-3" *ngIf="!enCesta" (click)="anadirCesta()" > Añadir <i class="fa fa-shopping-cart ml-1"></i>  &nbsp;<s> {{data.precio}}€</s> {{descuentoAplicado}}€</button>
+        <div *ngIf="esOferta == false">
+          <!-- Si este producto no esta en oferta -->
 
-      </div>
-        <button class=" boton fifth offset-4 col-3"  *ngIf="enCesta" (click)="anadirCesta()"> Añadido a cesta</button>
-        
-        <button class=" boton fifth offset-4 col-3 deseado" *ngIf="!enDeseado" (click)="anadirDeseados()" > Añadir lista deseados</button>
-        <button class=" boton fifth offset-4 col-3 deseado"  *ngIf="enDeseado"  (click)="anadirDeseados()"> Añadido a deseados</button>
-        <mat-accordion >
-            <br>
-          <mat-expansion-panel hideToggle >
-            <mat-expansion-panel-header >
-              <mat-panel-description >
+          <button
+            class="boton fifth offset-4 col-3"
+            *ngIf="!enCesta"
+            (click)="anadirCesta()"
+          >
+            Añadir <i class="fa fa-shopping-cart ml-1"></i> &nbsp;
+            {{ data.precio }} €</button
+          ><!-- Si este producto no esta en cesta -->
+        </div>
+        <div *ngIf="esOferta == true">
+          <!-- Si este producto  esta en oferta -->
+
+          <button
+            class="boton fifth offset-4 col-3"
+            *ngIf="!enCesta"
+            (click)="anadirCesta()"
+          >
+            Añadir <i class="fa fa-shopping-cart ml-1"></i> &nbsp;<s>
+              {{ data.precio }}€</s
+            >
+            {{ descuentoAplicado }}€
+          </button>
+          <!-- Si este producto no esta en cesta -->
+        </div>
+        <button
+          class="boton fifth offset-4 col-3"
+          *ngIf="enCesta"
+          (click)="anadirCesta()"
+        >
+          Añadido a cesta
+        </button>
+
+        <button
+          class="boton fifth offset-4 col-3 deseado"
+          *ngIf="!enDeseado"
+          (click)="anadirDeseados()"
+        ><!-- Si este producto no esta en deseados -->
+          Añadir lista deseados
+        </button>
+        <button
+          class="boton fifth offset-4 col-3 deseado"
+          *ngIf="enDeseado"
+          (click)="anadirDeseados()"
+        ><!-- Si este producto esta en deseados -->
+          Añadido a deseados
+        </button>
+        <mat-accordion>
+          <br />
+          <mat-expansion-panel hideToggle>
+            <mat-expansion-panel-header>
+              <mat-panel-description>
                 Mas informacion &nbsp; <i class="fas fa-arrow-down"></i>
               </mat-panel-description>
             </mat-expansion-panel-header>
-            <p>Fecha de salida: {{data.fecha_salida}}</p>
+            <p>Fecha de salida: {{ data.fecha_salida }}</p>
 
-            <p>OS: {{data.os}}</p>
-            <p>Procesador: {{data.procesador}}</p>
-            <p>Memoria: {{data.memoria}}</p>
-            <p>Graficos: {{data.graficos}}</p>
-            <p>Version Directx: {{data.directx}}</p>
-            <p>Tarjeta sonido: {{data.tarjeta_sonido}}</p>
-            <p>Plataformas: {{data.plataforma}}</p>
-            <p>Idiomas: {{data.idioma}}</p>
-            <p>Etiquetas: {{data.etiquetas}}</p>
-            <p>Espacio: {{data.storage}}</p>
-
+            <p>OS: {{ data.os }}</p>
+            <p>Procesador: {{ data.procesador }}</p>
+            <p>Memoria: {{ data.memoria }}</p>
+            <p>Graficos: {{ data.graficos }}</p>
+            <p>Version Directx: {{ data.directx }}</p>
+            <p>Tarjeta sonido: {{ data.tarjeta_sonido }}</p>
+            <p>Plataformas: {{ data.plataforma }}</p>
+            <p>Idiomas: {{ data.idioma }}</p>
+            <p>Etiquetas: {{ data.etiquetas }}</p>
+            <p>Espacio: {{ data.storage }}</p>
           </mat-expansion-panel>
-          
+
           <mat-expansion-panel
             (opened)="panelOpenState = true"
             (closed)="panelOpenState = false"

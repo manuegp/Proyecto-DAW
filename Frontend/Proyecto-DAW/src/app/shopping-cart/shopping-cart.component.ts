@@ -19,134 +19,129 @@ export interface juego {
   styleUrls: ['./shopping-cart.component.css'],
 })
 export class ShoppingCartComponent implements OnInit {
-  idUser: any;
-  juegosCesta: any;
-  totalCoste:any;
+  //---------------------------------------------------------
+  //---------Variables---------------------------------------
+  //---------------------------------------------------------
+  idUser: any; //Id del ususario
+  juegosCesta: any; //Juegos en la cesta del usuario
+  totalCoste: any; //Coste total de los productos
 
-  constructor(
-    private http: HttpClient,
-    private autenticacionServe: AutenticacionService,
-    private router: Router,
-    private dialog: MatDialog,
-
-  ) {
-    
-  }
-
-  pagar(){
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = true;
-    dialogConfig.closeOnNavigation = true;
-    console.log(this.totalCoste)
-    this.dialog.open(PaymentComponent, {
-      panelClass: 'custom-dialog-container',
-      data: {
-        cantidad: this.totalCoste,
-        juegos: this.juegosCesta
-        
-      },
-    })
-    this.dialog.afterAllClosed.subscribe((result) => {
-      
-    });
-  }
-
-
-  
-  ngOnInit(): void {
-    this.idUser = this.autenticacionServe.getIdUser();
-    this.obtenerArticulos();
-    
-  }
-
-  ngAfterViewInit(): void{
-    this.calcularTotal()
-  }
-  calcularTotal(){
-    let total = 0;
-    for (let i = 0; i < this.juegosCesta.length; i++) {
-      total = total + ( this.aplicarDescuento(this.juegosCesta[i].precio, this.juegosCesta[i].porcentaje) * this.juegosCesta[i].cantidad)
-    }
-    console.log(this.juegosCesta, total)
-    this.totalCoste = total.toFixed(2)
-  }
- 
-  aplicarDescuento(precio, descuento){
-    let porcentajeInvertido = descuento
-    porcentajeInvertido = 1-((porcentajeInvertido* 0.01))
-    porcentajeInvertido = precio *porcentajeInvertido
-    let descuentoAplicado= porcentajeInvertido.toFixed(2);
-    return descuentoAplicado;
-  }
-  obtenerArticulos() {
-    this.http
-      .get('http://127.0.0.1:8000/api/carrito/usuario/' + this.idUser.id)
-      .subscribe((result) => {
-        console.log(this.idUser.id);
-        this.juegosCesta = result;
-        console.log(this.juegosCesta);
-        
-      });
-  }
-  displayedColumns: string[] = [
+  displayedColumns: string[] = [ //Columnas de la tabla
     'Imagen',
     'Nombre',
     'Precio',
     'Cantidad',
     'Boton',
   ];
+  //---------------------------------------------------------
+  //--Constructor/Funciones de inicio del componente---------
+  //---------------------------------------------------------
+  ngOnInit(): void {
+    this.idUser = this.autenticacionServe.getIdUser();
+    this.obtenerArticulos();
+  }
+  constructor(
+    private http: HttpClient,
+    private autenticacionServe: AutenticacionService,
+    private router: Router,
+    private dialog: MatDialog
+  ) {}
 
+  ngAfterViewInit(): void {
+    this.calcularTotal();
+  }
+
+  //---------------------------------------------------------
+  //---------Funciones---------------------------------------
+  //---------------------------------------------------------
+
+  //Se abre un dialog y envio el coste total
+  pagar() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.closeOnNavigation = true;
+    this.dialog.open(PaymentComponent, {
+      panelClass: 'custom-dialog-container',
+      data: {
+        cantidad: this.totalCoste,
+        juegos: this.juegosCesta,
+      },
+    });
+    this.dialog.afterAllClosed.subscribe((result) => {});
+  }
+
+  
+  //Recoge el total de todos los articulos aplicando descuentos y lo redondea a 2 decimales
+  calcularTotal() {
+    let total = 0;
+    for (let i = 0; i < this.juegosCesta.length; i++) {
+      total =
+        total +
+        this.aplicarDescuento(
+          this.juegosCesta[i].precio,
+          this.juegosCesta[i].porcentaje
+        ) *
+          this.juegosCesta[i].cantidad;
+    }
+    this.totalCoste = total.toFixed(2);
+  }
+
+
+  //Decuelve el precio rebajado
+  aplicarDescuento(precio, descuento) {
+    let porcentajeInvertido = descuento;
+    porcentajeInvertido = 1 - porcentajeInvertido * 0.01;
+    porcentajeInvertido = precio * porcentajeInvertido;
+    let descuentoAplicado = porcentajeInvertido.toFixed(2);
+    return descuentoAplicado;
+  }
+
+  //Obtengo todos los articulos del usuario
+  obtenerArticulos() {
+    this.http
+      .get('http://127.0.0.1:8000/api/carrito/usuario/' + this.idUser.id)
+      .subscribe((result) => {
+        this.juegosCesta = result;
+      });
+  }
+  
+
+  //Al darle click a un producto te redirige a su pagina
   redirigir(event: any) {
     this.router.navigate(['/product/' + event]);
   }
 
-  
-
-  cambioCantidad(event: any, elemento: any){
-    
-    console.log(event , elemento)
-    let idCambiar =this.localizarElemento(elemento)
+  //Al cambiar la cnatidad del producto se actualiza en la base de datos
+  cambioCantidad(event: any, elemento: any) {
+    let idCambiar = this.localizarElemento(elemento);
     this.juegosCesta[idCambiar].cantidad = event;
 
-    this.http.put("http://127.0.0.1:8000/api/carrito/"+ elemento.id,{
-        cantidad: event
-    }).toPromise()
-    this.calcularTotal()
+    this.http
+      .put('http://127.0.0.1:8000/api/carrito/' + elemento.id, {
+        cantidad: event,
+      })
+      .toPromise();
+    this.calcularTotal();
   }
 
-  eliminarDelCarrito(elemento:any){
-    this.http.delete("http://127.0.0.1:8000/api/carrito/"+ elemento.id).subscribe({
-      next: data => {
-          console.log(elemento)
-          this.borro(elemento)
-      }
-     
-  });
+  //Elimina de la base de datos
+  eliminarDelCarrito(elemento: any) {
+    this.http
+      .delete('http://127.0.0.1:8000/api/carrito/' + elemento.id)
+      .subscribe({
+        next: (data) => {
+          window.location.reload();
+        },
+      });
   }
 
-  borro(elemento:any){
-    console.log(elemento);
-
-   //Codigo actualmente no funcional
-   /* let idBorrar=  this.localizarElemento(elemento)
-   console.log(idBorrar)
-   this.juegosCesta = this.juegosCesta.splice(idBorrar, 1)
-    console.log(this.juegosCesta)
-    this.calcularTotal()
-     */
-    window.location.reload()
-    console.log(this.juegosCesta)
-  }
-
-  localizarElemento(elemento:any){
+  //Localiza elemnto al que se esta haciendo click y devuelve su id
+  localizarElemento(elemento: any) {
     for (let i = 0; i < this.juegosCesta.length; i++) {
-      if(elemento.id == this.juegosCesta[i].id){
-        console.log(i)
+      if (elemento.id == this.juegosCesta[i].id) {
         return i;
       }
-   }
-   return 0
+    }
+    return 0;
   }
-
-  
 }

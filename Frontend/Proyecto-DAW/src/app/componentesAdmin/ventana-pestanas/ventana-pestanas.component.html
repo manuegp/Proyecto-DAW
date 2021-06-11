@@ -1,9 +1,11 @@
 <div class="container">
   <mat-tab-group animationDuration="0ms">
+    <!--Primera pestaña-->
     <mat-tab label="Juegos">
       <br />
       <mat-form-field class="col-10">
         <mat-label>Buscar...</mat-label>
+        <!-- Buscador -->
         <input
           matInput
           (keyup)="applyFilter($event)"
@@ -12,51 +14,49 @@
           autocomplete="off"
         />
       </mat-form-field>
+      <!-- Boton para añadir -->
       <button class="col-2 boton2" (click)="anadirArticulos($event, 'juego')">
         Añadir juego
       </button>
       <div class="mat-elevation-z8">
         <table mat-table [dataSource]="dataSource" class="col-12">
-          <!-- Position Column -->
+          <!-- Columna id -->
           <ng-container matColumnDef="Id">
             <th mat-header-cell *matHeaderCellDef>Id</th>
             <td mat-cell *matCellDef="let element">{{ element.id }}</td>
           </ng-container>
-
+          <!-- Columna nombre -->
           <ng-container matColumnDef="Nombre">
             <th mat-header-cell *matHeaderCellDef>Nombre</th>
             <td mat-cell *matCellDef="let element">{{ element.nombre }}</td>
           </ng-container>
-
-          <!-- Name Column -->
+          <!-- Columna descripcion -->
           <ng-container matColumnDef="Descripcion">
             <th mat-header-cell *matHeaderCellDef>Descripcion</th>
             <td mat-cell *matCellDef="let element">
               {{ element.descripcion }}
             </td>
           </ng-container>
-
-          <!-- Weight Column -->
+          <!-- Columna precio -->
           <ng-container matColumnDef="Precio">
             <th mat-header-cell *matHeaderCellDef>Precio</th>
             <td mat-cell *matCellDef="let element">{{ element.precio }}</td>
           </ng-container>
-
-          <!-- Symbol Column -->
+          <!-- Columna fecha -->
           <ng-container matColumnDef="Fecha">
             <th mat-header-cell *matHeaderCellDef>Fecha salida</th>
             <td mat-cell *matCellDef="let element">
               {{ element.fecha_salida }}
             </td>
           </ng-container>
-
+          <!-- Columna de botones-->
           <ng-container matColumnDef="Modificar">
             <th mat-header-cell *matHeaderCellDef>Modificar</th>
             <td mat-cell *matCellDef="let element">
               <button
                 mat-raised-button
                 class="boton"
-                (click)="modificarArticulos(element,'juego')"
+                (click)="modificarArticulos(element, 'juego')"
               >
                 Modificar
               </button>
@@ -72,11 +72,12 @@
               <br />
             </td>
           </ng-container>
-
+          <!-- Columnas que se van a usar -->
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
         </table>
 
+        <!--Paginador -->
         <mat-paginator
           [pageSizeOptions]="[5, 10, 20]"
           showFirstLastButtons
@@ -84,10 +85,12 @@
       </div>
     </mat-tab>
 
+    <!-- Segunda pestaña -->
     <mat-tab label="Usuarios">
       <br />
       <mat-form-field class="col-10">
         <mat-label>Buscar...</mat-label>
+        <!-- Buscador -->
         <input
           matInput
           (keyup)="applyFilterUsu($event)"
@@ -96,45 +99,53 @@
           autocomplete="off"
         />
       </mat-form-field>
-     
+
       <div class="mat-elevation-z8">
         <table mat-table [dataSource]="dataSourceUsuarios" class="col-12">
+          <!-- Columna id -->
           <ng-container matColumnDef="Id">
             <th mat-header-cell *matHeaderCellDef>Id</th>
             <td mat-cell *matCellDef="let element">{{ element.id }}</td>
           </ng-container>
+          <!-- Columna nombre-->
           <ng-container matColumnDef="Nombre">
             <th mat-header-cell *matHeaderCellDef>Nombre</th>
             <td mat-cell *matCellDef="let element">{{ element.nombre }}</td>
           </ng-container>
+          <!-- Columna apellidos-->
           <ng-container matColumnDef="Apellidos">
             <th mat-header-cell *matHeaderCellDef>Apellidos</th>
             <td mat-cell *matCellDef="let element">{{ element.apellidos }}</td>
           </ng-container>
+          <!-- Columna contraseña-->
           <ng-container matColumnDef="Password">
             <th mat-header-cell *matHeaderCellDef>Contraseña</th>
             <td mat-cell *matCellDef="let element">{{ element.password }}</td>
           </ng-container>
+          <!-- Columna nick-->
           <ng-container matColumnDef="Nick">
             <th mat-header-cell *matHeaderCellDef>Nombre Usuario</th>
             <td mat-cell *matCellDef="let element">{{ element.nick }}</td>
           </ng-container>
+          <!-- Columna telefono-->
           <ng-container matColumnDef="Telefono">
             <th mat-header-cell *matHeaderCellDef>Telefono</th>
             <td mat-cell *matCellDef="let element">{{ element.telefono }}</td>
           </ng-container>
+          <!-- Columna email-->
           <ng-container matColumnDef="Email">
             <th mat-header-cell *matHeaderCellDef>Email</th>
             <td mat-cell *matCellDef="let element">{{ element.email }}</td>
           </ng-container>
-
-          
-
+          <!-- Columna admin-->
           <ng-container matColumnDef="Es_admin">
             <th mat-header-cell *matHeaderCellDef>Admin?</th>
-            <td mat-cell *matCellDef="let element">{{ element.es_administrador === 1 && "Si" ||  !0 && "No" }}</td>
+            <td mat-cell *matCellDef="let element">
+              {{ (element.es_administrador === 1 && "Si") || (!0 && "No") }} <!--Compruebo si el usuario es admin-->
+            </td>
           </ng-container>
 
+          <!-- Columna de botones modificar-->
           <ng-container matColumnDef="Modificar">
             <th mat-header-cell *matHeaderCellDef>Modificar</th>
             <td mat-cell *matCellDef="let element">
@@ -157,22 +168,26 @@
               <br />
             </td>
           </ng-container>
-
+          <!-- Columnas que se van a usar -->
           <tr mat-header-row *matHeaderRowDef="displayedColumnsUsu"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumnsUsu"></tr>
         </table>
       </div>
+
+      <!-- Paginador -->
       <mat-paginator
-          #usu
-          [pageSizeOptions]="[5, 10, 20]"
-          showFirstLastButtons
-        ></mat-paginator>
+        #usu
+        [pageSizeOptions]="[5, 10, 20]"
+        showFirstLastButtons
+      ></mat-paginator>
     </mat-tab>
 
+    <!-- Tercera pestaña -->
     <mat-tab label="Merchandising">
       <br />
       <mat-form-field class="col-10">
         <mat-label>Buscar...</mat-label>
+        <!-- Buscador -->
         <input
           matInput
           (keyup)="applyFilterMerch($event)"
@@ -181,23 +196,24 @@
           autocomplete="off"
         />
       </mat-form-field>
+      <!-- Boton para añadir -->
       <button class="col-2 boton2" (click)="anadirArticulos($event, 'merch')">
         Añadir merch
       </button>
       <div class="mat-elevation-z8">
         <table mat-table [dataSource]="dataSourceMerch" class="col-12">
-          <!-- Position Column -->
+          <!-- Columna id-->
           <ng-container matColumnDef="Id">
             <th mat-header-cell *matHeaderCellDef>Id</th>
             <td mat-cell *matCellDef="let element">{{ element.id }}</td>
           </ng-container>
-
+          <!-- Columna nombre-->
           <ng-container matColumnDef="Nombre">
             <th mat-header-cell *matHeaderCellDef>Nombre</th>
             <td mat-cell *matCellDef="let element">{{ element.nombre }}</td>
           </ng-container>
 
-          <!-- Name Column -->
+          <!-- Columna descripcion-->
           <ng-container matColumnDef="Descripcion">
             <th mat-header-cell *matHeaderCellDef>Descripcion</th>
             <td mat-cell *matCellDef="let element">
@@ -205,13 +221,13 @@
             </td>
           </ng-container>
 
-          <!-- Weight Column -->
+          <!-- Columna precio-->
           <ng-container matColumnDef="Precio">
             <th mat-header-cell *matHeaderCellDef>Precio</th>
             <td mat-cell *matCellDef="let element">{{ element.precio }}</td>
           </ng-container>
 
-          <!-- Symbol Column -->
+          <!-- Columna fecha-->
           <ng-container matColumnDef="Fecha">
             <th mat-header-cell *matHeaderCellDef>Fecha salida</th>
             <td mat-cell *matCellDef="let element">
@@ -219,6 +235,7 @@
             </td>
           </ng-container>
 
+          <!-- Columna de botones-->
           <ng-container matColumnDef="Modificar">
             <th mat-header-cell *matHeaderCellDef>Modificar</th>
             <td mat-cell *matCellDef="let element">
@@ -234,7 +251,6 @@
                 mat-raised-button
                 class="boton borrar"
                 (click)="borrarArticulos(element)"
-                
               >
                 Borrar
               </button>
@@ -242,21 +258,23 @@
               <br />
             </td>
           </ng-container>
-
+          <!-- Columnas que se van a usar -->
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
         </table>
-
+        <!-- Paginador -->
         <mat-paginator
-        #usu2
+          #usu2
           [pageSizeOptions]="[5, 10, 20]"
           showFirstLastButtons
         ></mat-paginator>
       </div>
     </mat-tab>
 
+    <!-- Cuarta pestaña -->
     <mat-tab label="Ofertas">
       <br />
+      <!-- Buscador -->
       <mat-form-field class="col-10">
         <mat-label>Buscar...</mat-label>
         <input
@@ -267,37 +285,39 @@
           autocomplete="off"
         />
       </mat-form-field>
+      <!-- Boton añadir -->
       <button class="col-2 boton2" (click)="crearOferta($event)">
         Gestionar ofertas
       </button>
       <div class="mat-elevation-z8">
         <table mat-table [dataSource]="dataSourceOfertas" class="col-12">
-          <!-- Position Column -->
+          <!-- Columna id-->
           <ng-container matColumnDef="Id">
             <th mat-header-cell *matHeaderCellDef>Id</th>
-            <td mat-cell *matCellDef="let element">{{element.id}} </td>
+            <td mat-cell *matCellDef="let element">{{ element.id }}</td>
           </ng-container>
 
+          <!-- Columna nombre-->
           <ng-container matColumnDef="Nombre">
             <th mat-header-cell *matHeaderCellDef>Nombre</th>
-            <td mat-cell *matCellDef="let element">{{element.nombre}}</td>
+            <td mat-cell *matCellDef="let element">{{ element.nombre }}</td>
           </ng-container>
 
-          <!-- Name Column -->
+          <!-- Columna porcentaje-->
           <ng-container matColumnDef="Porcentaje">
             <th mat-header-cell *matHeaderCellDef>Porcentaje</th>
             <td mat-cell *matCellDef="let element">
-              {{element.porcentaje}}
+              {{ element.porcentaje }}
             </td>
           </ng-container>
 
           <!-- Weight Column -->
           <ng-container matColumnDef="Precio_original">
             <th mat-header-cell *matHeaderCellDef>Precio</th>
-            <td mat-cell *matCellDef="let element">{{ element.precio}}</td>
+            <td mat-cell *matCellDef="let element">{{ element.precio }}</td>
           </ng-container>
 
-          <!-- Symbol Column -->
+          <!-- Columna fecha-->
           <ng-container matColumnDef="Fecha">
             <th mat-header-cell *matHeaderCellDef>Fecha salida</th>
             <td mat-cell *matCellDef="let element">
@@ -305,14 +325,14 @@
             </td>
           </ng-container>
 
+          <!-- Columna botones-->
           <ng-container matColumnDef="Modificar">
             <th mat-header-cell *matHeaderCellDef>Modificar</th>
             <td mat-cell *matCellDef="let element">
-
               <button
                 mat-raised-button
                 class="boton borrar"
-               (click)="eliminarOferta(element)"
+                (click)="eliminarOferta(element)"
               >
                 Borrar
               </button>
@@ -320,13 +340,14 @@
               <br />
             </td>
           </ng-container>
-
+          <!-- Columnas que se van a usar -->
           <tr mat-header-row *matHeaderRowDef="displayedColumnsOfer"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumnsOfer"></tr>
         </table>
 
+        <!-- Paginador-->
         <mat-paginator
-        #ofer
+          #ofer
           [pageSizeOptions]="[5, 10, 20]"
           showFirstLastButtons
         ></mat-paginator>

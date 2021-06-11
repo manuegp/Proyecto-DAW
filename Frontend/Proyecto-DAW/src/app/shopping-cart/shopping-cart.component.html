@@ -1,41 +1,63 @@
 <script src="https://www.paypal.com/sdk/js?client-id=AWBRqaDdGo1C_LtUP2dYLRtG3r9VTNRzlmCeiD5bTKbcmrCmuM7NsmxQV0nekvkNndkYWa4AyRd0ygI2&currency=EUR"></script>
-
+<!--Script de paypal-->
 <div class="container">
   <div class="row">
     <div class="mat-elevation-z8 contenido">
-      <mat-list-item><h1 >Mis productos</h1></mat-list-item>
-    <mat-divider></mat-divider>
+      <mat-list-item><h1>Mis productos</h1></mat-list-item>
+      <mat-divider></mat-divider>
       <table mat-table [dataSource]="juegosCesta" class="col-12">
-        <ng-container matColumnDef="Imagen" >
+        <!--Columna imagen-->
+        <ng-container matColumnDef="Imagen">
           <th mat-header-cell *matHeaderCellDef style="display: none">
             Imagen
           </th>
-          <td mat-cell *matCellDef="let element" >
+          <td mat-cell *matCellDef="let element">
             <img src="{{ element.imagen_principal }}" />
           </td>
         </ng-container>
-        <!-- Position Column -->
+        <!--Columna nombre-->
         <ng-container matColumnDef="Nombre">
           <th mat-header-cell *matHeaderCellDef style="display: none">
             Nombre
           </th>
-          <td mat-cell *matCellDef="let element" (click)="redirigir(element.id_articulo)">{{ element.nombre }}</td>
+          <td
+            mat-cell
+            *matCellDef="let element"
+            (click)="redirigir(element.id_articulo)"
+          >
+            {{ element.nombre }}
+          </td>
         </ng-container>
 
-        <!-- Name Column -->
+        <!--Columna descripcion-->
         <ng-container matColumnDef="Descripcion">
           <th mat-header-cell *matHeaderCellDef style="display: none">
             Descripcion
           </th>
-          <td mat-cell *matCellDef="let element" (click)="redirigir(element.id_articulo)">{{ element.descripcion }}</td>
+          <td
+            mat-cell
+            *matCellDef="let element"
+            (click)="redirigir(element.id_articulo)"
+          >
+            {{ element.descripcion }}
+          </td>
         </ng-container>
 
-        <!-- Weight Column -->
+        <!--Columna precio-->
         <ng-container matColumnDef="Precio">
           <th mat-header-cell *matHeaderCellDef style="display: none">
             Precio
           </th>
-          <td mat-cell *matCellDef="let element" (click)="redirigir(element.id_articulo)">{{ aplicarDescuento(element.precio, element.porcentaje) }} €  <h4 *ngIf="element.porcentaje"><span class="badge ">-{{element.porcentaje}}% descuento</span></h4></td>
+          <td
+            mat-cell
+            *matCellDef="let element"
+            (click)="redirigir(element.id_articulo)"
+          >
+            {{ aplicarDescuento(element.precio, element.porcentaje) }} €
+            <h4 *ngIf="element.porcentaje">
+              <span class="badge">-{{ element.porcentaje }}% descuento</span>
+            </h4>
+          </td>
         </ng-container>
         <!-- https://www.npmjs.com/package/ngx-number-spinner -->
         <ng-container matColumnDef="Cantidad">
@@ -45,7 +67,6 @@
           <td mat-cell *matCellDef="let element">
             <div>
               <ngx-number-spinner
-              
                 [min]="1"
                 [value]="element.cantidad"
                 [max]="99"
@@ -57,7 +78,7 @@
         </ng-container>
         <!-- Symbol Column -->
         <ng-container matColumnDef="Boton">
-          <th mat-header-cell *matHeaderCellDef style="display: none" ></th>
+          <th mat-header-cell *matHeaderCellDef style="display: none"></th>
           <td
             mat-cell
             *matCellDef="let element"
@@ -81,25 +102,23 @@
 
         <h1>Explora nuestros productos <a href="products">aqui</a></h1>
         <br />
-  <br />
-  <br />
-  <br />
+        <br />
+        <br />
+        <br />
       </div>
     </div>
   </div>
   <br />
   <br />
   <mat-divider></mat-divider>
-  
-<div class="col-12 text-end pago " *ngIf="juegosCesta.length != 0">
-  <div class="row">
-  <h1 class="col-11">Total: {{totalCoste}} €</h1>
-  <button class="col-1 boton" (click) = "pagar()">Pagar 
 
-  </button>
+  <div class="col-12 text-end pago" *ngIf="juegosCesta.length != 0">
+    <div class="row">
+      <h1 class="col-11">Total: {{ totalCoste }} €</h1>
+      <button class="col-1 boton" (click)="pagar()">Pagar</button>
+    </div>
   </div>
-</div>
-<br>
-<br>
-<br>
+  <br />
+  <br />
+  <br />
 </div>

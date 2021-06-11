@@ -10,9 +10,11 @@ import { AnonymousSubject } from 'rxjs/internal/Subject';
   styleUrls: ['./articulo.component.css'],
 })
 export class ArticuloComponent implements OnInit {
+
   //---------------------------------------------------------
   //---------Variables---------------------------------------
   //---------------------------------------------------------
+  
   id: any; //Id de la URL
   datos: any; //Datos del juego de la pagina;
   esTipo: string = ''; //El tipo de producto de la id de la URL

@@ -1,14 +1,23 @@
+
+/*Tabla y paginador*/
 table {
   background-color: #212529;
 }
 
 th {
-  text-align: center !important;
-}
-td {
+  color: white;
+  font-size: 12px;
+  border: solid 1px white;
+  text-align: center;
   text-align: center !important;
 }
 
+td {
+  color: white;
+  font-size: 10px;
+  border: solid 1px white;
+  text-align: center !important;
+}
 mat-paginator {
   background-color: #212529;
   border: solid white 1px;
@@ -35,7 +44,7 @@ mat-label {
 ::ng-deep .mat-select-value {
   color: white;
 }
-
+ /*Inputs */
 input {
   color: white;
 }
@@ -44,19 +53,22 @@ input::placeholder {
   color: white;
 }
 
-th {
-  color: white;
-  font-size: 12px;
-  border: solid 1px white;
-  text-align: center;
+::ng-deep .mat-focused .mat-form-field-label {
+  /*change color of label*/
+  color: #d4b170 !important;
 }
 
-td {
-  color: white;
-  font-size: 10px;
-  border: solid 1px white;
+::ng-deep.mat-form-field-underline {
+  /*change color of underline*/
+  background-color: #d4b170 !important;
 }
 
+::ng-deep.mat-form-field-ripple {
+  /*change color of underline when focused*/
+  background-color: #d4b170 !important;
+}
+
+/*Botones*/
 .boton {
   border: solid 1px white;
   margin-top: 5px;
@@ -84,18 +96,5 @@ td {
     background-color: #d4b170;
 }
 
-::ng-deep .mat-focused .mat-form-field-label {
-  /*change color of label*/
-  color: #d4b170 !important;
-}
 
-::ng-deep.mat-form-field-underline {
-  /*change color of underline*/
-  background-color: #d4b170 !important;
-}
-
-::ng-deep.mat-form-field-ripple {
-  /*change color of underline when focused*/
-  background-color: #d4b170 !important;
-}
 

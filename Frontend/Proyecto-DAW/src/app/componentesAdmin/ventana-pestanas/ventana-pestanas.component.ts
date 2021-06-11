@@ -10,7 +10,7 @@ import {
   HttpClientModule,
 } from '@angular/common/http';
 import { Router } from '@angular/router';
-import {ModificarUsuarioComponent} from '../modificar-usuario/modificar-usuario.component'
+import { ModificarUsuarioComponent } from '../modificar-usuario/modificar-usuario.component';
 import { EmailValidator, FormGroup } from '@angular/forms';
 import { ModificarJuegoComponent } from '../modificar-juego/modificar-juego.component';
 import { GestionarOfertasComponent } from '../gestionar-ofertas/gestionar-ofertas.component';
@@ -25,18 +25,15 @@ export interface ExampleTab {
   styleUrls: ['./ventana-pestanas.component.css'],
 })
 export class VentanaPestanasComponent implements OnInit {
+  //---------------------------------------------------------
+  //---------Variables---------------------------------------
+  //---------------------------------------------------------
+  asignar: any;       //Variable para asignar la array a una tabla
+  asignarUsu: any;    //Variable para asignar la array a una tabla
+  asignarMerch: any;  //Variable para asignar la array a una tabla
+  asignarOfer: any;   //Variable para asignar la array a una tabla
 
-  
-  constructor(private dialog: MatDialog, private http: HttpClient,
-    private dialogañadirArticulos: MatDialog,
-    private router:Router,) {}
-
-
-  //Variables
-  asignar: any;
-  asignarUsu: any;
-  asignarMerch: any;
-  asignarOfer: any;
+  //Columnas usadas en juegos y merchandaising
   displayedColumns: string[] = [
     'Id',
     'Nombre',
@@ -46,6 +43,7 @@ export class VentanaPestanasComponent implements OnInit {
     'Modificar',
   ];
 
+  //Columnas usadas en usuarios
   displayedColumnsUsu: string[] = [
     'Id',
     'Nombre',
@@ -54,42 +52,57 @@ export class VentanaPestanasComponent implements OnInit {
     'Nick',
     'Telefono',
     'Email',
-    
+
     'Es_admin',
     'Modificar',
   ];
 
+  //Columnas usadas en ofertas
   displayedColumnsOfer: string[] = [
     'Id',
     'Nombre',
     'Porcentaje',
     'Precio_original',
-    'Modificar'
+    'Modificar',
   ];
+  
+  //Variables de las tablas
   dataSource: any;
   dataSourceUsuarios: any;
   dataSourceMerch: any;
   dataSourceOfertas: any;
+
+  //Paginadores
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild('usu') paginator2!: MatPaginator;
   @ViewChild('usu2') paginator3!: MatPaginator;
   @ViewChild('ofer') paginator4!: MatPaginator;
+
+  //---------------------------------------------------------
+  //--Constructor/Funciones de inicio del componente---------
+  //---------------------------------------------------------
+
+  constructor(
+    private dialog: MatDialog,
+    private http: HttpClient,
+    private dialogañadirArticulos: MatDialog,
+    private router: Router
+  ) {}
+
   ngAfterViewInit() {}
 
   ngOnInit(): void {
-    this.asignarArticulos();
+    this.asignarJuegos();
     this.asignarUsuarios();
     this.asignarMerchandising();
-    this.asignarOfertas()
+    this.asignarOfertas();
   }
+  //---------------------------------------------------------
+  //---------Funciones---------------------------------------
+  //---------------------------------------------------------
 
- 
+  //Funciones de filtrado
 
-  
-
-  
-//Funciones
-  
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -100,172 +113,9 @@ export class VentanaPestanasComponent implements OnInit {
     this.dataSourceMerch.filter = filterValue.trim().toLowerCase();
   }
 
-  
   applyFilterOfertas(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSourceOfertas.filter = filterValue.trim().toLowerCase();
-  }
-  
-  asignarArticulos() {
-    console.log('lo hace')
-    this.http.get('http://127.0.0.1:8000/api/articulos/juegos').subscribe((result) => {
-      this.asignar = result;
-      console.log(this.asignar);
-      this.dataSource = new MatTableDataSource(this.asignar);
-      this.dataSource.paginator = this.paginator;
-    });
-  }
-
-  anadirArticulos(event: any, producto: string) {
-    if(producto =="merch"){
-    console.log('añadiendo');
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = true;
-    dialogConfig.closeOnNavigation = true;
-    this.dialogañadirArticulos.open(ModificarProductoComponent, {
-      panelClass: 'custom-dialog-container',
-       
-      data: {
-        tipo: "add",
-        id: null,
-        nombre:null,
-        descripcion: null,
-        precio: null,
-        fecha_salida: null,
-      }
-    });
-
-    this.dialog.afterAllClosed.subscribe((result) => {
-      this.asignarArticulos();
-    });
-  }else{
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = true;
-    dialogConfig.closeOnNavigation = true;
-    this.dialogañadirArticulos.open(ModificarJuegoComponent, {
-      panelClass: 'custom-dialog-container',
-      data: {
-        tipo: "add",
-        id: null,
-        nombre:null,
-        descripcion: null,
-        precio: null,
-        fecha_salida: null,
-        directx: null, 
-        etiquetas:null,
-        graficos:null,
-        idioma:null,
-        memoria:null,
-        os:null,
-        plataforma:null,
-        storage:null,
-        procesador:null,
-        tarjeta_sonido:null,
-        video: null
-      }
-    });
-
-    this.dialog.afterAllClosed.subscribe((result) => {
-      this.asignarArticulos();
-    });
-  }
-  }
-
-  borrarArticulos(event: any){
-    this.http.delete("http://127.0.0.1:8000/api/articulos/"+ event.id).subscribe({
-      next: data => {
-         window.location.reload()
-      }
-     
-  });
-  
-  }
-
-  modificarArticulos(event: any, producto: string) {
-    console.log('modificando');
-    if(producto=="merch"){
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = true;
-    dialogConfig.closeOnNavigation = true;
-    this.dialog.open(ModificarProductoComponent, {
-      panelClass: 'custom-dialog-container',
-      data: {
-        producto: producto,
-        tipo: "update",
-        id: event.id,
-        nombre: event.nombre,
-        descripcion: event.descripcion,
-        precio: event.precio,
-        fecha_salida: event.fecha_salida,
-        imagen:event.imagen_principal
-      },
-    });
-
-    this.dialog.afterAllClosed.subscribe((result) => {
-      this.asignarArticulos();
-    });
-  } else{
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = true;
-    dialogConfig.closeOnNavigation = true;
-    this.dialog.open(ModificarJuegoComponent, {
-      
-      panelClass: 'custom-dialog-container',
-      data: {
-        producto: producto,
-        tipo: "update",
-        id: event.id,
-        nombre: event.nombre,
-        descripcion: event.descripcion,
-        precio: event.precio,
-        fecha_salida: event.fecha_salida,
-        imagen:event.imagen_principal,
-        directx: event.directx,
-        etiquetas: event.etiquetas,
-        graficos:event.graficos,
-        idioma:event.idioma,
-        memoria:event.memoria,
-        os:event.os,
-        plataforma:event.plataforma,
-        storage:event.storage,
-        procesador:event.procesador,
-        tarjeta_sonido:event.tarjeta_sonido,
-        video: event.video
-      },
-    });
-
-    this.dialog.afterAllClosed.subscribe((result) => {
-      this.asignarArticulos();
-    });
-  }
-  }
-
-
-  asignarUsuarios() {
-    this.http.get('http://127.0.0.1:8000/api/usuarios').subscribe((result) => {
-      this.asignarUsu = result;
-      console.log(this.asignarUsu);
-      this.dataSourceUsuarios = new MatTableDataSource(this.asignarUsu.data);
-      this.dataSourceUsuarios.paginator = this.paginator2;
-    });
-  }
-
-  asignarOfertas() {
-    this.http.get('http://127.0.0.1:8000/api/articulos/oferta').subscribe((result) => {
-      this.asignarOfer = result;
-      console.log(this.asignarOfer);
-      this.dataSourceOfertas = new MatTableDataSource(this.asignarOfer);
-      this.dataSourceOfertas.paginator = this.paginator4;
-    });
-  }
-
-  asignarMerchandising() {
-    this.http.get('http://127.0.0.1:8000/api/articulos/merchs').subscribe((result) => {
-      this.asignarMerch = result;
-      console.log(this.asignarMerch);
-      this.dataSourceMerch = new MatTableDataSource(this.asignarMerch);
-      this.dataSourceMerch.paginator = this.paginator3;
-    });
   }
 
   applyFilterUsu(event: Event) {
@@ -273,12 +123,179 @@ export class VentanaPestanasComponent implements OnInit {
     this.dataSourceUsuarios.filter = filterValue.trim().toLowerCase();
   }
 
-  modificarUsuario(event: any){
-    console.log('modificando');
+  //Funciones asignar: En estas funciones traigo los datos de sus respectivas BBDD
+
+  asignarJuegos() {
+    this.http
+      .get('http://127.0.0.1:8000/api/articulos/juegos')
+      .subscribe((result) => {
+        this.asignar = result;
+
+        this.dataSource = new MatTableDataSource(this.asignar); //Asigno los datos a la tabla
+        this.dataSource.paginator = this.paginator; //Vinculo el paginador a la tabla
+      });
+  }
+
+  asignarUsuarios() {
+    this.http.get('http://127.0.0.1:8000/api/usuarios').subscribe((result) => {
+      this.asignarUsu = result;
+
+      this.dataSourceUsuarios = new MatTableDataSource(this.asignarUsu.data); //Asigno los datos a la tabla
+      this.dataSourceUsuarios.paginator = this.paginator2; //Vinculo el paginador a la tabla
+    });
+  }
+
+  asignarOfertas() {
+    this.http
+      .get('http://127.0.0.1:8000/api/articulos/oferta')
+      .subscribe((result) => {
+        this.asignarOfer = result;
+
+        this.dataSourceOfertas = new MatTableDataSource(this.asignarOfer); //Asigno los datos a la tabla
+        this.dataSourceOfertas.paginator = this.paginator4; //Vinculo el paginador a la tabla
+      });
+  }
+
+  asignarMerchandising() {
+    this.http
+      .get('http://127.0.0.1:8000/api/articulos/merchs')
+      .subscribe((result) => {
+        this.asignarMerch = result;
+
+        this.dataSourceMerch = new MatTableDataSource(this.asignarMerch); //Asigno los datos a la tabla
+        this.dataSourceMerch.paginator = this.paginator3; //Vinculo el paginador a la tabla
+      });
+  }
+
+  //Funciones añadir, borrar, modificar
+  anadirArticulos(event: any, producto: string) {
+    if (producto == 'merch') {  //Tipo de producto
+      const dialogConfig = new MatDialogConfig();
+      dialogConfig.disableClose = true;
+      dialogConfig.closeOnNavigation = true;
+      this.dialogañadirArticulos.open(ModificarProductoComponent, {
+        panelClass: 'custom-dialog-container',
+
+        data: {
+          tipo: 'add',  //Tipo de formulario
+          id: null,
+          nombre: null,
+          descripcion: null,
+          precio: null,
+          fecha_salida: null,
+        },
+      });
+
+      this.dialog.afterAllClosed.subscribe((result) => {
+        this.asignarMerchandising();
+      });
+    } else {
+      const dialogConfig = new MatDialogConfig();
+      dialogConfig.disableClose = true;
+      dialogConfig.closeOnNavigation = true;
+      this.dialogañadirArticulos.open(ModificarJuegoComponent, {
+        panelClass: 'custom-dialog-container',
+        data: {
+          tipo: 'add',  //Tipo de formulario
+          id: null,
+          nombre: null,
+          descripcion: null,
+          precio: null,
+          fecha_salida: null,
+          directx: null,
+          etiquetas: null,
+          graficos: null,
+          idioma: null,
+          memoria: null,
+          os: null,
+          plataforma: null,
+          storage: null,
+          procesador: null,
+          tarjeta_sonido: null,
+          video: null,
+        },
+      });
+
+      this.dialog.afterAllClosed.subscribe((result) => {
+        this.asignarJuegos()
+      });
+    }
+  }
+
+  borrarArticulos(event: any) {
+    this.http
+      .delete('http://127.0.0.1:8000/api/articulos/' + event.id)
+      .subscribe({
+        next: (data) => {
+          this.asignarJuegos();
+          this.asignarMerchandising();
+        },
+      });
+  }
+
+  modificarArticulos(event: any, producto: string) {
+    if (producto == 'merch') { //Tipo de producto
+      const dialogConfig = new MatDialogConfig();
+      dialogConfig.disableClose = true;
+      dialogConfig.closeOnNavigation = true;
+      this.dialog.open(ModificarProductoComponent, {
+        panelClass: 'custom-dialog-container',
+        data: {
+          producto: producto,
+          tipo: 'update',
+          id: event.id,
+          nombre: event.nombre,
+          descripcion: event.descripcion,
+          precio: event.precio,
+          fecha_salida: event.fecha_salida,
+          imagen: event.imagen_principal,
+        },
+      });
+
+      this.dialog.afterAllClosed.subscribe((result) => {
+        this.asignarJuegos();
+      });
+    } else {
+      const dialogConfig = new MatDialogConfig();
+      dialogConfig.disableClose = true;
+      dialogConfig.closeOnNavigation = true;
+      this.dialog.open(ModificarJuegoComponent, {
+        panelClass: 'custom-dialog-container',
+        data: {
+          producto: producto,
+          tipo: 'update',
+          id: event.id,
+          nombre: event.nombre,
+          descripcion: event.descripcion,
+          precio: event.precio,
+          fecha_salida: event.fecha_salida,
+          imagen: event.imagen_principal,
+          directx: event.directx,
+          etiquetas: event.etiquetas,
+          graficos: event.graficos,
+          idioma: event.idioma,
+          memoria: event.memoria,
+          os: event.os,
+          plataforma: event.plataforma,
+          storage: event.storage,
+          procesador: event.procesador,
+          tarjeta_sonido: event.tarjeta_sonido,
+          video: event.video,
+        },
+      });
+
+      this.dialog.afterAllClosed.subscribe((result) => { //Despues que el dialog se cierre
+        this.asignarJuegos();
+      });
+    }
+  }
+
+  modificarUsuario(event: any) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.closeOnNavigation = true;
     this.dialog.open(ModificarUsuarioComponent, {
+      //Abro un nuevo dialog con el formulario y al terminar recargo la tabla
       panelClass: 'custom-dialog-container',
       data: {
         id: event.id,
@@ -287,9 +304,7 @@ export class VentanaPestanasComponent implements OnInit {
         nombre_usuario: event.nick,
         telefono: event.telefono,
         email: event.email,
-        
-        es_admin : event.es_administrador
-        
+        es_admin: event.es_administrador,
       },
     });
 
@@ -298,42 +313,38 @@ export class VentanaPestanasComponent implements OnInit {
     });
   }
 
-  borrarUsuario(event: any){
-    this.http.delete("http://127.0.0.1:8000/api/usuarios/"+ event.id).subscribe({
-      next: data => {
-         
-      }
-     
-  });
+  borrarUsuario(event: any) {
+    this.http
+      .delete('http://127.0.0.1:8000/api/usuarios/' + event.id)
+      .subscribe({
+        next: (data) => {
+          this.asignarUsuarios(); //Actualizo la tabla
+        },
+      });
   }
 
-  crearOferta(event: any){
-    console.log('añadiendo');
+  crearOferta(event: any) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.closeOnNavigation = true;
     this.dialogañadirArticulos.open(GestionarOfertasComponent, {
+      //Abro un nuevo dialog con el formulario
       panelClass: 'custom-dialog-container',
-       
-      
-      
+    });
+
+    this.dialog.afterAllClosed.subscribe((result) => {
+      this.asignarOfertas();
     });
   }
 
-  eliminarOferta(element: any){
-    console.log(element.id)
+  eliminarOferta(element: any) {
     this.http
       .put('http://127.0.0.1:8000/api/ofertas/' + element.id, {
-        porcentaje: 0
+        porcentaje: 0,
       })
       .toPromise()
       .then((data: any) => {
-        console.log(data);
-        console.log(JSON.stringify(data.JSON));
-        window.location.reload()
+        this.asignarOfertas();  //Actualizo la tabla
       });
-}
-
-
-
+  }
 }

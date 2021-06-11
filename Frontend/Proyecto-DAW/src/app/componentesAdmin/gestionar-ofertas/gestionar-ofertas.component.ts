@@ -121,7 +121,7 @@ export class GestionarOfertasComponent implements OnInit {
                   .subscribe();
               }
 
-              window.location.reload();
+              
             });
         });
     } else {

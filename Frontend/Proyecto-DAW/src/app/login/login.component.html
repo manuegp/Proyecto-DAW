@@ -1,9 +1,8 @@
-<!-- Default form login -->
+
 <form class="text-center p-5" [formGroup]="login" (ngSubmit)="submit($event)">
   <p class="h4 mb-4">Iniciar sesion</p>
 
   <!-- Email -->
-
   <p>
     <mat-form-field appearance="standard">
       <mat-label>Email</mat-label>
@@ -14,6 +13,8 @@
       />
     </mat-form-field>
   </p>
+
+  <!-- Contraseña -->
   <p>
     <mat-form-field appearance="standard">
       <mat-label>Contraseña</mat-label>
@@ -25,6 +26,8 @@
       />
     </mat-form-field>
   </p>
+
+  <!-- Error en credenciales -->
   <div
     *ngIf="errorCredeciales"
     class="alert alert-danger d-flex justify-content-around"
@@ -48,6 +51,6 @@
     <a href="/register">Registrarse</a>
   </p>
 
-  <!-- Social login -->
+  
 </form>
-<!-- Default form login -->
+

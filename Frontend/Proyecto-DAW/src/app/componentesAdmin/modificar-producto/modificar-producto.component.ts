@@ -113,7 +113,7 @@ export class ModificarProductoComponent {
             .then((data: any) => {
               this.dialogRef.close(); //Cierro el dialogo
               
-            window.location.reload();
+            
             });
         });
     }

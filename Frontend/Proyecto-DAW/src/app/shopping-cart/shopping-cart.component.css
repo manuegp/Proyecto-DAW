@@ -1,128 +1,113 @@
-
-.mat-list-item{
-    color: white !important;
-    height: 130px !important;
-    width: 900px !important;
+/*Tabla*/
+.mat-list-item {
+  color: white !important;
+  height: 130px !important;
+  width: 900px !important;
 }
-mat-list-item:hover{
-background-color: aquamarine;
-
-
+mat-list-item:hover {
+  background-color: aquamarine;
 }
 
-.contenido{
-    box-shadow: 10px 10px #d4b170;
-    border: white 1px solid;
+.contenido {
+  box-shadow: 10px 10px #d4b170;
+  border: white 1px solid;
 }
 
-img{
-    width: 230px;
-    height: 107.5px;
-    
+img {
+  width: 230px;
+  height: 107.5px;
 }
 
-
-
-table{
-    margin-top: 10px;
-    margin-bottom: 10px;
-    background-color: #212529;
-    
-    
+table {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: #212529;
 }
 
-
-th{
-    color: white;
+th {
+  color: white;
 }
 
-td{
-    text-align: center;
-    color: white;
+td {
+  text-align: center;
+  color: white;
 }
 
-td:hover{
-    cursor: pointer;
-    
+td:hover {
+  cursor: pointer;
 }
 
-.borrar{ 
-    text-align: center;
+h1 {
+  font-size: 30px;
+  margin-top: 10px;
+  color: #212529;
 }
 
-i{
-    
-    color: red;
-    font-size: 20px;
-    padding: 5px;
-    border-radius: 20px;
+h1 {
+  color: white;
 }
 
-i:hover{
-    background-color: red;
-    color: #212529;
-    font-size: 20px;
+a {
+  color: #d4b170;
 }
 
-.empty{
-    text-align: center;
-    padding: 30px;
-}
-.sad{
-    
-font-size: 50px;
-color: #d4b170;;
-
+.ripple {
+  background-color: #d4b170;
 }
 
-.sad:hover{
-    color: #d4b170;;
-    font-size: 50px;
-    background-color: transparent;
+/*Boton*/
+.pago {
+  margin-top: 5px;
 }
 
-
-h1{
-    font-size: 30px;
-    margin-top: 10px;
-    color: #212529;
+button {
+  border: none;
+  color: white;
+  background-color: #212529;
 }
-.pago{
-    margin-top: 5px;
-}
-
-button{
-    border: none;
-    color: white;
-    background-color: #212529;
-}
-button:hover{
-    
+button:hover {
   box-shadow: 5px 5px red;
 }
 
-h1{
-
-    color: white;
-}
-
-a{
-    color: #d4b170
-}
-
-
- .ripple{
-    background-color:  #d4b170;;
-}
-
 .boton {
-    margin-top: 5px;
-    background-color: transparent;
-    color: white;
-    border: solid white 1px;
-    
-  }
-  .boton:hover {
-    background-color: #d4b170;
-    box-shadow: 5px 5px white;
-  }
+  margin-top: 5px;
+  background-color: transparent;
+  color: white;
+  border: solid white 1px;
+}
+.boton:hover {
+  background-color: #d4b170;
+  box-shadow: 5px 5px white;
+}
+
+/*Iconos*/
+.borrar {
+  text-align: center;
+}
+i {
+  color: red;
+  font-size: 20px;
+  padding: 5px;
+  border-radius: 20px;
+}
+
+i:hover {
+  background-color: red;
+  color: #212529;
+  font-size: 20px;
+}
+
+.empty {
+  text-align: center;
+  padding: 30px;
+}
+.sad {
+  font-size: 50px;
+  color: #d4b170;
+}
+
+.sad:hover {
+  color: #d4b170;
+  font-size: 50px;
+  background-color: transparent;
+}
