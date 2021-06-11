@@ -5,6 +5,9 @@ table{
     background-color: #212529;
 }
 
+
+/*Inputs*/
+
 mat-label{
     color: white;
 }
@@ -27,6 +30,9 @@ input::-webkit-inner-spin-button {
 ::ng-deep .mat-input-wrapper{
     width:40px !important;
   }
+
+
+  /*Botones*/
 
   .boton {
     border: solid 1px white;

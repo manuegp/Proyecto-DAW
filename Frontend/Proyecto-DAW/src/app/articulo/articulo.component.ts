@@ -14,7 +14,7 @@ export class ArticuloComponent implements OnInit {
   //---------Variables---------------------------------------
   //---------------------------------------------------------
   id: any; //Id de la URL
-  datos: any //Datos del juego de la pagina; 
+  datos: any; //Datos del juego de la pagina;
   esTipo: string = ''; //El tipo de producto de la id de la URL
   Articulos: any; //Todos los articulos
 
@@ -60,9 +60,11 @@ export class ArticuloComponent implements OnInit {
       .then((data) => {
         this.datos = data;
         console.log(this.datos);
-        if (this.verArticulo()) { //TRUE: el articulo esta en la BBDD y se mira que tipo es; FALSE: devuelve a /home
-          if (this.datos.length == 0) { //Si el id no se encuentra en la tabla juegos devolvera una array con length 0 haciendo que sea merch
-            this.esTipo = 'merch'; 
+        if (this.verArticulo()) {
+          //TRUE: el articulo esta en la BBDD y se mira que tipo es; FALSE: devuelve a /home
+          if (this.datos.length == 0) {
+            //Si el id no se encuentra en la tabla juegos devolvera una array con length 0 haciendo que sea merch
+            this.esTipo = 'merch';
           } else {
             this.esTipo = 'juego'; //Si el id  se encuentra en la tabla juegos devolvera una array con datos haciendo que sea juegos
           }
@@ -76,7 +78,8 @@ export class ArticuloComponent implements OnInit {
   //Compruebo si el id de la URL introducida se encuentra entre los articulos de la BBDD
   verArticulo() {
     for (let i = 0; i < this.Articulos.length; i++) {
-      if (this.id == this.Articulos[i].id) { //Coinciden los Id
+      if (this.id == this.Articulos[i].id) {
+        //Coinciden los Id
         return true;
       }
     }

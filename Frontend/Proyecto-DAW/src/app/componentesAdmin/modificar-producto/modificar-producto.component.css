@@ -2,6 +2,11 @@
     background-color: #212529;
 }
 
+::ng-deep .mat-input-wrapper{
+  width:40px !important;
+}
+
+/*Cambiar inputs*/
 mat-label{
     color: white;
 }
@@ -21,9 +26,7 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
-::ng-deep .mat-input-wrapper{
-    width:40px !important;
-  }
+/*Botones*/
 
   .boton {
     border: solid 1px white;

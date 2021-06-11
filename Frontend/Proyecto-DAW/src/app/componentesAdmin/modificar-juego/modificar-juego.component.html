@@ -20,7 +20,6 @@
             type="number"
             min="0"
             max="999"
-            
             class="example-right-align"
             formControlName="precio"
           />
@@ -82,17 +81,19 @@
           <input matInput formControlName="tarjeta_sonido" />
         </mat-form-field>
         <mat-form-field>
-            <mat-label>Video-EMBED-URL</mat-label>
-            <input matInput formControlName="video" />
-          </mat-form-field>
+          <mat-label>Video-EMBED-URL</mat-label>
+          <input matInput formControlName="video" />
+        </mat-form-field>
 
         <br />
         <br />
         <div class="offset-5 col-5">
-          <button [disabled]="signupForm.invalid" type="submit" class="boton">
+          <button [disabled]="signupForm.invalid" type="submit" class="boton"> <!--En caso de que algunos los inputs no sea valido el boton estara disabled-->
             Modificar
           </button>
-          <button (click)="cancelar()" class="boton borrar" type="button">Cancelar</button>
+          <button (click)="cancelar()" class="boton borrar" type="button">
+            Cancelar
+          </button>
         </div>
 
         <br />

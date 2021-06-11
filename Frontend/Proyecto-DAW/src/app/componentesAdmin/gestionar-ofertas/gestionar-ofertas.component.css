@@ -1,55 +1,55 @@
-
-.container{
-    background-color: #212529;
-    
+.container {
+  background-color: #212529;
 }
 
-.form{
-    margin-left: 5px;
+.form {
+  margin-left: 5px;
 }
 
+/*Botones*/
 .boton {
-    border: solid 1px white;
-    margin-top: 5px;
-    background-color: transparent;
-    color: white;
-  
-    margin-left: 10px;
-  }
-  .boton:hover {
-    background-color: #d4b170;
-    
-  }
-  .mat-label{
-    color:#d4b170 ;
-  }
+  border: solid 1px white;
+  margin-top: 5px;
+  background-color: transparent;
+  color: white;
 
-  .borrar:hover{
-    background-color: red;
-    border: #d4b170 solid 1px;
+  margin-left: 10px;
 }
+.boton:hover {
+  background-color: #d4b170;
+}
+.mat-label {
+  color: #d4b170;
+}
+
+.borrar:hover {
+  background-color: red;
+  border: #d4b170 solid 1px;
+}
+
+/*Cambiar inputs*/
 
 ::ng-deep .mat-focused .mat-form-field-label {
-    /*change color of label*/
-    color: #d4b170 !important;
-  }
-  
-  ::ng-deep.mat-form-field-underline {
-    /*change color of underline*/
-    background-color: #d4b170 !important;
-  }
-  
-  ::ng-deep.mat-form-field-ripple {
-    /*change color of underline when focused*/
-    background-color: #d4b170 !important;
-  }
-  span{
-      color: red;
-  }
+  /*change color of label*/
+  color: #d4b170 !important;
+}
 
-  input{
-    color: white;
-  }
-  mat-label{
-    color: white;
+::ng-deep.mat-form-field-underline {
+  /*change color of underline*/
+  background-color: #d4b170 !important;
+}
+
+::ng-deep.mat-form-field-ripple {
+  /*change color of underline when focused*/
+  background-color: #d4b170 !important;
+}
+span {
+  color: red;
+}
+
+input {
+  color: white;
+}
+mat-label {
+  color: white;
 }

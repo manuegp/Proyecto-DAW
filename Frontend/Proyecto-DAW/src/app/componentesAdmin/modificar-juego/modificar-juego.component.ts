@@ -11,17 +11,23 @@ import { ModificarProductoComponent } from '../modificar-producto/modificar-prod
   styleUrls: ['./modificar-juego.component.css'],
 })
 export class ModificarJuegoComponent implements OnInit {
-  signupForm: FormGroup;
-  idCrear: any;
-  idCrear2: any;
+  //---------------------------------------------------------
+  //---------Variables---------------------------------------
+  //---------------------------------------------------------
+  signupForm: FormGroup; //Formulario
+  idCrear: any; //Id del nuevo articulo que se ha creado 
+
+  //---------------------------------------------------------
+  //--Constructor/Funciones de inicio del componente---------
+  //---------------------------------------------------------
   constructor(
     private _builder: FormBuilder,
     private http: HttpClient,
-    private router: Router,
-    @Inject(MAT_DIALOG_DATA) public data: any,
-
+    @Inject(MAT_DIALOG_DATA) public data: any, //Se injectan los datos del componente padre
+    //Hay un dato llamado tipo que indicara si hay que actualizar el producto o crear un nuevo
     private dialogRef: MatDialogRef<ModificarJuegoComponent>
   ) {
+    //Asigno los datos injectados a los inputs en caso que se quiera modificar un juego
     this.signupForm = this._builder.group({
       nombre: [data.nombre, Validators.required],
       descripcion: [data.descripcion, Validators.required],
@@ -42,9 +48,13 @@ export class ModificarJuegoComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
+  //---------------------------------------------------------
+  //---------Funciones---------------------------------------
+  //---------------------------------------------------------
 
   submit() {
+    //Recojo los datos y los envio
     this.enviarDatos(
       this.data.tipo,
       this.data.id,
@@ -70,6 +80,7 @@ export class ModificarJuegoComponent implements OnInit {
   cancelar() {
     this.dialogRef.close();
   }
+
   async enviarDatos(
     tipo: string,
     id: number,
@@ -91,6 +102,7 @@ export class ModificarJuegoComponent implements OnInit {
     video: any
   ) {
     if (tipo == 'update') {
+      //Compruebo si se va a crear o actualizar el dato
       this.http
         .put('http://127.0.0.1:8000/api/articulos/' + id, {
           nombre: nombre,
@@ -100,10 +112,7 @@ export class ModificarJuegoComponent implements OnInit {
           imagen_principal: imagen,
         })
         .toPromise()
-        .then((data: any) => {
-          console.log(data);
-          console.log(JSON.stringify(data.JSON));
-        });
+        .then((data: any) => {});
 
       this.http
         .put('http://127.0.0.1:8000/api/juegos/' + id, {
@@ -113,10 +122,7 @@ export class ModificarJuegoComponent implements OnInit {
           plataforma: plataforma,
         })
         .toPromise()
-        .then((data: any) => {
-          console.log(data);
-          console.log(JSON.stringify(data.JSON));
-        });
+        .then((data: any) => {});
 
       this.http
         .put('http://127.0.0.1:8000/api/requisitos_juego/' + id, {
@@ -130,13 +136,12 @@ export class ModificarJuegoComponent implements OnInit {
         })
         .toPromise()
         .then((data: any) => {
-          console.log(data);
-          console.log(JSON.stringify(data.JSON));
           this.dialogRef.close();
         });
     } else if (tipo == 'add') {
       this.http
         .post('http://127.0.0.1:8000/api/articulos', {
+          //Añado primero a la tabla articulos
           nombre: nombre,
           descripcion: descripcion,
           precio: precio,
@@ -145,15 +150,11 @@ export class ModificarJuegoComponent implements OnInit {
         })
         .toPromise()
         .then((data: any) => {
-          console.log(data);
           this.idCrear = data.data.id;
-          console.log(data.data.id);
-          console.log(this.idCrear);
-          console.log(JSON.stringify(data.JSON));
           this.dialogRef.close();
-          console.log(this.idCrear);
           this.http
             .post('http://127.0.0.1:8000/api/juegos', {
+              //Añado luego a la tabla juegos
               id_articulo: this.idCrear,
               etiquetas: etiquetas,
               idioma: idioma,
@@ -162,11 +163,10 @@ export class ModificarJuegoComponent implements OnInit {
             })
             .toPromise()
             .then((data: any) => {
-              console.log(data);
-              console.log(JSON.stringify(data.JSON));
-              this.idCrear = data.data.id
+              this.idCrear = data.data.id;
               this.http
                 .post('http://127.0.0.1:8000/api/requisitos_juego', {
+                  //Añado a la tabla requisitos_juegos
                   id_juego: this.idCrear,
                   directx: directx,
                   graficos: graficos,
@@ -177,29 +177,20 @@ export class ModificarJuegoComponent implements OnInit {
                   tarjeta_sonido: tarjeta_sonido,
                 })
                 .toPromise()
-                .then((data: any) => {
-                  console.log(data);
-                  console.log(JSON.stringify(data.JSON));
-                });
+                .then((data: any) => {});
             });
 
-            this.http.post('http://127.0.0.1:8000/api/ofertas', {
-                    id_articulo: this.idCrear,
-                    porcentaje: 0,
-                  }).toPromise()
-                    .then((data: any) => {
-                      console.log(data);
-                      console.log(JSON.stringify(data.JSON));
-                      this.dialogRef.close();
-                    });
-
+          this.http
+            .post('http://127.0.0.1:8000/api/ofertas', {
+              //Y por ultimo creo una oferta con porcentaje 0
+              id_articulo: this.idCrear,
+              porcentaje: 0,
+            })
+            .toPromise()
+            .then((data: any) => {
+              this.dialogRef.close();
+            });
         });
-      console.log(this.idCrear);
-
-
-
     }
-
-
   }
 }

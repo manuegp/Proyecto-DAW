@@ -49,7 +49,7 @@ import { RecuperarPasswordComponent } from './recuperar-password/recuperar-passw
 import { GestionarOfertasComponent } from './componentesAdmin/gestionar-ofertas/gestionar-ofertas.component';
 import { MerchComponent } from './merch/merch.component';
 import { ArticuloComponent } from './articulo/articulo.component';
-import { CarruselComponent } from './carrusel/carrusel.component';
+import { CarruselComponent } from './ofertas-inicio/carrusel.component';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, ProfileComponent, AdminComponent, ProductComponent, ListProductsComponent, ShoppingCartComponent, LoginComponent, SiginComponent, VentanaPestanasComponent, ModificarProductoComponent, ModificarUsuarioComponent, ForgotpasswordComponent, PaymentComponent, SuccessComponent, ModificarJuegoComponent, RecuperarPasswordComponent, GestionarOfertasComponent, MerchComponent, ArticuloComponent, CarruselComponent],

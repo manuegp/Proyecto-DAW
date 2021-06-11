@@ -3,6 +3,7 @@
   <div class="row">
     <mat-dialog-content class="form">
       <form autocomplete="off" (ngSubmit)="submit()">
+        <!--Se ejecutara al darle al boton de modificar-->
         <div class="row">
           <mat-form-field class="example-full-width">
             <mat-label>Articulo</mat-label>
@@ -10,13 +11,14 @@
               matInput
               #articulo
               [matAutocomplete]="auto"
-              [formControl]="stateCtrl"
+              [formControl]="articuloCtrl"
             />
             <mat-autocomplete #auto="matAutocomplete">
               <mat-option
-                *ngFor="let state of filteredStates | async"
+                *ngFor="let state of filteredArticulos | async"
                 [value]="state.nombre"
               >
+                <!--Traigo todos los articulo los hago opciones-->
                 <span>{{ state.id }}</span> |
                 <small>{{ state.nombre }}</small>
               </mat-option>
@@ -27,7 +29,10 @@
             <mat-label>Porcentaje de descuento</mat-label>
             <input matInput #percent type="number" min="1" max="100" size="2" />
           </mat-form-field>
-          <span *ngIf="error">Error asegurate de introducir bien los datos y un porcentaje mayor de 100 y menor que 0</span>
+          <span *ngIf="error"
+            >Error asegurate de introducir bien los datos y un porcentaje mayor
+            de 100 y menor que 0</span
+          ><!--Mensaje de error-->
 
           <div class="offset-5 col-5">
             <button type="submit" class="boton">Modificar</button>
