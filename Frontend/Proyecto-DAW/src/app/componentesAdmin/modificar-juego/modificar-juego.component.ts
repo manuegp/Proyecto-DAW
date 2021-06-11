@@ -177,7 +177,9 @@ export class ModificarJuegoComponent implements OnInit {
                   tarjeta_sonido: tarjeta_sonido,
                 })
                 .toPromise()
-                .then((data: any) => {});
+                .then((data: any) => {
+                  window.location.reload();
+                });
             });
 
           this.http
@@ -191,6 +193,7 @@ export class ModificarJuegoComponent implements OnInit {
               this.dialogRef.close();
             });
         });
+
     }
   }
 }
