@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 export class CarruselComponent {
   //Variable
   ofertas: any;
-  hayOfertas: boolean = false;
+
   //Constructor
   constructor(private http: HttpClient, private router: Router) {
     this.conseguirTotalOfertas();
@@ -22,9 +22,6 @@ export class CarruselComponent {
       .toPromise()
       .then((data) => {
         this.ofertas = data;
-        if(this.ofertas.length == 0){
-          this.hayOfertas= true;
-        }
       });
   }
 

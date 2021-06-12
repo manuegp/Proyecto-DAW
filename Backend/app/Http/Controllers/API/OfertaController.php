@@ -10,11 +10,7 @@ use App\Http\Resources\OfertaResource;
 
 class OfertaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    /*Funcion para mostrar todos los datos de ofertas, junto con el nombre del articulo*/
     public function index()
     {
         
@@ -27,12 +23,7 @@ class OfertaController extends Controller
 
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    /*Funcion para crear una nueva oferta*/
     public function store(Request $request)
     {
         $oferta = json_decode($request->getContent(), true);
@@ -42,12 +33,7 @@ class OfertaController extends Controller
         return new OfertaResource($oferta);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Oferta  $oferta
-     * @return \Illuminate\Http\Response
-     */
+    /*Funcion para mostrar los datos de una oferta en concreto, junto con el nombre del articulo*/
     public function show(Oferta $oferta)
     {
         $ofertas = DB::select('SELECT ofertas.*, articulos.nombre
@@ -59,13 +45,7 @@ class OfertaController extends Controller
         return $ofertas;
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Oferta  $oferta
-     * @return \Illuminate\Http\Response
-     */
+    /*Funcion para modificar una oferta en concreto*/
     public function update(Request $request, Oferta $oferta)
     {
         $ofertaData = json_decode($request->getContent(), true);
@@ -74,12 +54,7 @@ class OfertaController extends Controller
         return new OfertaResource($oferta);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Oferta  $oferta
-     * @return \Illuminate\Http\Response
-     */
+    /*Funcion para eliminar una oferta en concreto*/
     public function destroy(Oferta $oferta)
     {
         $oferta->delete();

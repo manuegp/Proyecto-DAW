@@ -9,22 +9,13 @@ use App\Http\Resources\JuegoResource;
 
 class JuegoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    /*Funcion para mostrar todos los datos que hay en la tabla juegos*/
     public function index()
     {
         return JuegoResource::collection(Juego::all());
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    /*Funcion para crear una nueva fila en la tabla juegos*/
     public function store(Request $request)
     {
         $juego = json_decode($request->getContent(), true);
@@ -34,24 +25,13 @@ class JuegoController extends Controller
         return new JuegoResource($juego);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Juego  $juego
-     * @return \Illuminate\Http\Response
-     */
+    /*Funcion para mostrar los datos de una fila en concreto de juegos*/
     public function show(Juego $juego)
     {
         return new JuegoResource($juego);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Juego  $juego
-     * @return \Illuminate\Http\Response
-     */
+    /*Funcion para actualizar los datos de una fila en concreto de juegos*/
     public function update(Request $request, Juego $juego)
     {
         $juegoData = json_decode($request->getContent(), true);
@@ -60,12 +40,7 @@ class JuegoController extends Controller
         return new JuegoResource($juego);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Juego  $juego
-     * @return \Illuminate\Http\Response
-     */
+    /*Funcion para eliminar una fila en concreto de juegos*/
     public function destroy(Juego $juego)
     {
         $juego->delete();

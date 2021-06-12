@@ -10,22 +10,13 @@ use Illuminate\Support\Facades\DB;
 
 class DeseadoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    /*Funcion para mostrar todos los datos que hay en deseados*/
     public function index()
     {
         return DeseadoResource::collection(Deseado::all());
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    /*Funcion para crear una nueva fila en deseados*/
     public function store(Request $request)
     {
         $deseado = json_decode($request->getContent(), true);
@@ -35,17 +26,14 @@ class DeseadoController extends Controller
         return new DeseadoResource($deseado);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Deseado  $deseado
-     * @return \Illuminate\Http\Response
-     */
+    /*Funcion para mostrar una fila en concreto de deseados*/
     public function show(Deseado $deseado)
     {
         return new DeseadoResource($deseado);
     }
 
+    /*Funcion para mostrar todos los datos de deseados, junto con los datos de articulos, 
+    cuyo id_usuario sea igual al que se ha introducido como parametro*/
     public function deseados_usuario(string $id_usuario)
     {
         $deseados_usuario = DB::select('SELECT deseados.*, articulos.nombre, articulos.precio, articulos.imagen_principal
@@ -55,13 +43,7 @@ class DeseadoController extends Controller
         return $deseados_usuario;
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Deseado  $deseado
-     * @return \Illuminate\Http\Response
-     */
+    /*Funcion para actualizar una fila en concreto de deseados*/
     public function update(Request $request, Deseado $deseado)
     {
         $deseadoData = json_decode($request->getContent(), true);
@@ -70,29 +52,10 @@ class DeseadoController extends Controller
         return new DeseadoResource($deseado);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Deseado  $deseado
-     * @return \Illuminate\Http\Response
-     */
+    /*Funcion para eliminar una fila en concreto de deseados*/
     public function destroy(Deseado $deseado)
     {
         $deseado->delete();
-    }
-
-    //Funcion que utilizo para borrar en la lista de deseados, aquellos productos que el usuario ha comprado y estaba en la lista de deseados
-    public function deleteArticulosDeseadosPagados(string $id_usuario) {
-
-        DB::delete('DELETE from deseados 
-                    where id_articulo IN (
-                                            select id_articulo 
-                                            from carritos 
-                                            WHERE id_usuario = '. $id_usuario.'
-                                        ) 
-                    and id_usuario = 3'
-        );
-
     }
 
 }

@@ -10,22 +10,13 @@ use Illuminate\Support\Facades\DB;
 
 class CarritoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    /*Funcion para mostrar todos los datos de carrito*/
     public function index()
     {
         return CarritoResource::collection(Carrito::all());
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    /*Funcion para crear una nueva fila de carrito*/
     public function store(Request $request)
     {
         $carrito = json_decode($request->getContent(), true);
@@ -35,17 +26,14 @@ class CarritoController extends Controller
         return new CarritoResource($carrito);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Carrito  $carrito
-     * @return \Illuminate\Http\Response
-     */
+    /*Funcion para mostrar los datos de una fila en concreto de carrito*/
     public function show(Carrito $carrito)
     {
         return new CarritoResource($carrito);
     }
 
+    /*Funcion para mostrar los datos de carrito, junto a datos de articulos y ofertas, 
+    cuyo id_usuario de carrito sea igual al que se ha introducido como parametro*/
     public function carrito_usuario(string $id_usuario)
     {
         $carrito_usuario = DB::select('SELECT carritos.*, articulos.nombre, articulos.precio, articulos.imagen_principal, ofertas.porcentaje
@@ -58,13 +46,7 @@ class CarritoController extends Controller
         return $carrito_usuario;
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Carrito  $carrito
-     * @return \Illuminate\Http\Response
-     */
+    /*Funcion para actualizar una fila en concreto de carrito*/
     public function update(Request $request, Carrito $carrito)
     {
         $carritoData = json_decode($request->getContent(), true);
@@ -73,12 +55,7 @@ class CarritoController extends Controller
         return new CarritoResource($carrito);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Carrito  $carrito
-     * @return \Illuminate\Http\Response
-     */
+    /*Funcion para eliminar una fila en concreto de carrito*/
     public function destroy(Carrito $carrito)
     {
         $carrito->delete();

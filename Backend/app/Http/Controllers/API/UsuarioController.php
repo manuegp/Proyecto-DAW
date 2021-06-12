@@ -11,45 +11,13 @@ use Illuminate\Support\Facades\Hash;
 
 class UsuarioController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    /*Funcion para devolver todos los datos de la tabla de usuarios*/
     public function index()
     {
         return UsuarioResource::collection(User::all());
     }
 
-    public function email_user(string $email) {
-
-        $correo = DB::select('SELECT * 
-                              FROM users
-                              WHERE email LIKE "'. $email. '"'
-        );
-
-        return $correo;
-
-    }
-
-    public function articulo_deseado_oferta_users(string $id_articulo) {
-
-        $usuarios = DB::select('SELECT DISTINCT users.*
-                                FROM users, deseados
-                                WHERE deseados.id_articulo = '. $id_articulo. 
-                               ' AND users.id = deseados.id_usuario'
-        );
-
-        return $usuarios;
-
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    /*Funcion para crear un nuevo usuario*/
     public function store(Request $request)
     {
 
@@ -67,7 +35,7 @@ class UsuarioController extends Controller
         $usuario = User::create([
             'nombre' => $request['nombre'],
             'apellidos' => $request['apellidos'],
-            'password'=> bcrypt($request['password']),
+            'password'=> bcrypt($request['password']), //Aqui especifico que la contraseña este encriptada
             'nick'=> $request['nick'],
             'telefono' => $request['telefono'],
             'email' => $request['email'],
@@ -78,24 +46,38 @@ class UsuarioController extends Controller
         return new UsuarioResource($usuario);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\User  $usuario
-     * @return \Illuminate\Http\Response
-     */
+    /*Funcion para devolver los datos de un usuario en concreto*/
     public function show(User $usuario)
     {
         return new UsuarioResource($usuario);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User  $usuario
-     * @return \Illuminate\Http\Response
-     */
+    /*Funcion para devolver los datos de un usuario en concreto, por medio del email, en vez de por su id*/
+    public function email_user(string $email) {
+
+        $correo = DB::select('SELECT * 
+                              FROM users
+                              WHERE email LIKE "'. $email. '"'
+        );
+
+        return $correo;
+
+    }
+
+    /*Funcion para devolver los datos de los usuarios que tengan en lista de deseados el articulo especifico*/
+    public function articulo_deseado_oferta_users(string $id_articulo) {
+
+        $usuarios = DB::select('SELECT DISTINCT users.*
+                                FROM users, deseados
+                                WHERE deseados.id_articulo = '. $id_articulo. 
+                               ' AND users.id = deseados.id_usuario'
+        );
+
+        return $usuarios;
+
+    }
+
+    /*Funcion para actualizar los datos de un usuario en concreto*/
     public function update(Request $request, User $usuario)
     {
         $usuarioData = json_decode($request->getContent(), true);
@@ -104,6 +86,7 @@ class UsuarioController extends Controller
         return new UsuarioResource($usuario);
     }
 
+    /*Funcion para actualizar solamente la contraseña del usuario en concreto */
     public function updatePassword(Request $request, string $id_usuario) {
 
         $contraseña = Hash::make($request->password);
@@ -119,12 +102,7 @@ class UsuarioController extends Controller
     }
 
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\User  $usuario
-     * @return \Illuminate\Http\Response
-     */
+    //Funcion para eliminar el usuario en concreto
     public function destroy(User $usuario)
     {
         $usuario->delete();

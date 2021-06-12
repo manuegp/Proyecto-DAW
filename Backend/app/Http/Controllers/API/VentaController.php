@@ -10,11 +10,7 @@ use Illuminate\Support\Facades\DB;
 
 class VentaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    //Funcion para mostrar todos los datos de ventas, junto con el nombre del usuario y articulo
     public function index()
     {
 
@@ -27,12 +23,7 @@ class VentaController extends Controller
         return $ventas;
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    //Funcion para crear una nueva venta
     public function store(Request $request)
     {
         $venta = json_decode($request->getContent(), true);
@@ -42,17 +33,14 @@ class VentaController extends Controller
         return new VentaResource($venta);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Venta  $venta
-     * @return \Illuminate\Http\Response
-     */
+    //Funcion para mostrar los datos de una venta en concreto
     public function show(Venta $venta)
     {
         return new VentaResource($venta);
     }
 
+    //Funcion para mostrar los datos de ventas, junto con el nombre, precio e imagen del articulo, 
+    //segun el id_usuario que esta introducido como parametro
     public function historial(string $id_usuario)
     {
         $historial = DB::select('SELECT ventas.*, articulos.nombre, articulos.precio, articulos.imagen_principal
@@ -63,13 +51,7 @@ class VentaController extends Controller
     }
 
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Venta  $venta
-     * @return \Illuminate\Http\Response
-     */
+    //Funcion para modificar los datos de una venta en concreto
     public function update(Request $request, Venta $venta)
     {
         $ventaData = json_decode($request->getContent(), true);
@@ -78,12 +60,7 @@ class VentaController extends Controller
         return new VentaResource($venta);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Venta  $venta
-     * @return \Illuminate\Http\Response
-     */
+    //Funcion para eliminar una venta en concreto
     public function destroy(Venta $venta)
     {
         $venta->delete();

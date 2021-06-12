@@ -29,6 +29,8 @@ use App\Http\Controllers\API\MailController;
 
 
 //Esta ruta es la que se usara para loggear al usuario
+//Si el correo o la contraseña no existe en la base de datos,
+//no devolvera el token generado junto con el id de usuario y si es administrador 
 Route::post('/tokens/create', function (Request $request) {
 
     $request->validate([
@@ -38,9 +40,10 @@ Route::post('/tokens/create', function (Request $request) {
 
     $user = User::where('email', $request->email)->first();
 
-
     if (! $user || ! Hash::check($request->password, $user->password)) {
-        return "hola";
+        throw ValidationException::withMessages([
+            'email' => ['The provided credentials are incorrect.'],
+        ]);
     }
 
     return response()->json([
@@ -61,7 +64,6 @@ Route::get('articulos/merch/{id_articulo}', [ArticuloController::class, 'merch_s
 Route::get('articulos/oferta_administrador', [ArticuloController::class, 'articulos_en_oferta_administrador']);
 Route::get('articulos/oferta', [ArticuloController::class, 'articulos_en_oferta']);
 Route::get('deseados/usuario/{id_usuario}', [DeseadoController::class, 'deseados_usuario']);
-Route::delete('deseados/productos_pagados/{id_usuario}', [DeseadoController::class, 'deleteArticulosDeseadosPagados']);
 Route::get('ventas/usuario/{id_usuario}', [VentaController::class, 'historial']);
 Route::get('carrito/usuario/{id_usuario}', [CarritoController::class, 'carrito_usuario']);
 Route::get('usuarios/correo/{email}', [UsuarioController::class, 'email_user']);

@@ -108,8 +108,10 @@ export class GestionarOfertasComponent implements OnInit {
                 this.idOG
             )
             .subscribe((result) => {
+              //Aqui guardo los usuarios que tengan ese producto en lista de deseados
               this.usuarios = result;
 
+              //Aqui voy usuario por usuario mandandole un correo de que ese producto que tiene en lista de deseados esta en oferta
               for (let i = 0; i < this.usuarios.length; i++) {
                 this.http
                   .get(
