@@ -66,7 +66,7 @@ export class VentanaPestanasComponent implements OnInit {
     'Precio_original',
     'Modificar',
   ];
-
+//Columnas usadas en ventas
   displayedColumnsVentas: string[] = [
     'Articulo',
     'Usuario',
