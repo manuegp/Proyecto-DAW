@@ -50,9 +50,7 @@ export class ProductComponent {
     this.obtenerDeseados(this.idUser);
 
     //this.comprobarCarrito(this.cesta)
-    console.log(this.cesta);
-    console.log(this.data);
-    console.log(this.id);
+    
   }
   //---------------------------------------------------------
   //---------Funciones---------------------------------------
@@ -63,7 +61,6 @@ export class ProductComponent {
     this.http
       .get('http://127.0.0.1:8000/api/articulos/juego/' + this.id)
       .subscribe((result) => {
-        console.log(result);
         this.asignarArticulos(result);
       });
   }
@@ -81,7 +78,6 @@ export class ProductComponent {
   comprobarOferta(dato: any) {
     if (dato.porcentaje != 0) {
       this.esOferta = true;
-      console.log(this.esOferta);
       this.hacerDescuento(dato);
     }
   }
@@ -92,7 +88,6 @@ export class ProductComponent {
     porcentajeInvertido = 1 - porcentajeInvertido * 0.01;
     porcentajeInvertido = data.precio * porcentajeInvertido;
     this.descuentoAplicado = porcentajeInvertido.toFixed(2);
-    console.log(data.precio * porcentajeInvertido);
   }
 
   //Obtengo id de la URL
@@ -105,7 +100,6 @@ export class ProductComponent {
 
   //Obtengo el carrito del usuario
   obtenerCarrito(user: any) {
-    console.log(user.id);
     this.http
       .get('http://127.0.0.1:8000/api/carrito/usuario/' + user.id)
       .subscribe((result) => {
@@ -126,20 +120,17 @@ export class ProductComponent {
 
   //Obtengo los deseados deol usuario
   obtenerDeseados(user: any) {
-    console.log(user.id);
     this.http
       .get('http://127.0.0.1:8000/api/deseados/usuario/' + user.id)
       .subscribe((result) => {
         this.deseados = result;
-        console.log(this.deseados);
         this.comprobarDeseados(this.deseados);
       });
   }
 
   //Compruebo si el usuario tiene el articulo en su lista de deseados
   comprobarDeseados(deseados: any) {
-    console.log(deseados);
-    console.log(this.id);
+    
     for (var i = 0; i < deseados.length; i++) {
       if (deseados[i].id_articulo == this.id) {
         this.idEnDeseados = this.deseados[i].id;
@@ -156,7 +147,6 @@ export class ProductComponent {
         this.borrarBBDD();
       } else if (this.enCesta == false) {
         this.enCesta = true;
-        console.log(this.enCesta);
 
         this.añadirBBDD();
       }
@@ -178,8 +168,7 @@ export class ProductComponent {
 
  //Añado el articulo del carrito de la base de datos
   añadirBBDD() {
-    console.log(this.idUser);
-    console.log(this.id);
+    
     this.http
       .post('http://127.0.0.1:8000/api/carrito', {
         id_usuario: this.idUser.id,
@@ -188,8 +177,7 @@ export class ProductComponent {
       })
       .toPromise()
       .then((data: any) => {
-        console.log(data);
-        console.log(JSON.stringify(data.JSON));
+        
         this.obtenerCarrito(this.idUser);
       });
   }
@@ -200,21 +188,18 @@ export class ProductComponent {
       .delete('http://127.0.0.1:8000/api/carrito/' + this.idEnCesta)
       .subscribe({
         next: (data) => {
-          console.log('funciona');
         },
       });
   }
 
   //Compruebo si esta deseado y lo borro o añado a la base de datos, y en caso de que el usuario no este logueado le abrira el dialog login
   anadirDeseados() {
-    console.log(this.deseados);
     if (this.idUser != '') {
       if (this.enDeseado == true) {
         this.enDeseado = false;
         this.borrarDeseadosBBDD();
       } else if (this.enDeseado == false) {
         this.enDeseado = true;
-        console.log(this.enDeseado);
 
         this.añadirDeseadosBBDD();
       }
@@ -226,7 +211,6 @@ export class ProductComponent {
 
   //Borro deseado de la base de datos
   borrarDeseadosBBDD() {
-    console.log(this.idEnDeseados);
     this.http
       .delete('http://127.0.0.1:8000/api/deseados/' + this.idEnDeseados)
       .subscribe({
@@ -237,7 +221,6 @@ export class ProductComponent {
 
   //Añado deseado de la base de datos
   añadirDeseadosBBDD() {
-    console.log(this.id);
     this.http
       .post('http://127.0.0.1:8000/api/deseados', {
         id_usuario: this.idUser.id,

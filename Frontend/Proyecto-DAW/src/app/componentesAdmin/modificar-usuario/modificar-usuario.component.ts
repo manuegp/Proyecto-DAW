@@ -37,7 +37,6 @@ export class ModificarUsuarioComponent {
   }
 
   ngOnInit(): void {
-    console.log(this.data);
     if (this.data.es_admin == 1) {
       this.checked = true; //Compruebo si al modificar el usuario es administrador
     }
@@ -60,10 +59,8 @@ export class ModificarUsuarioComponent {
   getNumberFromAdmin() {
     //Compruebo si el checkbox esta marcado o no diciendo si es admin o no
     if (this.checked == false) {
-      console.log('falso');
       return 0;
     } else {
-      console.log('true');
       return 1;
     }
   }

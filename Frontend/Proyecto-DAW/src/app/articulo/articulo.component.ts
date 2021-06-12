@@ -61,7 +61,6 @@ export class ArticuloComponent implements OnInit {
       .toPromise()
       .then((data) => {
         this.datos = data;
-        console.log(this.datos);
         if (this.verArticulo()) {
           //TRUE: el articulo esta en la BBDD y se mira que tipo es; FALSE: devuelve a /home
           if (this.datos.length == 0) {

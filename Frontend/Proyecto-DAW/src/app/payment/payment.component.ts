@@ -32,7 +32,6 @@ export class PaymentComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.data.juegos);
     //Creo y configuro la ventana de paypal
     window.paypal
       .Buttons({
@@ -52,10 +51,8 @@ export class PaymentComponent implements OnInit {
 
         onApprove: async (data, actions) => {
           const order = await actions.order.capture();
-          console.log(order);
 
           this.block();
-          console.log(this.btncerrar);
           //Aqui se usa la url para correo [Mario]
           this.enviarEmail();
 
@@ -67,7 +64,6 @@ export class PaymentComponent implements OnInit {
           this.eliminarCarrito();
         },
         onError: (error) => {
-          console.log(error);
         },
       })
       .render(this.paypalRef.nativeElement);
@@ -96,8 +92,6 @@ export class PaymentComponent implements OnInit {
         })
         .toPromise()
         .then((data: any) => {
-          console.log(data);
-          console.log(JSON.stringify(data.JSON));
         });
     }
   }
@@ -154,7 +148,6 @@ export class PaymentComponent implements OnInit {
   getIdUser() {
     if (localStorage.getItem('usuario')) {
       let user = JSON.parse(localStorage.getItem('usuario') || '{}');
-      console.log(user.id);
       return user.id;
     } else {
       return '';

@@ -32,7 +32,6 @@ imagePath : string ="C:\Users\manue\Desktop\Proyecto-DAW\Frontend\Proyecto-DAW\s
     ngOnInit(): void {
       
      this.idUser= this.autenticacionServe.getIdUser()
-     console.log(this.logState)
       if(this.idUser.id == undefined){
         this.logState = true;
         this.comprobarAdmin()

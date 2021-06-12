@@ -66,7 +66,7 @@ export class VentanaPestanasComponent implements OnInit {
     'Precio_original',
     'Modificar',
   ];
-
+//Columnas usadas en ventas
   displayedColumnsVentas: string[] = [
     'Articulo',
     'Usuario',
@@ -177,7 +177,6 @@ export class VentanaPestanasComponent implements OnInit {
     this.http
       .get('http://127.0.0.1:8000/api/ventas')
       .subscribe((result) => {
-        console.log(result)
         this.asignarVenta = result;
 
         this.dataSourceVentas = new MatTableDataSource(this.asignarVenta); //Asigno los datos a la tabla

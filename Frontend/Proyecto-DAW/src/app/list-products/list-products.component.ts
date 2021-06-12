@@ -47,7 +47,6 @@ export class ListProductsComponent {
       .get('http://127.0.0.1:8000/api/articulos/oferta_administrador')
       .subscribe((result) => {
         this.asignar = result;
-        console.log(this.asignar);
         this.dataSource = new MatTableDataSource(this.asignar);
         this.dataSource.paginator = this.paginator;
       });
