@@ -70,8 +70,7 @@ export class SiginComponent {
       })
       .toPromise()
       .then((data: any) => {
-        console.log(data);
-        console.log(JSON.stringify(data.JSON));
+        
       });
 
     this.http
@@ -113,7 +112,6 @@ export class SiginComponent {
 
   //me devuelve true en caso de que el parametro este vacio o que solo tenga espacios
   isEmpty(str) {
-    console.log(!str.trim().length);
     return !str.trim().length;
   }
 }

@@ -37,9 +37,7 @@ export class HomeComponent implements OnInit {
       .get('http://127.0.0.1:8000/api/articulos/oferta_administrador')
       .toPromise()
       .then((data) => {
-        console.log(data);
         this.ofertas = data;
-        console.log(this.ofertas);
       });
   }
 
