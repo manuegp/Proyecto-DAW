@@ -1,51 +1,54 @@
 import {
   HttpClient,
-  HttpErrorResponse,
-  HttpHeaders,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { throwError } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
-import { error } from 'selenium-webdriver';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AutenticacionService {
-  headers: HttpHeaders;
 
-  constructor(private http: HttpClient) {
-    this.headers = new HttpHeaders({ Accept: 'application/json' });
-  }
+  //---------------------------------------------------------
+  //--Constructor---------
+  //---------------------------------------------------------
+  constructor(private http: HttpClient) { }
 
+
+  //---------------------------------------------------------
+  //---------Funciones---------------------------------------
+  //---------------------------------------------------------
+
+  //Esta funcion se encarga de recoger los parametros que necesitara para 
+  //ejecutar la funcion que tiene esa ruta en laravel, la cual consiste en comprobar si el email y la contraseña son correctas
+  //En caso de que si, devolvera los datos que hay especificos en esa funcion
   login(email: string, password: string) {
 
     return this.http
       .post(
         'http://localhost:8000/api/tokens/create',
-        { email: email, password: password },
-        { headers: this.headers }
+        { email: email, password: password }
       )
       .pipe(
         map((datos) => {
-          console.log(datos)
           return datos;
         },
-          )
+        )
       );
   }
 
-  getIdUser(){
+  //Esta funcion comprueba si existe el localStorage de usuario. En caso de que si devolvera
+  //los datos que tiene; y en caso de que no, devolvera vacio
+  getIdUser() {
     if (localStorage.getItem("usuario")) {
       let user = JSON.parse(localStorage.getItem("usuario") || '{}')
-      console.log(user)
       let User = user;
-      
-     return User;
-    }else{
+
+      return User;
+    } else {
       return "";
     }
   }
 
-  
+
 }

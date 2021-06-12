@@ -7,28 +7,35 @@ import { Observable } from 'rxjs';
 })
 export class AutenticacionGuard implements CanActivate {
 
-  constructor (private router:Router){}
+  //---------------------------------------------------------
+  //--Constructor---------
+  //---------------------------------------------------------
+  constructor(private router: Router) { }
 
+  //---------------------------------------------------------
+  //---------Funciones---------------------------------------
+  //---------------------------------------------------------
+
+  //Funcion que utilizo en el fichero app-routing.module.ts para acceder a las ruta admin
+  //en caso de que el usuario que ha inicidado sesion sea administrador.
+  //Si no es administrador, le redirigira al home
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-      if (localStorage.getItem("usuario")) {
-        let user = JSON.parse(localStorage.getItem("usuario") || '{}')
-        console.log(user.administrador);
-        if(user.administrador== 1){
-          return true
-        }else{
-          this.router.navigate(['/home'], {queryParams:{urlRespuesta:state.url}});
-          return false
+    if (localStorage.getItem("usuario")) {
+      let user = JSON.parse(localStorage.getItem("usuario") || '{}')
+      if (user.administrador == 1) {
+        return true
+      } else {
+        this.router.navigate(['/home'], { queryParams: { urlRespuesta: state.url } });
+        return false
 
-        }
       }
+    }
 
-      this.router.navigate(['/home'], {queryParams:{urlRespuesta:state.url}});
-      console.log("No estas loggeado");
-
-      return false;
+    this.router.navigate(['/home'], { queryParams: { urlRespuesta: state.url } });
+    return false;
 
   }
 
