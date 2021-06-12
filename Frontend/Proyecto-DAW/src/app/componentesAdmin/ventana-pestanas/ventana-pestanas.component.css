@@ -14,7 +14,7 @@ th {
 
 td {
   color: white;
-  font-size: 10px;
+  font-size: 11px;
   border: solid 1px white;
   text-align: center !important;
 }
@@ -66,6 +66,18 @@ input::placeholder {
 ::ng-deep.mat-form-field-ripple {
   /*change color of underline when focused*/
   background-color: #d4b170 !important;
+}
+
+.total{
+  border: solid 1px white;
+  text-align: right;
+  padding-right: 80px;
+  
+}
+
+.total h1{
+  color: white;
+  margin-top: 16px;
 }
 
 /*Botones*/

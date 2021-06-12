@@ -18,10 +18,7 @@ export class PaymentComponent implements OnInit {
   prueba: any;
   btncerrar: boolean = false;
   myDate: Date | undefined;
-  //---------------------------------------------------------
-  //--Constructor/Funciones de inicio del componente---------
-  //---------------------------------------------------------
-
+  
   //---------------------------------------------------------
   //--Constructor/Funciones de inicio del componente---------
   //---------------------------------------------------------
@@ -95,6 +92,7 @@ export class PaymentComponent implements OnInit {
           id_usuario: this.data.juegos[i].id_usuario,
           id_articulo: this.data.juegos[i].id_articulo,
           cantidad: this.data.juegos[i].cantidad,
+          precio_total: this.aplicarDescuento(this.data.juegos[i]) //Guardo la cantidad de dinero gastado en ese producto
         })
         .toPromise()
         .then((data: any) => {
@@ -103,6 +101,18 @@ export class PaymentComponent implements OnInit {
         });
     }
   }
+
+    //Devuelve el precio rebajado
+  aplicarDescuento(juego:any){
+    let porcentajeInvertido = juego.porcentaje;
+    porcentajeInvertido = 1 - porcentajeInvertido * 0.01;
+    porcentajeInvertido = juego.precio * porcentajeInvertido;
+    let descuentoAplicado = porcentajeInvertido.toFixed(2);
+    descuentoAplicado= descuentoAplicado* juego.cantidad
+    return descuentoAplicado;
+  }
+
+  
 
   //Elimino todo el carrito del usuario y abro el dialog de que la compra se ha hecho con exito
   eliminarCarrito() {

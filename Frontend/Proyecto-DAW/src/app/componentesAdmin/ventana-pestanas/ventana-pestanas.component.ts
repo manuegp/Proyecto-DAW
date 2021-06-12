@@ -28,11 +28,12 @@ export class VentanaPestanasComponent implements OnInit {
   //---------------------------------------------------------
   //---------Variables---------------------------------------
   //---------------------------------------------------------
+  total:any           //Total valor de todos los porductos de la tabla ventas
   asignar: any;       //Variable para asignar la array a una tabla
   asignarUsu: any;    //Variable para asignar la array a una tabla
   asignarMerch: any;  //Variable para asignar la array a una tabla
   asignarOfer: any;   //Variable para asignar la array a una tabla
-
+  asignarVenta: any;   //Variable para asignar la array a una tabla
   //Columnas usadas en juegos y merchandaising
   displayedColumns: string[] = [
     'Id',
@@ -65,18 +66,29 @@ export class VentanaPestanasComponent implements OnInit {
     'Precio_original',
     'Modificar',
   ];
+
+  displayedColumnsVentas: string[] = [
+    'Articulo',
+    'Usuario',
+    'Cantidad',
+    'Fecha',
+    'Total',
+    
+  ];
   
   //Variables de las tablas
   dataSource: any;
   dataSourceUsuarios: any;
   dataSourceMerch: any;
   dataSourceOfertas: any;
+  dataSourceVentas: any;
 
   //Paginadores
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild('usu') paginator2!: MatPaginator;
   @ViewChild('usu2') paginator3!: MatPaginator;
   @ViewChild('ofer') paginator4!: MatPaginator;
+  @ViewChild('venta') paginator5!: MatPaginator;
 
   //---------------------------------------------------------
   //--Constructor/Funciones de inicio del componente---------
@@ -96,6 +108,7 @@ export class VentanaPestanasComponent implements OnInit {
     this.asignarUsuarios();
     this.asignarMerchandising();
     this.asignarOfertas();
+    this.asignarVentas();
   }
   //---------------------------------------------------------
   //---------Funciones---------------------------------------
@@ -121,6 +134,10 @@ export class VentanaPestanasComponent implements OnInit {
   applyFilterUsu(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSourceUsuarios.filter = filterValue.trim().toLowerCase();
+  }
+  applyFilterVentas(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSourceVentas.filter = filterValue.trim().toLowerCase();
   }
 
   //Funciones asignar: En estas funciones traigo los datos de sus respectivas BBDD
@@ -153,6 +170,19 @@ export class VentanaPestanasComponent implements OnInit {
 
         this.dataSourceOfertas = new MatTableDataSource(this.asignarOfer); //Asigno los datos a la tabla
         this.dataSourceOfertas.paginator = this.paginator4; //Vinculo el paginador a la tabla
+      });
+  }
+
+  asignarVentas() {
+    this.http
+      .get('http://127.0.0.1:8000/api/ventas')
+      .subscribe((result) => {
+        console.log(result)
+        this.asignarVenta = result;
+
+        this.dataSourceVentas = new MatTableDataSource(this.asignarVenta); //Asigno los datos a la tabla
+        this.dataSourceVentas.paginator = this.paginator5; //Vinculo el paginador a la tabla
+        this.getTotal(this.asignarVenta);
       });
   }
 
@@ -346,5 +376,14 @@ export class VentanaPestanasComponent implements OnInit {
       .then((data: any) => {
         this.asignarOfertas();  //Actualizo la tabla
       });
+  }
+ 
+  //Consigue el total de precios de todo los elementos de la tabla ventas
+  getTotal(ventas:any){
+    let total=0;
+    for (let i = 0; i < ventas.length; i++) {
+      total= ventas[i].precio_total + total;
+    }
+    this.total= total;
   }
 }
