@@ -116,8 +116,10 @@ export class ShoppingCartComponent implements OnInit {
     let idCambiar = this.localizarElemento(elemento);
     this.juegosCesta[idCambiar].cantidad = event;
 
+    console.log(event);
     this.http
-      .put('http://127.0.0.1:8000/api/carrito/' + elemento.id, {
+      .put('http://127.0.0.1:8000/api/lista_producto_carritos/modificar/' + elemento.id, {
+        id_usuario: this.idUser.id,
         cantidad: event,
       })
       .toPromise();
@@ -127,7 +129,7 @@ export class ShoppingCartComponent implements OnInit {
   //Elimina de la base de datos
   eliminarDelCarrito(elemento: any) {
     this.http
-      .delete('http://127.0.0.1:8000/api/carrito/' + elemento.id)
+      .delete('http://127.0.0.1:8000/api/lista_producto_carritos/' + elemento.id + "/" + this.idUser.id )
       .subscribe({
         next: (data) => {
           window.location.reload();

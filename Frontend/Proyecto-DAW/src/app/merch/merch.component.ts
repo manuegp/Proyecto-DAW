@@ -86,7 +86,7 @@ export class MerchComponent implements OnInit {
   //Compruebo si el usuario tiene este producto en su lista de deseados
   comprobarDeseados(deseados: any) {
     for (var i = 0; i < deseados.length; i++) {
-      if (deseados[i].id_articulo == this.id) {
+      if (deseados[i].id == this.id) {
         this.idEnDeseados = this.deseados[i].id;
 
         this.enDeseado = true;
@@ -107,7 +107,7 @@ export class MerchComponent implements OnInit {
   //Conpruebo si el usuario tiene este articulo y cambio la variable 'enCesta'
   comprobarCarrito(cesta: any) {
     for (var i = 0; i < cesta.length; i++) {
-      if (cesta[i].id_articulo == this.id) {
+      if (cesta[i].id == this.id) {
         this.idEnCesta = this.cesta[i].id;
 
         this.enCesta = true;
@@ -146,7 +146,7 @@ export class MerchComponent implements OnInit {
   //Añado el articulo del carrito de la base de datos
   añadirBBDD() {
     this.http
-      .post('http://127.0.0.1:8000/api/carrito', {
+      .post('http://127.0.0.1:8000/api/lista_producto_carritos/añadir', {
         id_usuario: this.idUser.id,
         id_articulo: this.id,
         cantidad: 1,
@@ -160,7 +160,7 @@ export class MerchComponent implements OnInit {
   //Borro el articulo del carrito de la base de datos
   borrarBBDD() {
     this.http
-      .delete('http://127.0.0.1:8000/api/carrito/' + this.idEnCesta)
+      .delete('http://127.0.0.1:8000/api/lista_producto_carritos/' + this.idEnCesta + "/" + this.idUser.id)
       .subscribe({
         next: (data) => {},
       });
@@ -186,7 +186,7 @@ export class MerchComponent implements OnInit {
   //Borro deseado de la base de datos
   borrarDeseadosBBDD() {
     this.http
-      .delete('http://127.0.0.1:8000/api/deseados/' + this.idEnDeseados)
+      .delete('http://127.0.0.1:8000/api/lista_producto_deseados/' + this.idEnDeseados + "/" + this.idUser.id)
       .subscribe({
         next: (data) => {},
       });
@@ -195,7 +195,7 @@ export class MerchComponent implements OnInit {
   //Añado deseado de la base de datos
   añadirDeseadosBBDD() {
     this.http
-      .post('http://127.0.0.1:8000/api/deseados', {
+      .post('http://127.0.0.1:8000/api/lista_producto_deseados/añadir', {
         id_usuario: this.idUser.id,
         id_articulo: this.id,
       })

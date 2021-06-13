@@ -113,12 +113,6 @@ class ArticuloController extends Controller
         return new ArticuloResource($articulo);
     }
 
-    /*Funcion para mostrar un articulo en concreto, ya sea juego o merchandising*/
-    public function show(Articulo $articulo)
-    {
-        return new ArticuloResource($articulo);
-    }
-
     /*Funcion para actualizar un articulo en concreto, ya sea juego o merchandising*/
     public function update(Request $request, Articulo $articulo)
     {

@@ -17,49 +17,25 @@ class CarritoSeeder extends Seeder
         DB::table('carritos')->insert([
 
             [
-                'id_usuario' => '3',
-                'id_articulo' => '8',
-                'cantidad' => '2',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-
-            [
                 'id_usuario' => '1',
-                'id_articulo' => '6',
-                'cantidad' => '3',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            [
+                'id_usuario' => '2',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
 
             [
                 'id_usuario' => '3',
-                'id_articulo' => '3',
-                'cantidad' => '5',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
 
             [
-                'id_usuario' => '2',
-                'id_articulo' => '4',
-                'cantidad' => '6',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-
-            [
-                'id_usuario' => '2',
-                'id_articulo' => '5',
-                'cantidad' => '4',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-
-            [
-                'id_usuario' => '2',
-                'id_articulo' => '6',
-                'cantidad' => '3',
+                'id_usuario' => '4',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],

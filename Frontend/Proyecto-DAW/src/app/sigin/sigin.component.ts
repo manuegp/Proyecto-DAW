@@ -21,6 +21,7 @@ export class SiginComponent {
   signupForm: FormGroup; //Formulario
   url = 'http://127.0.0.1:8000/api/usuarios';
   contrasenas = false; //true: coinciden
+  idUser: any;
   //---------------------------------------------------------
   //--Constructor/Funciones de inicio del componente---------
   //---------------------------------------------------------
@@ -42,7 +43,7 @@ export class SiginComponent {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   //---------------------------------------------------------
   //---------Funciones---------------------------------------
@@ -57,6 +58,8 @@ export class SiginComponent {
     email: string,
     direccion: string
   ) {
+
+    //Creo primero el usuario
     this.http
       .post(this.url, {
         nombre: nombre,
@@ -70,13 +73,35 @@ export class SiginComponent {
       })
       .toPromise()
       .then((data: any) => {
-        
+        this.idUser = data.data.id;
+        console.log(data.data.id);
+
+        //Luego cogo el id del usuario creado y creo su carrito y su lista de deseados
+        this.http
+          .post('http://127.0.0.1:8000/api/carrito', {
+            id_usuario: this.idUser,
+          })
+          .toPromise()
+          .then((data: any) => {
+          });
+
+        this.http
+          .post('http://127.0.0.1:8000/api/deseados', {
+            id_usuario: this.idUser,
+          })
+          .toPromise()
+          .then((data: any) => {
+
+          });
+
       });
+
+
 
     this.http
       .get(
         'http://127.0.0.1:8000/api/email_registro/' +
-          this.signupForm.controls.email.value
+        this.signupForm.controls.email.value
       )
       .subscribe();
   }
@@ -92,7 +117,7 @@ export class SiginComponent {
       this.signupForm.controls['direccion'].value
     );
     confirm('Cuenta creada con exito, recibira un email');
-    this.router.navigate(['home']);
+    //this.router.navigate(['home']);
   }
 
   //Compruebo que la nueva contraseña coincida con su confirmacion

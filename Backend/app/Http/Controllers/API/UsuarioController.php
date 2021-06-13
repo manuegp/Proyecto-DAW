@@ -68,9 +68,13 @@ class UsuarioController extends Controller
     public function articulo_deseado_oferta_users(string $id_articulo) {
 
         $usuarios = DB::select('SELECT DISTINCT users.*
-                                FROM users, deseados
-                                WHERE deseados.id_articulo = '. $id_articulo. 
-                               ' AND users.id = deseados.id_usuario'
+                                from users, lista_producto_deseados, deseados
+                                where deseados.id_usuario = users.id
+                                and deseados.id IN (
+                                                    select lista_producto_deseados.id_deseado
+                                                    from lista_producto_deseados
+                                                    where lista_producto_deseados.id_articulo = '. $id_articulo. '
+                                                    )'
         );
 
         return $usuarios;

@@ -55,12 +55,14 @@ class MailController extends Controller
 
         //Aqui guardo aquellos productos (juegos) que estaban en carrito y se han comprado, 
         //cuyo usuario es aquel que tiene el email que se ha introducido como parametro
-        $juegos = DB::select('SELECT articulos.nombre, carritos.cantidad
-                              FROM articulos, carritos
-                              WHERE carritos.id_articulo = articulos.id
-                              AND carritos.id_usuario = (select id
-                                                      FROM users
-                                                      WHERE email LIKE "'. $email. '")
+        $juegos = DB::select('SELECT articulos.nombre, lista_producto_carritos.cantidad
+                              FROM articulos, lista_producto_carritos
+                              WHERE lista_producto_carritos.id_articulo = articulos.id
+                              AND lista_producto_carritos.id_carrito = (select carritos.id
+                                              FROM users, carritos
+                                              WHERE users.email LIKE "'. $email. '"
+                                              and users.id = carritos.id_usuario
+                                              )
                               and articulos.id IN (
                                                   SELECT id_articulo 
                                                   FROM juegos
@@ -69,16 +71,18 @@ class MailController extends Controller
 
         //Aqui guardo aquellos productos (merchandising) que estaban en carrito y se han comprado, 
         //cuyo usuario es aquel que tiene el email que se ha introducido como parametro
-        $merch = DB::select('SELECT articulos.nombre, carritos.cantidad
-                              FROM articulos, carritos
-                              WHERE carritos.id_articulo = articulos.id
-                              AND carritos.id_usuario = (select id
-                                                      FROM users
-                                                      WHERE email LIKE "'. $email. '")
-                              and articulos.id NOT IN (
-                                                  SELECT id_articulo 
-                                                  FROM juegos
-                                                  )'
+        $merch = DB::select('SELECT articulos.nombre, lista_producto_carritos.cantidad
+                             FROM articulos, lista_producto_carritos
+                             WHERE lista_producto_carritos.id_articulo = articulos.id
+                             AND lista_producto_carritos.id_carrito = (select carritos.id
+                                             FROM users, carritos
+                                             WHERE users.email LIKE "'. $email. '"
+                                             and users.id = carritos.id_usuario
+                                             )
+                             and articulos.id NOT IN (
+                                                 SELECT id_articulo 
+                                                 FROM juegos
+                                                 )'
         );
 
         //Aqui guardo la direccion del usuario, cuyo email sea el que se ha introducido como parametro
@@ -88,13 +92,15 @@ class MailController extends Controller
         );
 
         //Aqui guardo el coste total de todos los productos que tenia el usuario en carrito
-        $coste = DB::select('SELECT ROUND(SUM((articulos.precio - ((ofertas.porcentaje*articulos.precio)/100))*carritos.cantidad), 2) AS precio_total
-                             from articulos, ofertas, carritos
+        $coste = DB::select('SELECT ROUND(SUM((articulos.precio - ((ofertas.porcentaje*articulos.precio)/100))*lista_producto_carritos.cantidad), 2) AS precio_total
+                             from articulos, ofertas, lista_producto_carritos
                              where articulos.id = ofertas.id_articulo
-                             and articulos.id = carritos.id_articulo
-                             and carritos.id_usuario = (select id 
-                                                     from users
-                                                     where email LIKE "'. $email. '")'
+                             and articulos.id = lista_producto_carritos.id_articulo
+                             and lista_producto_carritos.id_carrito = (select carritos.id 
+                                                             from users, carritos
+                                                             where email LIKE "'. $email. '"
+                                                             and carritos.id_usuario = users.id
+                                                             )'
         );
 
         $details = [

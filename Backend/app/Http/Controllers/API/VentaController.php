@@ -33,12 +33,6 @@ class VentaController extends Controller
         return new VentaResource($venta);
     }
 
-    //Funcion para mostrar los datos de una venta en concreto
-    public function show(Venta $venta)
-    {
-        return new VentaResource($venta);
-    }
-
     //Funcion para mostrar los datos de ventas, junto con el nombre, precio e imagen del articulo, 
     //segun el id_usuario que esta introducido como parametro
     public function historial(string $id_usuario)
@@ -48,16 +42,6 @@ class VentaController extends Controller
                                  WHERE ventas.id_usuario = '. $id_usuario. ' AND ventas.id_articulo = articulos.id'
         );
         return $historial;
-    }
-
-
-    //Funcion para modificar los datos de una venta en concreto
-    public function update(Request $request, Venta $venta)
-    {
-        $ventaData = json_decode($request->getContent(), true);
-        $venta->update($ventaData);
-
-        return new VentaResource($venta);
     }
 
     //Funcion para eliminar una venta en concreto

@@ -32,6 +32,7 @@ export class PaymentComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this.data);
     //Creo y configuro la ventana de paypal
     window.paypal
       .Buttons({
@@ -85,8 +86,8 @@ export class PaymentComponent implements OnInit {
     for (let i = 0; i < this.data.juegos.length; i++) {
       this.http
         .post('http://127.0.0.1:8000/api/ventas', {
-          id_usuario: this.data.juegos[i].id_usuario,
-          id_articulo: this.data.juegos[i].id_articulo,
+          id_usuario: this.getIdUser(),
+          id_articulo: this.data.juegos[i].id,
           cantidad: this.data.juegos[i].cantidad,
           precio_total: this.aplicarDescuento(this.data.juegos[i]) //Guardo la cantidad de dinero gastado en ese producto
         })
@@ -112,7 +113,7 @@ export class PaymentComponent implements OnInit {
   eliminarCarrito() {
     for (let i = 0; i < this.data.juegos.length; i++) {
       this.http
-        .delete('http://127.0.0.1:8000/api/carrito/' + this.data.juegos[i].id)
+        .delete('http://127.0.0.1:8000/api/lista_producto_carritos/' + this.data.juegos[i].id + "/" + this.getIdUser())
         .subscribe({
           next: (data) => {
             const dialogConfig = new MatDialogConfig();

@@ -48,7 +48,7 @@ export class ModificarJuegoComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
   //---------------------------------------------------------
   //---------Funciones---------------------------------------
   //---------------------------------------------------------
@@ -112,32 +112,37 @@ export class ModificarJuegoComponent implements OnInit {
           imagen_principal: imagen,
         })
         .toPromise()
-        .then((data: any) => {});
-
-      this.http
-        .put('http://127.0.0.1:8000/api/juegos/' + id, {
-          etiquetas: etiquetas,
-          idioma: idioma,
-          video: video,
-          plataforma: plataforma,
-        })
-        .toPromise()
-        .then((data: any) => {});
-
-      this.http
-        .put('http://127.0.0.1:8000/api/requisitos_juego/' + id, {
-          directx: directx,
-          graficos: graficos,
-          memoria: memoria,
-          os: os,
-          storage: storage,
-          procesador: procesador,
-          tarjeta_sonido: tarjeta_sonido,
-        })
-        .toPromise()
         .then((data: any) => {
-          this.dialogRef.close();
+
+          this.http
+            .put('http://127.0.0.1:8000/api/juegos/' + id, {
+              etiquetas: etiquetas,
+              idioma: idioma,
+              video: video,
+              plataforma: plataforma,
+            })
+            .toPromise()
+            .then((data: any) => {
+
+              this.http
+                .put('http://127.0.0.1:8000/api/requisitos_juego/' + id, {
+                  directx: directx,
+                  graficos: graficos,
+                  memoria: memoria,
+                  os: os,
+                  storage: storage,
+                  procesador: procesador,
+                  tarjeta_sonido: tarjeta_sonido,
+                })
+                .toPromise()
+                .then((data: any) => {
+                  this.dialogRef.close();
+                });
+
+            });
+
         });
+
     } else if (tipo == 'add') {
       this.http
         .post('http://127.0.0.1:8000/api/articulos', {

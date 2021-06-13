@@ -17,42 +17,24 @@ class DeseadoSeeder extends Seeder
         DB::table('deseados')->insert([
 
             [
-                'id_articulo' => '1',
-                'id_usuario' => '2',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-
-            [
-                'id_articulo' => '2',
                 'id_usuario' => '1',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
 
             [
-                'id_articulo' => '3',
+                'id_usuario' => '2',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            [
                 'id_usuario' => '3',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
 
             [
-                'id_articulo' => '4',
-                'id_usuario' => '3',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-
-            [
-                'id_articulo' => '5',
-                'id_usuario' => '3',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-
-            [
-                'id_articulo' => '6',
                 'id_usuario' => '4',
                 'created_at' => now(),
                 'updated_at' => now(),

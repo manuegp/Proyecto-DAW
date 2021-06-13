@@ -10,13 +10,8 @@ use Illuminate\Support\Facades\DB;
 
 class CarritoController extends Controller
 {
-    /*Funcion para mostrar todos los datos de carrito*/
-    public function index()
-    {
-        return CarritoResource::collection(Carrito::all());
-    }
 
-    /*Funcion para crear una nueva fila de carrito*/
+    /*Funcion para crear un nuevo carrito*/
     public function store(Request $request)
     {
         $carrito = json_decode($request->getContent(), true);
@@ -26,38 +21,26 @@ class CarritoController extends Controller
         return new CarritoResource($carrito);
     }
 
-    /*Funcion para mostrar los datos de una fila en concreto de carrito*/
-    public function show(Carrito $carrito)
-    {
-        return new CarritoResource($carrito);
-    }
-
     /*Funcion para mostrar los datos de carrito, junto a datos de articulos y ofertas, 
     cuyo id_usuario de carrito sea igual al que se ha introducido como parametro*/
     public function carrito_usuario(string $id_usuario)
     {
-        $carrito_usuario = DB::select('SELECT carritos.*, articulos.nombre, articulos.precio, articulos.imagen_principal, ofertas.porcentaje
-                                       FROM carritos, articulos, ofertas
-                                       WHERE carritos.id_usuario = '. $id_usuario. ' 
-                                       AND carritos.id_articulo = articulos.id 
-                                       AND ofertas.id_articulo = carritos.id_articulo'
+
+        $carrito_usuario = DB::select('SELECT articulos.id, articulos.nombre, articulos.precio, articulos.imagen_principal, ofertas.porcentaje, lista_producto_carritos.cantidad
+                                        from articulos, lista_producto_carritos, carritos, ofertas
+                                        WHERE articulos.id = lista_producto_carritos.id_articulo
+                                        and ofertas.id_articulo = articulos.id 
+                                        and lista_producto_carritos.id_carrito = carritos.id
+                                        and carritos.id_usuario = '. $id_usuario
         );
 
         return $carrito_usuario;
     }
 
-    /*Funcion para actualizar una fila en concreto de carrito*/
-    public function update(Request $request, Carrito $carrito)
-    {
-        $carritoData = json_decode($request->getContent(), true);
-        $carrito->update($carritoData);
-
-        return new CarritoResource($carrito);
-    }
-
-    /*Funcion para eliminar una fila en concreto de carrito*/
-    public function destroy(Carrito $carrito)
-    {
-        $carrito->delete();
+    //Funcion para eliminar aquel carrito cuyo id_usuario sea el introducido como parametro
+    public function deleteCarritoUsuario(string $id_usuario) {
+        DB::delete('delete from carritos
+                    WHERE carritos.id_usuario = '. $id_usuario
+        );
     }
 }

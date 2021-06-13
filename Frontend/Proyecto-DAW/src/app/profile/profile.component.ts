@@ -138,6 +138,7 @@ export class ProfileComponent implements OnInit {
       .get('http://127.0.0.1:8000/api/usuarios/' + this.user.id)
       .toPromise();
     this.userData = data;
+    console.log(this.user.id);
   }
 
   //Actualizo los datos y los envio a la BBDD
@@ -157,15 +158,17 @@ export class ProfileComponent implements OnInit {
   //Elemino de la BBDD el articulo seleccionado
   eliminarDeseado(elemento: any) {
     this.http
-      .delete('http://127.0.0.1:8000/api/deseados/' + elemento.id)
+      .delete('http://127.0.0.1:8000/api/lista_producto_deseados/' + elemento.id + "/" + this.user.id)
       .subscribe({
-        next: (data) => {},
+        next: (data) => {
+          this.asignarDeseados();
+        },
       });
   }
 
   //Redirige al producto seleccionado
   redirigir(event: any) {
-    this.router.navigate(['/product/' + event.id_articulo]);
+    this.router.navigate(['/product/' + event.id]);
   }
 
   //Envia el usuario a una pagina para cambiar su contraseña y crea un token especifico para que pueda crearla

@@ -28,7 +28,7 @@ export class VentanaPestanasComponent implements OnInit {
   //---------------------------------------------------------
   //---------Variables---------------------------------------
   //---------------------------------------------------------
-  total:any           //Total valor de todos los porductos de la tabla ventas
+  total: any           //Total valor de todos los porductos de la tabla ventas
   asignar: any;       //Variable para asignar la array a una tabla
   asignarUsu: any;    //Variable para asignar la array a una tabla
   asignarMerch: any;  //Variable para asignar la array a una tabla
@@ -66,16 +66,16 @@ export class VentanaPestanasComponent implements OnInit {
     'Precio_original',
     'Modificar',
   ];
-//Columnas usadas en ventas
+  //Columnas usadas en ventas
   displayedColumnsVentas: string[] = [
     'Articulo',
     'Usuario',
     'Cantidad',
     'Fecha',
     'Total',
-    
+
   ];
-  
+
   //Variables de las tablas
   dataSource: any;
   dataSourceUsuarios: any;
@@ -99,9 +99,9 @@ export class VentanaPestanasComponent implements OnInit {
     private http: HttpClient,
     private dialogañadirArticulos: MatDialog,
     private router: Router
-  ) {}
+  ) { }
 
-  ngAfterViewInit() {}
+  ngAfterViewInit() { }
 
   ngOnInit(): void {
     this.asignarJuegos();
@@ -342,11 +342,13 @@ export class VentanaPestanasComponent implements OnInit {
     });
   }
 
+  //A parte de eliminar el usuario, tambien se elimina su carrito y su lista de deseados
   borrarUsuario(event: any) {
     this.http
       .delete('http://127.0.0.1:8000/api/usuarios/' + event.id)
       .subscribe({
         next: (data) => {
+
           this.asignarUsuarios(); //Actualizo la tabla
         },
       });
@@ -376,13 +378,13 @@ export class VentanaPestanasComponent implements OnInit {
         this.asignarOfertas();  //Actualizo la tabla
       });
   }
- 
+
   //Consigue el total de precios de todo los elementos de la tabla ventas
-  getTotal(ventas:any){
-    let total=0;
+  getTotal(ventas: any) {
+    let total = 0;
     for (let i = 0; i < ventas.length; i++) {
-      total= ventas[i].precio_total + total;
+      total = ventas[i].precio_total + total;
     }
-    this.total= total;
+    this.total = total;
   }
 }

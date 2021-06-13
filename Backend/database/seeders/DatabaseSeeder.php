@@ -19,7 +19,9 @@ class DatabaseSeeder extends Seeder
         $this->call(VentaSeeder::class);
         $this->call(RequisitosJuegoSeeder::class);
         $this->call(CarritoSeeder::class);
+        $this->call(ListaProductoCarritoSeeder::class);
         $this->call(DeseadoSeeder::class);
+        $this->call(ListaProductoDeseadoSeeder::class);
         $this->call(OfertaSeeder::class);
     }
 }
