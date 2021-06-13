@@ -1,5 +1,4 @@
 import { HttpClient } from '@angular/common/http';
-import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
@@ -16,9 +15,9 @@ export class ModificarJuegoComponent implements OnInit {
   //---------Variables---------------------------------------
   //---------------------------------------------------------
   signupForm: FormGroup; //Formulario
-  idCrear: any; //Id del nuevo articulo que se ha creado 
+  idCrear: any; //Id del nuevo articulo que se ha creado
   idJuego: any;
-  idRequisitosJuego: any;
+  idRequisitosJuego: any; 
 
   //---------------------------------------------------------
   //--Constructor/Funciones de inicio del componente---------
@@ -51,13 +50,12 @@ export class ModificarJuegoComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
   //---------------------------------------------------------
   //---------Funciones---------------------------------------
   //---------------------------------------------------------
 
   submit() {
-    console.log("aaaaaaa");
     //Recojo los datos y los envio
     this.enviarDatos(
       this.data.tipo,
@@ -118,7 +116,7 @@ export class ModificarJuegoComponent implements OnInit {
         })
         .toPromise()
         .then((data: any) => {
-          console.log(data)
+
           this.http
             .get('http://127.0.0.1:8000/api/juegos/id/' + id)
             .subscribe((result) => {
