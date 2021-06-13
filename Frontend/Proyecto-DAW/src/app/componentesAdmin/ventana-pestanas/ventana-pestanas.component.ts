@@ -282,7 +282,7 @@ export class VentanaPestanasComponent implements OnInit {
       });
 
       this.dialog.afterAllClosed.subscribe((result) => {
-        this.asignarJuegos();
+        this.asignarMerchandising()
       });
     } else {
       const dialogConfig = new MatDialogConfig();

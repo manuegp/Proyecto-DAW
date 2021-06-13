@@ -113,7 +113,7 @@ export class ModificarJuegoComponent implements OnInit {
         })
         .toPromise()
         .then((data: any) => {
-
+          console.log(data)
           this.http
             .put('http://127.0.0.1:8000/api/juegos/' + id, {
               etiquetas: etiquetas,
