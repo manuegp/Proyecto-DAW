@@ -134,10 +134,11 @@ export class ModificarJuegoComponent implements OnInit {
                 .then((data: any) => {
 
                   this.http
-                    .get('http://127.0.0.1:8000/api/requisitos_juego/id/' + id)
+                    .get('http://127.0.0.1:8000/api/requisitos_juego/id/' + this.idJuego[0].id)
                     .subscribe((result) => {
                       this.idRequisitosJuego = result;
 
+                      console.log(this.idRequisitosJuego);
                       this.http
                         .put('http://127.0.0.1:8000/api/requisitos_juego/' + this.idRequisitosJuego[0].id, {
                           directx: directx,

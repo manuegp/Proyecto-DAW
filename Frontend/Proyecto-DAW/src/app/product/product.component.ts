@@ -44,7 +44,7 @@ export class ProductComponent {
 
   ngOnInit(): void {
     this.obtenerID();
-    this.obtenerArticulos();
+    //this.obtenerArticulos();
     this.idUser = this.autenticacionServe.getIdUser(); //Consigo el id del usuario
     this.obtenerCarrito(this.idUser);
     this.obtenerDeseados(this.idUser);
@@ -62,6 +62,7 @@ export class ProductComponent {
       .get('http://127.0.0.1:8000/api/articulos/juego/' + this.id)
       .subscribe((result) => {
         this.asignarArticulos(result);
+        console.log(result);
       });
   }
 
@@ -95,7 +96,9 @@ export class ProductComponent {
     this._ac.paramMap.subscribe((params) => {
       const id = params.get('id');
       this.id = id;
+      this.obtenerArticulos();
     });
+    
   }
 
   //Obtengo el carrito del usuario

@@ -143,20 +143,16 @@ export class ProfileComponent implements OnInit {
 
   //Actualizo los datos y los envio a la BBDD
   submit(evento: any) {
-    console.log('lo hace')
     this.http
       .put('http://127.0.0.1:8000/api/usuarios/' + this.user.id, {
         nombre: this.signupForm.controls['nombre'].value,
-        apellidos: this.signupForm.controls['apellidos'].value,
+        apellido: this.signupForm.controls['apellidos'].value,
         nick: this.signupForm.controls['username'].value,
         telefono: this.signupForm.controls['telefono'].value,
         email: this.signupForm.controls['email'].value,
-        direccion: this.signupForm.controls['direccion'].value,
       })
       .toPromise()
-      .then((data: any) => {
-        console.log(data)
-      });
+      .then((data: any) => {});
   }
 
   //Elemino de la BBDD el articulo seleccionado
