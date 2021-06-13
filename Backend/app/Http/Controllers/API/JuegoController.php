@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Juego;
 use Illuminate\Http\Request;
 use App\Http\Resources\JuegoResource;
+use Illuminate\Support\Facades\DB;
 
 class JuegoController extends Controller
 {
@@ -29,6 +30,16 @@ class JuegoController extends Controller
     public function show(Juego $juego)
     {
         return new JuegoResource($juego);
+    }
+
+    //Funcion para devolver el id del juego segun el id del articulo pasado como parametro
+    public function devolverIdJuego(string $id_articulo)
+    {
+        $id_juego = DB::select('select id
+                                 from juegos
+                                 where juegos.id_articulo = '. $id_articulo
+        );
+        return $id_juego;
     }
 
     /*Funcion para actualizar los datos de una fila en concreto de juegos*/

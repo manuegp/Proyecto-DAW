@@ -1,4 +1,5 @@
 import { HttpClient } from '@angular/common/http';
+import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
@@ -16,6 +17,8 @@ export class ModificarJuegoComponent implements OnInit {
   //---------------------------------------------------------
   signupForm: FormGroup; //Formulario
   idCrear: any; //Id del nuevo articulo que se ha creado 
+  idJuego: any;
+  idRequisitosJuego: any;
 
   //---------------------------------------------------------
   //--Constructor/Funciones de inicio del componente---------
@@ -54,6 +57,7 @@ export class ModificarJuegoComponent implements OnInit {
   //---------------------------------------------------------
 
   submit() {
+    console.log("aaaaaaa");
     //Recojo los datos y los envio
     this.enviarDatos(
       this.data.tipo,
@@ -103,6 +107,7 @@ export class ModificarJuegoComponent implements OnInit {
   ) {
     if (tipo == 'update') {
       //Compruebo si se va a crear o actualizar el dato
+      console.log("actualizar");
       this.http
         .put('http://127.0.0.1:8000/api/articulos/' + id, {
           nombre: nombre,
@@ -115,29 +120,47 @@ export class ModificarJuegoComponent implements OnInit {
         .then((data: any) => {
 
           this.http
-            .put('http://127.0.0.1:8000/api/juegos/' + id, {
-              etiquetas: etiquetas,
-              idioma: idioma,
-              video: video,
-              plataforma: plataforma,
-            })
-            .toPromise()
-            .then((data: any) => {
+            .get('http://127.0.0.1:8000/api/juegos/id/' + id)
+            .subscribe((result) => {
+
+              this.idJuego = result;
 
               this.http
-                .put('http://127.0.0.1:8000/api/requisitos_juego/' + id, {
-                  directx: directx,
-                  graficos: graficos,
-                  memoria: memoria,
-                  os: os,
-                  storage: storage,
-                  procesador: procesador,
-                  tarjeta_sonido: tarjeta_sonido,
+                .put('http://127.0.0.1:8000/api/juegos/' + this.idJuego[0].id, {
+                  etiquetas: etiquetas,
+                  idioma: idioma,
+                  video: video,
+                  plataforma: plataforma,
                 })
                 .toPromise()
                 .then((data: any) => {
-                  this.dialogRef.close();
+
+                  this.http
+                    .get('http://127.0.0.1:8000/api/requisitos_juego/id/' + id)
+                    .subscribe((result) => {
+                      this.idRequisitosJuego = result;
+
+                      this.http
+                        .put('http://127.0.0.1:8000/api/requisitos_juego/' + this.idRequisitosJuego[0].id, {
+                          directx: directx,
+                          graficos: graficos,
+                          memoria: memoria,
+                          os: os,
+                          storage: storage,
+                          procesador: procesador,
+                          tarjeta_sonido: tarjeta_sonido,
+                        })
+                        .toPromise()
+                        .then((data: any) => {
+                          this.dialogRef.close();
+                        });
+
+
+                    });
+
+
                 });
+
 
             });
 

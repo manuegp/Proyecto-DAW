@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\RequisitosJuego;
 use Illuminate\Http\Request;
 use App\Http\Resources\RequisitosJuegoResource;
+use Illuminate\Support\Facades\DB;
 
 class RequisitosJuegoController extends Controller
 {
@@ -29,6 +30,16 @@ class RequisitosJuegoController extends Controller
     public function show(RequisitosJuego $requisitosJuego)
     {
         return new RequisitosJuegoResource($requisitosJuego);
+    }
+
+    //Funcion para devolver el id de requisitos del juego segun el id del juego pasado como parametro
+    public function devolverIdRequisitosJuego(string $id_juego)
+    {
+        $id_requisito = DB::select('select id
+                                    from requisitos_juegos
+                                    where requisitos_juegos.id_juego = '. $id_juego
+        );
+        return $id_requisito;
     }
 
     /*Funcion para modificar los datos de una fila en concreto de requisitos_juego*/

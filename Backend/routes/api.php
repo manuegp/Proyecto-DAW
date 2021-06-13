@@ -104,9 +104,11 @@ Route::apiResource('usuarios', UsuarioController::class);
 
 
 //Rutas de la tabla Juegos
+Route::get('juegos/id/{id_articulo}', [JuegoController::class, 'devolverIdJuego']);
 Route::apiResource('juegos', JuegoController::class);
 
 //Rutas de la tabla Requisitos_Juego
+Route::get('requisitos_juego/id/{id_articulo}', [RequisitosJuegoController::class, 'devolverIdRequisitosJuego']);
 Route::apiResource('requisitos_juego', RequisitosJuegoController::class);
 
 //Rutas de la tabla Ofertas
